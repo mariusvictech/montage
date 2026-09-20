@@ -1,18 +1,21 @@
 #!/usr/bin/env node
 /**
- * Repère les blancs de la bande sonore et coupe le rush dessus, en gardant
- * une respiration de chaque côté pour ne jamais rogner la parole.
+ * Coupe le rush sur ses vrais creux : la piste son est décodée, son énergie
+ * mesurée toutes les 20 ms, et le seuil de silence est déduit du niveau de la
+ * voix elle-même (p95 − marge). Un seuil fixe en dB ne marche pas d'un rush à
+ * l'autre — le souffle d'un iPhone dans une pièce change tout.
  *
- *   node scripts/cut-silences.mjs --entree video-1/assets/rush.mp4 \
- *        --sortie video-1/assets/rush-coupe.mp4 --plan video-1/cuts.json
+ *   node scripts/cut-silences.mjs --entree video-2/assets/rush.MOV \
+ *        --sortie video-2/assets/rush-coupe.mp4 --plan video-2/cuts.json
  *
  * Écrit un plan de coupe JSON (segments conservés) que scripts/subtitles.mjs
  * réutilise pour recaler les timings des mots sur la vidéo coupée.
  */
 
-import { execFileSync, spawnSync } from "node:child_process";
-import { mkdirSync, writeFileSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { execFileSync } from "node:child_process";
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
+import { tmpdir } from "node:os";
 
 function options(argv) {
   const o = {};
@@ -20,30 +23,50 @@ function options(argv) {
     const a = argv[i];
     if (!a.startsWith("--")) continue;
     const cle = a.slice(2);
-    const val = argv[i + 1] && !argv[i + 1].startsWith("--") ? argv[(i += 1)] : "true";
-    o[cle] = val;
+    o[cle] = argv[i + 1] && !argv[i + 1].startsWith("--") ? argv[(i += 1)] : "true";
   }
   return o;
 }
 
-/** Transforme la sortie de `silencedetect` en liste de blancs [{debut, fin}]. */
-export function lireBlancs(journal, duree) {
-  const blancs = [];
-  let debut = null;
-  for (const ligne of journal.split("\n")) {
-    const d = ligne.match(/silence_start:\s*(-?[\d.]+)/);
-    if (d) debut = Math.max(0, Number(d[1]));
-    const f = ligne.match(/silence_end:\s*(-?[\d.]+)/);
-    if (f && debut !== null) {
-      blancs.push({ debut, fin: Math.min(duree, Number(f[1])) });
-      debut = null;
+/** Énergie RMS en dB, une valeur toutes les `pas` secondes. */
+export function profil(wav, pas = 0.02, sr = 16000) {
+  const pcm = wav.subarray(44);
+  const taille = Math.round(sr * pas);
+  const valeurs = [];
+  for (let i = 0; i + taille <= pcm.length / 2; i += taille) {
+    let somme = 0;
+    for (let j = 0; j < taille; j += 1) {
+      const v = pcm.readInt16LE((i + j) * 2) / 32768;
+      somme += v * v;
     }
+    valeurs.push(10 * Math.log10(somme / taille + 1e-12));
   }
-  if (debut !== null) blancs.push({ debut, fin: duree });
-  return blancs.filter((b) => b.fin > b.debut);
+  return valeurs;
 }
 
-/** Complément des blancs : ce qu'on garde, élargi de la respiration. */
+function centile(valeurs, part) {
+  const tri = [...valeurs].sort((a, b) => a - b);
+  return tri[Math.min(tri.length - 1, Math.floor(tri.length * part))];
+}
+
+/** Creux d'au moins `minimum` secondes sous le seuil. */
+export function creux(valeurs, seuil, minimum, pas = 0.02) {
+  const trouves = [];
+  let debut = null;
+  valeurs.forEach((v, i) => {
+    const t = i * pas;
+    if (v < seuil) {
+      if (debut === null) debut = t;
+    } else {
+      if (debut !== null && t - debut >= minimum) trouves.push({ debut, fin: t });
+      debut = null;
+    }
+  });
+  if (debut !== null) trouves.push({ debut, fin: valeurs.length * pas });
+  return trouves;
+}
+
+/** Complément des creux : ce qu'on garde, élargi de la respiration. */
 export function segmentsGardes(blancs, duree, respiration) {
   const segments = [];
   let curseur = 0;
@@ -64,16 +87,18 @@ function expressionSelect(segments) {
 function principal() {
   const o = options(process.argv);
   if (!o.entree) {
-    console.error("Usage : node scripts/cut-silences.mjs --entree <rush.mp4> [--sortie <coupe.mp4>] [--plan <cuts.json>]");
+    console.error(
+      "Usage : node scripts/cut-silences.mjs --entree <rush> [--sortie <coupe.mp4>] [--plan <cuts.json>]",
+    );
     process.exit(1);
   }
 
   const entree = resolve(o.entree);
   const ffmpeg = o.ffmpeg || "ffmpeg";
   const ffprobe = o.ffprobe || "ffprobe";
-  const seuil = o.seuil || "-35dB";
-  const minimum = Number(o.minimum || 0.28);
-  const respiration = Number(o.respiration || 0.06);
+  const marge = Number(o.marge || 22); // dB sous le niveau de la voix
+  const minimum = Number(o.minimum || 0.25); // durée d'un creux à couper
+  const respiration = Number(o.respiration || 0.05); // gardée de chaque côté
 
   const duree = Number(
     execFileSync(ffprobe, [
@@ -84,20 +109,20 @@ function principal() {
     ]).toString().trim(),
   );
 
-  const detection = spawnSync(
-    ffmpeg,
-    [
-      "-hide_banner", "-nostats",
-      "-i", entree,
-      "-af", `silencedetect=noise=${seuil}:d=${minimum}`,
-      "-f", "null", "-",
-    ],
-    { encoding: "utf8", maxBuffer: 64 * 1024 * 1024 },
-  );
-  if (detection.error) throw detection.error;
-  const journal = `${detection.stderr || ""}${detection.stdout || ""}`;
+  const wavPath = join(tmpdir(), `coupe-${process.pid}.wav`);
+  execFileSync(ffmpeg, [
+    "-hide_banner", "-loglevel", "error", "-y",
+    "-i", entree,
+    "-vn", "-ac", "1", "-ar", "16000", "-c:a", "pcm_s16le",
+    wavPath,
+  ]);
 
-  const blancs = lireBlancs(journal, duree);
+  const valeurs = profil(readFileSync(wavPath));
+  rmSync(wavPath, { force: true });
+
+  const voix = centile(valeurs, 0.95);
+  const seuil = voix - marge;
+  const blancs = creux(valeurs, seuil, minimum);
   const segments = segmentsGardes(blancs, duree, respiration);
   const gardee = segments.reduce((t, s) => t + (s.end - s.start), 0);
 
@@ -107,10 +132,14 @@ function principal() {
     kept: Number(gardee.toFixed(3)),
     removed: Number((duree - gardee).toFixed(3)),
     cuts: Math.max(0, segments.length - 1),
-    threshold: seuil,
+    voiceLevelDb: Number(voix.toFixed(1)),
+    thresholdDb: Number(seuil.toFixed(1)),
     minSilence: minimum,
     breath: respiration,
-    segments: segments.map((s) => ({ start: Number(s.start.toFixed(3)), end: Number(s.end.toFixed(3)) })),
+    segments: segments.map((s) => ({
+      start: Number(s.start.toFixed(3)),
+      end: Number(s.end.toFixed(3)),
+    })),
   };
 
   const chemin = resolve(o.plan || "cuts.json");
@@ -118,7 +147,7 @@ function principal() {
   writeFileSync(chemin, `${JSON.stringify(plan, null, 2)}\n`);
 
   console.log(
-    `${blancs.length} blancs · ${plan.cuts} coupes · ${plan.removed.toFixed(2)} s retirés · ${duree.toFixed(2)} s → ${gardee.toFixed(2)} s`,
+    `voix ${voix.toFixed(1)} dB · seuil ${seuil.toFixed(1)} dB · ${blancs.length} creux · ${plan.cuts} coupes · ${plan.removed.toFixed(2)} s retirés · ${duree.toFixed(2)} s → ${gardee.toFixed(2)} s`,
   );
   console.log(`plan de coupe → ${chemin}`);
 
@@ -129,7 +158,7 @@ function principal() {
     execFileSync(
       ffmpeg,
       [
-        "-hide_banner", "-nostats", "-y",
+        "-hide_banner", "-loglevel", "error", "-nostats", "-y",
         "-i", entree,
         "-vf", `select='${expr}',setpts=N/FRAME_RATE/TB`,
         "-af", `aselect='${expr}',asetpts=N/SR/TB`,

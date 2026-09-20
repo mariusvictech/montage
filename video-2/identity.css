@@ -213,3 +213,184 @@ body {
 .capture--insert {
   top: 430px;
 }
+
+/* ---------- Voile haut et bas ----------
+   Le rush est tourné sur un plafond blanc : sans ce dégradé, ni les cartes
+   ni les sous-titres ne tiennent. */
+
+.voile {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 32%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 26%);
+}
+
+/* ---------- Les trois derniers mois ---------- */
+
+.rangee {
+  position: absolute;
+  left: 80px;
+  top: 300px;
+  width: 920px;
+  display: flex;
+  gap: 20px;
+}
+
+.pastille {
+  flex: 1;
+  padding: 26px 0;
+  border-radius: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.18);
+  background: rgba(16, 16, 18, 0.92);
+  color: var(--gris);
+  font-size: 46px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.pastille--active {
+  border-color: var(--vert);
+  color: var(--vert);
+}
+
+/* ---------- L'état des trois shops ---------- */
+
+.shops {
+  position: absolute;
+  left: 80px;
+  right: 80px;
+  top: 190px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 26px 34px;
+  border-radius: 22px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-left: 8px solid var(--gris);
+  background: rgba(16, 16, 18, 0.93);
+  box-shadow: var(--contour);
+}
+
+.chip-nom {
+  font-size: 50px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.chip-etat {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gris);
+}
+
+.chip--coupe {
+  border-left-color: var(--rouge);
+}
+
+.chip--coupe .chip-nom {
+  color: var(--gris);
+  text-decoration: line-through;
+  text-decoration-thickness: 7px;
+  text-decoration-color: var(--rouge);
+}
+
+.chip--coupe .chip-etat {
+  color: var(--rouge);
+}
+
+.chip--attente {
+  border-left-color: #f5a623;
+}
+
+.chip--attente .chip-etat {
+  color: #f5a623;
+}
+
+/* ---------- Le plan, ligne par ligne ---------- */
+
+.plan {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+}
+
+.plan li {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.plan .rang {
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--vert);
+}
+
+/* ---------- Trois barres qui montent ---------- */
+
+.barres {
+  display: flex;
+  align-items: flex-end;
+  gap: 22px;
+  height: 190px;
+}
+
+.barre-shop {
+  flex: 1;
+  height: 100%;
+  border-radius: 12px 12px 4px 4px;
+  background: linear-gradient(to top, #0b7a41, var(--vert));
+  transform-origin: bottom center;
+}
+
+/* ---------- La punchline ---------- */
+
+.punch {
+  position: absolute;
+  left: 70px;
+  right: 70px;
+  top: 640px;
+  text-align: center;
+}
+
+.punch-mot {
+  display: inline-block;
+  margin: 0 12px;
+  font-size: 118px;
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.85);
+}
+
+.punch-mot--vert {
+  color: var(--vert);
+}
+
+.punch-barre {
+  height: 12px;
+  margin: 28px auto 0;
+  width: 70%;
+  border-radius: 6px;
+  background: var(--vert);
+  transform-origin: left center;
+}

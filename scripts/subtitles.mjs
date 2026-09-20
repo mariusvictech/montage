@@ -10,7 +10,7 @@
  * Si --coupes est fourni, les timings sont recalés sur la vidéo déjà coupée.
  */
 
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 
 function options(argv) {
@@ -152,6 +152,16 @@ function principal() {
   const sortie = resolve(o.sortie || join(projet, "compositions/subtitles.html"));
 
   let mots = lireMots(JSON.parse(readFileSync(transcriptPath, "utf8")));
+
+  const correctionsPath = resolve(o.corrections || join(projet, "corrections.json"));
+  if (existsSync(correctionsPath)) {
+    const corrections = JSON.parse(readFileSync(correctionsPath, "utf8"));
+    for (const { i, texte } of corrections) {
+      if (mots[i]) mots[i] = { ...mots[i], mot: texte };
+    }
+    mots = mots.filter((m) => m.mot);
+    console.log(`${corrections.length} corrections appliquées`);
+  }
 
   if (o.coupes) {
     const { segments } = JSON.parse(readFileSync(resolve(o.coupes), "utf8"));

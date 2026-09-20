@@ -8,15 +8,16 @@
   </head>
   <body>
     <!--
-      Montage « checkout ». Le rush a déjà été coupé sur les blancs par
-      scripts/cut-silences.mjs : 9 blancs, 1,63 s retirés, 37,24 s → 35,62 s.
-      Les cartes sont calées sur le discours recalé sur la vidéo coupée.
+      Montage « Q4 · les shops ». Le rush est coupé sur ses creux réels par
+      scripts/cut-silences.mjs (seuil déduit du niveau de la voix) :
+      5 coupes, 1,13 s retirés, 37,24 s → 36,12 s.
+      Chaque bloc de motion design est calé sur le mot qui le déclenche.
     -->
     <div
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="35.6"
+      data-duration="36.1"
       data-width="1080"
       data-height="1920"
     >
@@ -26,89 +27,131 @@
         src="assets/rush-coupe.mp4"
         muted
         data-start="0"
-        data-duration="35.6"
+        data-duration="36.1"
       ></video>
       <audio
         id="voix"
         src="assets/rush-coupe.mp4"
         data-start="0"
-        data-duration="35.6"
+        data-duration="36.1"
         data-volume="1"
       ></audio>
 
-      <!-- « c'est faux » -->
-      <div class="clip" id="c-faux" data-start="1.75" data-duration="1.75" data-track-index="1">
-        <div class="tampon" id="tampon">Faux</div>
+      <div class="clip" id="voile" data-start="0" data-duration="36.1" data-track-index="0">
+        <div class="voile"></div>
       </div>
 
-      <!-- « trois ou quatre qui tournent pour le Q4 » -->
-      <div class="clip" id="c-objectif" data-start="5.55" data-duration="2.75" data-track-index="1">
+      <!-- 1 — L'objectif -->
+      <div class="clip" id="c-objectif" data-start="0.50" data-duration="2.45" data-track-index="1">
         <div class="carte carte--sommet">
-          <div class="etiquette">Objectif Q4</div>
-          <div class="titre">3 à 4<br />boutiques</div>
+          <div class="etiquette">L'objectif</div>
+          <div class="titre">Le Q4</div>
         </div>
       </div>
 
-      <!-- « j'ai un problème » -->
-      <div class="clip" id="c-probleme" data-start="8.70" data-duration="1.60" data-track-index="1">
+      <!-- 2 — Les trois derniers mois -->
+      <div class="clip" id="c-mois" data-start="2.95" data-duration="1.75" data-track-index="1">
+        <div class="rangee">
+          <div class="pastille" id="mois-1">Oct</div>
+          <div class="pastille" id="mois-2">Nov</div>
+          <div class="pastille" id="mois-3">Déc</div>
+        </div>
+      </div>
+
+      <!-- 3 — La page produit refaite -->
+      <div class="clip" id="c-page" data-start="4.75" data-duration="2.35" data-track-index="1">
         <div class="carte carte--sommet">
-          <div class="etiquette">Mais</div>
-          <div class="titre negatif">Un problème</div>
+          <div class="etiquette">Shop 1</div>
+          <div class="titre">Page produit<br />refaite</div>
         </div>
       </div>
 
-      <!-- « on regarde sur ma première boutique, là, juste ici » -->
-      <div class="clip" id="c-boutique" data-start="9.55" data-duration="3.00" data-track-index="2">
-        <div class="capture capture--insert" id="capture">
-          <img src="assets/boutique-kpi.png" alt="" />
-          <div class="surlignage" id="surlignage" style="top: 7px; left: 7px; width: 906px; height: 164px"></div>
-        </div>
-      </div>
-
-      <!-- « 12 mecs qui ont fait toutes les démarches pour payer » -->
-      <div class="clip" id="c-douze" data-start="12.70" data-duration="4.60" data-track-index="1">
+      <!-- 4 — D'où vient le conseil -->
+      <div class="clip" id="c-conseil" data-start="7.10" data-duration="2.90" data-track-index="1">
         <div class="carte carte--sommet">
-          <div class="etiquette">Cette semaine</div>
-          <div class="chiffre negatif" id="compteur-douze">0</div>
-          <div class="sous-titre">arrivés jusqu'au paiement,<br />repartis sans payer</div>
+          <div class="etiquette">Le conseil</div>
+          <div class="titre">Un gars<br />plus avancé</div>
         </div>
       </div>
 
-      <!-- « mon panier moyen est de 300 balles » -->
-      <div class="clip" id="c-panier" data-start="21.70" data-duration="2.50" data-track-index="1">
+      <!-- 5 — Les tips -->
+      <div class="clip" id="c-tips" data-start="10.40" data-duration="1.90" data-track-index="1">
         <div class="carte carte--sommet">
-          <div class="etiquette">Panier moyen</div>
-          <div class="chiffre" id="compteur-panier">0 €</div>
+          <div class="etiquette">Et je les donne</div>
+          <div class="titre">Les tips</div>
         </div>
       </div>
 
-      <!-- « j'ai perdu 3000 balles de CA, environ 1200 de bénéfices » -->
-      <div class="clip" id="c-pertes" data-start="24.55" data-duration="3.65" data-track-index="1">
+      <!-- 6 — La campagne -->
+      <div class="clip" id="c-campagne" data-start="12.80" data-duration="1.75" data-track-index="1">
         <div class="carte carte--sommet">
-          <div class="etiquette">Ce que ça coûte</div>
-          <div class="titre negatif">− 3 000 €<br />de CA</div>
-          <div class="sous-titre negatif" id="benefice">− 1 200 € de bénéfice</div>
+          <div class="etiquette">Ensuite</div>
+          <div class="titre">Campagne<br />à relancer</div>
         </div>
       </div>
 
-      <!-- « je mets plus de trust sur mon checkout » -->
-      <div class="clip" id="c-trust" data-start="28.95" data-duration="2.35" data-track-index="1">
+      <!-- 7 — L'état des trois shops -->
+      <div class="clip" id="c-shops" data-start="14.80" data-duration="4.80" data-track-index="2">
+        <div class="shops">
+          <div class="chip" id="chip-1">
+            <span class="chip-nom">Shop 1</span>
+            <span class="chip-etat" id="etat-1">En ligne</span>
+          </div>
+          <div class="chip" id="chip-2">
+            <span class="chip-nom">Shop 2</span>
+            <span class="chip-etat" id="etat-2">En ligne</span>
+          </div>
+          <div class="chip" id="chip-3">
+            <span class="chip-nom">Shop 3</span>
+            <span class="chip-etat" id="etat-3">En ligne</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 — Le plan -->
+      <div class="clip" id="c-plan" data-start="20.30" data-duration="4.60" data-track-index="1">
         <div class="carte carte--sommet">
-          <div class="etiquette">Ce que je tente</div>
-          <div class="titre">Plus de trust<br />sur le checkout</div>
+          <div class="etiquette">Le plan</div>
+          <ul class="plan">
+            <li id="plan-1"><span class="rang">1</span> Page produit du shop 1</li>
+            <li id="plan-2"><span class="rang">2</span> Shop 2 matraqué</li>
+          </ul>
         </div>
       </div>
 
-      <!-- « j'attends des conseils en commentaire » -->
-      <div class="clip" id="c-conseils" data-start="32.55" data-duration="1.95" data-track-index="1">
+      <!-- 9 — Puis en ligne -->
+      <div class="clip" id="c-enligne" data-start="25.40" data-duration="2.40" data-track-index="1">
         <div class="carte carte--sommet">
-          <div class="etiquette">Ton avis</div>
-          <div class="titre">Conseils<br />en commentaire</div>
+          <div class="etiquette">Et seulement après</div>
+          <div class="titre">En ligne</div>
         </div>
       </div>
 
-      <!-- « like et abonne-toi pour suivre la suite » -->
-      <div class="clip" id="c-fin" data-start="34.60" data-duration="1.00" data-track-index="1">
+      <!-- 10 — Tous les shops montent -->
+      <div class="clip" id="c-montee" data-start="28.20" data-duration="3.20" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Les trois</div>
+          <div class="titre">Ça monte</div>
+          <div class="barres">
+            <div class="barre-shop" id="barre-1"></div>
+            <div class="barre-shop" id="barre-2"></div>
+            <div class="barre-shop" id="barre-3"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11 — La punchline -->
+      <div class="clip" id="c-punch" data-start="31.90" data-duration="2.45" data-track-index="1">
+        <div class="punch">
+          <span class="punch-mot" id="punch-1">Ça va</span>
+          <span class="punch-mot" id="punch-2">faire</span>
+          <span class="punch-mot punch-mot--vert" id="punch-3">du sale</span>
+          <div class="punch-barre" id="punch-barre"></div>
+        </div>
+      </div>
+
+      <!-- 12 — La cartouche de fin -->
+      <div class="clip" id="c-fin" data-start="34.55" data-duration="1.55" data-track-index="1">
         <div class="carte carte--sommet">
           <div class="etiquette">La suite</div>
           <div class="titre">Like ·<br />Abonne-toi</div>
@@ -116,12 +159,12 @@
       </div>
 
       <!-- Six sons, discrets -->
-      <audio id="son-faux" src="assets/sfx/impact.wav" data-start="1.78" data-duration="0.35" data-volume="0.45"></audio>
-      <audio id="son-objectif" src="assets/sfx/clic.wav" data-start="5.60" data-duration="0.12" data-volume="0.4"></audio>
-      <audio id="son-capture" src="assets/sfx/souffle.wav" data-start="9.55" data-duration="0.55" data-volume="0.35"></audio>
-      <audio id="son-douze" src="assets/sfx/clic.wav" data-start="12.75" data-duration="0.12" data-volume="0.4"></audio>
-      <audio id="son-pertes" src="assets/sfx/notification.wav" data-start="24.60" data-duration="0.42" data-volume="0.35"></audio>
-      <audio id="son-fin" src="assets/sfx/basse.wav" data-start="34.60" data-duration="0.90" data-volume="0.4"></audio>
+      <audio id="son-mois" src="assets/sfx/clic.wav" data-start="3.05" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-page" src="assets/sfx/souffle.wav" data-start="4.75" data-duration="0.55" data-volume="0.3"></audio>
+      <audio id="son-coupe" src="assets/sfx/impact.wav" data-start="14.90" data-duration="0.35" data-volume="0.4"></audio>
+      <audio id="son-plan" src="assets/sfx/clic.wav" data-start="20.35" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-montee" src="assets/sfx/notification.wav" data-start="28.25" data-duration="0.42" data-volume="0.3"></audio>
+      <audio id="son-punch" src="assets/sfx/basse.wav" data-start="31.95" data-duration="0.90" data-volume="0.45"></audio>
 
       <!-- Sous-titres mot par mot, générés par scripts/subtitles.mjs -->
       <div
@@ -130,7 +173,7 @@
         data-composition-id="subtitles"
         data-composition-src="compositions/subtitles.html"
         data-start="0"
-        data-duration="35.6"
+        data-duration="36.1"
         data-track-index="3"
       ></div>
     </div>
@@ -138,11 +181,11 @@
     <script>
       const tl = gsap.timeline({ paused: true });
 
-      /* Entrée par la droite, sortie vers la gauche : un seul sens sur toute la vidéo. */
-      function carte(selection, debut, duree) {
+      /* Entrée par la droite, sortie vers la gauche : un seul sens de lecture. */
+      function bloc(selection, debut, duree, depuis = 18) {
         tl.fromTo(
           selection,
-          { xPercent: 18, opacity: 0 },
+          { xPercent: depuis, opacity: 0 },
           { xPercent: 0, opacity: 1, duration: 0.4, ease: "power3.out" },
           debut,
         );
@@ -153,67 +196,103 @@
         );
       }
 
-      carte("#c-objectif .carte", 5.55, 2.75);
-      carte("#c-probleme .carte", 8.7, 1.6);
-      carte("#c-douze .carte", 12.7, 4.6);
-      carte("#c-panier .carte", 21.7, 2.5);
-      carte("#c-pertes .carte", 24.55, 3.65);
-      carte("#c-trust .carte", 28.95, 2.35);
-      carte("#c-conseils .carte", 32.55, 1.95);
-      carte("#c-fin .carte", 34.6, 1.0);
+      bloc("#c-objectif .carte", 0.5, 2.45);
+      bloc("#c-mois .rangee", 2.95, 1.75);
+      bloc("#c-page .carte", 4.75, 2.35);
+      bloc("#c-conseil .carte", 7.1, 2.9);
+      bloc("#c-tips .carte", 10.4, 1.9);
+      bloc("#c-campagne .carte", 12.8, 1.75);
+      bloc("#c-shops .shops", 14.8, 4.8);
+      bloc("#c-plan .carte", 20.3, 4.6);
+      bloc("#c-enligne .carte", 25.4, 2.4);
+      bloc("#c-montee .carte", 28.2, 3.2);
+      bloc("#c-fin .carte", 34.55, 1.55);
 
-      /* Le tampon tombe sur « c'est faux ». */
-      tl.fromTo(
-        "#tampon",
-        { scale: 1.9, opacity: 0, rotate: -18 },
-        { scale: 1, opacity: 1, rotate: -8, duration: 0.28, ease: "power4.out" },
-        1.78,
-      );
-      tl.to("#tampon", { opacity: 0, duration: 0.25 }, 3.25);
+      /* Les mois s'allument un par un, sur « les trois derniers mois de l'année ». */
+      [
+        ["#mois-1", 3.05],
+        ["#mois-2", 3.32],
+        ["#mois-3", 3.6],
+      ].forEach(([sel, t]) => {
+        tl.fromTo(
+          sel,
+          { borderColor: "rgba(255,255,255,0.18)", color: "#8a8a8f", scale: 1 },
+          { borderColor: "#00e676", color: "#00e676", scale: 1.06, duration: 0.18 },
+          t,
+        );
+        tl.to(sel, { scale: 1, duration: 0.18 }, t + 0.18);
+      });
 
-      /* La capture entre par la gauche : elle répond aux cartes. */
-      tl.fromTo(
-        "#capture",
-        { xPercent: -18, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
-        9.55,
-      );
-      tl.fromTo("#surlignage", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 10.6);
-      tl.to("#capture", { opacity: 0, duration: 0.3, ease: "power2.in" }, 12.25);
-
-      /* Les 12 paniers perdus, comptés un par un. */
-      const douze = { valeur: 0 };
-      tl.to(
-        douze,
-        {
-          valeur: 12,
-          duration: 0.5,
-          ease: "steps(12)",
-          onUpdate() {
-            document.getElementById("compteur-douze").textContent = String(Math.round(douze.valeur));
+      /* L'état des shops bascule au moment où il les nomme. */
+      function basculer(chip, etat, texte, classe, t) {
+        tl.call(
+          () => {
+            document.querySelector(chip).className = "chip " + classe;
+            document.querySelector(etat).textContent = texte;
           },
-        },
-        12.72,
-      );
+          null,
+          t,
+        );
+        tl.fromTo(chip, { scale: 1.04 }, { scale: 1, duration: 0.22, ease: "power2.out" }, t);
+      }
 
-      /* Le panier moyen qui monte jusqu'à 300 €. */
-      const panier = { valeur: 0 };
-      tl.to(
-        panier,
-        {
-          valeur: 300,
-          duration: 0.7,
-          ease: "power2.out",
-          onUpdate() {
-            document.getElementById("compteur-panier").textContent =
-              `${Math.round(panier.valeur)} €`;
-          },
+      /* Avant qu'il ne les nomme, les trois sont neutres. */
+      tl.call(
+        () => {
+          for (const [chip, etat] of [
+            ["#chip-1", "#etat-1"],
+            ["#chip-2", "#etat-2"],
+            ["#chip-3", "#etat-3"],
+          ]) {
+            document.querySelector(chip).className = "chip";
+            document.querySelector(etat).textContent = "En ligne";
+          }
         },
-        21.95,
+        null,
+        14.8,
       );
+      basculer("#chip-1", "#etat-1", "Coupé", "chip--coupe", 16.3);
+      basculer("#chip-2", "#etat-2", "Coupé", "chip--coupe", 17.15);
+      basculer("#chip-3", "#etat-3", "On attend", "chip--attente", 17.95);
 
-      /* Le bénéfice perdu arrive après le chiffre d'affaires. */
-      tl.fromTo("#benefice", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3 }, 26.3);
+      /* Le plan, ligne après ligne. */
+      tl.fromTo("#plan-1", { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.3 }, 21.5);
+      tl.fromTo("#plan-2", { opacity: 0, x: 26 }, { opacity: 1, x: 0, duration: 0.3 }, 22.4);
+
+      /* Les trois barres qui montent, décalées. */
+      [
+        ["#barre-1", 0.55, 28.6],
+        ["#barre-2", 0.75, 28.85],
+        ["#barre-3", 1, 29.1],
+      ].forEach(([sel, hauteur, t]) => {
+        tl.fromTo(
+          sel,
+          { scaleY: 0.12 },
+          { scaleY: hauteur, duration: 0.55, ease: "power2.out" },
+          t,
+        );
+      });
+
+      /* La punchline : trois temps, puis la barre verte qui balaie. */
+      [
+        ["#punch-1", 31.95],
+        ["#punch-2", 32.35],
+        ["#punch-3", 32.75],
+      ].forEach(([sel, t]) => {
+        tl.fromTo(
+          sel,
+          { opacity: 0, scale: 1.35, y: 18 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.28, ease: "power4.out" },
+          t,
+        );
+      });
+      tl.fromTo(
+        "#punch-barre",
+        { scaleX: 0 },
+        { scaleX: 1, duration: 0.45, ease: "power3.out" },
+        33.35,
+      );
+      tl.to("#c-punch .punch", { opacity: 0, duration: 0.3, ease: "power2.in" }, 34.05);
 
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
