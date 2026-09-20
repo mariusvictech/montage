@@ -1,0 +1,787 @@
+[
+  {
+    "text": "Si",
+    "start": 0,
+    "end": 0.09
+  },
+  {
+    "text": "on",
+    "start": 0.09,
+    "end": 0.18
+  },
+  {
+    "text": "vous",
+    "start": 0.18,
+    "end": 0.37
+  },
+  {
+    "text": "dit",
+    "start": 0.37,
+    "end": 0.5
+  },
+  {
+    "text": "que",
+    "start": 0.51,
+    "end": 0.65
+  },
+  {
+    "text": "l'e-commerce",
+    "start": 0.65,
+    "end": 1.15
+  },
+  {
+    "text": "est",
+    "start": 1.24,
+    "end": 1.31
+  },
+  {
+    "text": "facile,",
+    "start": 1.32,
+    "end": 1.75
+  },
+  {
+    "text": "c'est",
+    "start": 1.8,
+    "end": 1.97
+  },
+  {
+    "text": "faux.",
+    "start": 1.97,
+    "end": 2.27
+  },
+  {
+    "text": "Rappelez,",
+    "start": 2.52,
+    "end": 2.88
+  },
+  {
+    "text": "j'ai",
+    "start": 2.88,
+    "end": 3.05
+  },
+  {
+    "text": "une",
+    "start": 3.05,
+    "end": 3.17
+  },
+  {
+    "text": "boutique",
+    "start": 3.18,
+    "end": 3.56
+  },
+  {
+    "text": "qui",
+    "start": 3.56,
+    "end": 3.69
+  },
+  {
+    "text": "tourne",
+    "start": 3.76,
+    "end": 4
+  },
+  {
+    "text": "en",
+    "start": 4,
+    "end": 4.04
+  },
+  {
+    "text": "e-commerce",
+    "start": 4.1,
+    "end": 4.51
+  },
+  {
+    "text": "Google",
+    "start": 4.51,
+    "end": 4.79
+  },
+  {
+    "text": "Ads",
+    "start": 4.79,
+    "end": 5.11
+  },
+  {
+    "text": "et",
+    "start": 5.11,
+    "end": 5.2
+  },
+  {
+    "text": "l'objectif,",
+    "start": 5.21,
+    "end": 5.84
+  },
+  {
+    "text": "on",
+    "start": 5.84,
+    "end": 5.94
+  },
+  {
+    "text": "va",
+    "start": 5.94,
+    "end": 6.04
+  },
+  {
+    "text": "avoir",
+    "start": 6.04,
+    "end": 6.2
+  },
+  {
+    "text": "trois",
+    "start": 6.2,
+    "end": 6.4
+  },
+  {
+    "text": "ou",
+    "start": 6.4,
+    "end": 6.48
+  },
+  {
+    "text": "quatre",
+    "start": 6.48,
+    "end": 6.71
+  },
+  {
+    "text": "qui",
+    "start": 6.73,
+    "end": 6.84
+  },
+  {
+    "text": "tournent",
+    "start": 6.84,
+    "end": 7.19
+  },
+  {
+    "text": "pour",
+    "start": 7.19,
+    "end": 7.47
+  },
+  {
+    "text": "le",
+    "start": 7.47,
+    "end": 7.56
+  },
+  {
+    "text": "Q4",
+    "start": 7.62,
+    "end": 7.88
+  },
+  {
+    "text": "pour",
+    "start": 7.88,
+    "end": 8.05
+  },
+  {
+    "text": "arriver",
+    "start": 8.05,
+    "end": 8.31
+  },
+  {
+    "text": "à",
+    "start": 8.37,
+    "end": 8.39
+  },
+  {
+    "text": "un",
+    "start": 8.39,
+    "end": 8.63
+  },
+  {
+    "text": "caddie.",
+    "start": 8.63,
+    "end": 8.96
+  },
+  {
+    "text": "J'ai",
+    "start": 8.96,
+    "end": 9.16
+  },
+  {
+    "text": "un",
+    "start": 9.16,
+    "end": 9.25
+  },
+  {
+    "text": "problème.",
+    "start": 9.3,
+    "end": 9.83
+  },
+  {
+    "text": "On",
+    "start": 9.85,
+    "end": 9.94
+  },
+  {
+    "text": "regarde",
+    "start": 9.94,
+    "end": 10.31
+  },
+  {
+    "text": "sur",
+    "start": 10.31,
+    "end": 10.45
+  },
+  {
+    "text": "ma",
+    "start": 10.47,
+    "end": 10.6
+  },
+  {
+    "text": "première",
+    "start": 10.6,
+    "end": 10.98
+  },
+  {
+    "text": "boutique,",
+    "start": 10.98,
+    "end": 11.4
+  },
+  {
+    "text": "là,",
+    "start": 11.41,
+    "end": 11.52
+  },
+  {
+    "text": "juste",
+    "start": 11.75,
+    "end": 11.76
+  },
+  {
+    "text": "ici.",
+    "start": 11.76,
+    "end": 12.12
+  },
+  {
+    "text": "Pour",
+    "start": 12.32,
+    "end": 12.39
+  },
+  {
+    "text": "la",
+    "start": 12.39,
+    "end": 12.52
+  },
+  {
+    "text": "semaine,",
+    "start": 12.52,
+    "end": 13.16
+  },
+  {
+    "text": "j'ai",
+    "start": 13.16,
+    "end": 13.45
+  },
+  {
+    "text": "12",
+    "start": 13.45,
+    "end": 13.91
+  },
+  {
+    "text": "mecs",
+    "start": 13.91,
+    "end": 14.24
+  },
+  {
+    "text": "qui",
+    "start": 14.24,
+    "end": 14.46
+  },
+  {
+    "text": "ont",
+    "start": 14.46,
+    "end": 14.59
+  },
+  {
+    "text": "fait",
+    "start": 14.59,
+    "end": 14.88
+  },
+  {
+    "text": "toutes",
+    "start": 14.88,
+    "end": 15.13
+  },
+  {
+    "text": "les",
+    "start": 15.13,
+    "end": 15.25
+  },
+  {
+    "text": "démarches",
+    "start": 15.25,
+    "end": 15.62
+  },
+  {
+    "text": "pour",
+    "start": 15.62,
+    "end": 15.78
+  },
+  {
+    "text": "payer,",
+    "start": 15.79,
+    "end": 16.05
+  },
+  {
+    "text": "mais",
+    "start": 16.12,
+    "end": 16.3
+  },
+  {
+    "text": "qui",
+    "start": 16.3,
+    "end": 16.4
+  },
+  {
+    "text": "n'ont",
+    "start": 16.46,
+    "end": 16.63
+  },
+  {
+    "text": "pas",
+    "start": 16.69,
+    "end": 16.74
+  },
+  {
+    "text": "cliqué",
+    "start": 16.79,
+    "end": 17.08
+  },
+  {
+    "text": "à",
+    "start": 17.08,
+    "end": 17.12
+  },
+  {
+    "text": "la",
+    "start": 17.13,
+    "end": 17.19
+  },
+  {
+    "text": "fin",
+    "start": 17.47,
+    "end": 17.48
+  },
+  {
+    "text": "pour",
+    "start": 17.48,
+    "end": 17.74
+  },
+  {
+    "text": "payer,",
+    "start": 17.74,
+    "end": 18.08
+  },
+  {
+    "text": "donc",
+    "start": 18.28,
+    "end": 18.29
+  },
+  {
+    "text": "qui",
+    "start": 18.29,
+    "end": 18.44
+  },
+  {
+    "text": "n'ont",
+    "start": 18.44,
+    "end": 18.69
+  },
+  {
+    "text": "pas",
+    "start": 18.69,
+    "end": 18.84
+  },
+  {
+    "text": "validé",
+    "start": 18.84,
+    "end": 19.12
+  },
+  {
+    "text": "la",
+    "start": 19.17,
+    "end": 19.25
+  },
+  {
+    "text": "commande.",
+    "start": 19.25,
+    "end": 19.88
+  },
+  {
+    "text": "Plus",
+    "start": 20.08,
+    "end": 20.1
+  },
+  {
+    "text": "comme",
+    "start": 20.1,
+    "end": 20.38
+  },
+  {
+    "text": "je",
+    "start": 20.38,
+    "end": 20.49
+  },
+  {
+    "text": "vends",
+    "start": 20.49,
+    "end": 20.75
+  },
+  {
+    "text": "des",
+    "start": 20.77,
+    "end": 20.92
+  },
+  {
+    "text": "gros",
+    "start": 20.93,
+    "end": 21.15
+  },
+  {
+    "text": "produits",
+    "start": 21.15,
+    "end": 21.6
+  },
+  {
+    "text": "sur",
+    "start": 21.66,
+    "end": 21.8
+  },
+  {
+    "text": "Google",
+    "start": 21.8,
+    "end": 22.09
+  },
+  {
+    "text": "Ads,",
+    "start": 22.11,
+    "end": 22.32
+  },
+  {
+    "text": "mon",
+    "start": 22.32,
+    "end": 22.52
+  },
+  {
+    "text": "panier",
+    "start": 22.52,
+    "end": 22.83
+  },
+  {
+    "text": "moyen",
+    "start": 22.83,
+    "end": 23.12
+  },
+  {
+    "text": "est",
+    "start": 23.12,
+    "end": 23.29
+  },
+  {
+    "text": "de",
+    "start": 23.29,
+    "end": 23.39
+  },
+  {
+    "text": "300",
+    "start": 23.39,
+    "end": 23.93
+  },
+  {
+    "text": "balles.",
+    "start": 23.93,
+    "end": 24.51
+  },
+  {
+    "text": "Ça,",
+    "start": 24.51,
+    "end": 24.72
+  },
+  {
+    "text": "ça",
+    "start": 24.72,
+    "end": 24.79
+  },
+  {
+    "text": "veut",
+    "start": 24.79,
+    "end": 24.98
+  },
+  {
+    "text": "dire",
+    "start": 24.98,
+    "end": 25.17
+  },
+  {
+    "text": "que",
+    "start": 25.17,
+    "end": 25.31
+  },
+  {
+    "text": "j'ai",
+    "start": 25.31,
+    "end": 25.48
+  },
+  {
+    "text": "perdu",
+    "start": 25.48,
+    "end": 25.72
+  },
+  {
+    "text": "3000",
+    "start": 25.72,
+    "end": 26.4
+  },
+  {
+    "text": "balles",
+    "start": 26.4,
+    "end": 26.58
+  },
+  {
+    "text": "de",
+    "start": 26.63,
+    "end": 26.75
+  },
+  {
+    "text": "CA,",
+    "start": 26.82,
+    "end": 26.99
+  },
+  {
+    "text": "donc",
+    "start": 26.99,
+    "end": 27.31
+  },
+  {
+    "text": "environ",
+    "start": 27.31,
+    "end": 27.58
+  },
+  {
+    "text": "1200",
+    "start": 27.58,
+    "end": 28.12
+  },
+  {
+    "text": "de",
+    "start": 28.12,
+    "end": 28.22
+  },
+  {
+    "text": "bénéfices.",
+    "start": 28.22,
+    "end": 28.64
+  },
+  {
+    "text": "Je",
+    "start": 28.64,
+    "end": 28.74
+  },
+  {
+    "text": "n'ai",
+    "start": 28.74,
+    "end": 28.84
+  },
+  {
+    "text": "pas",
+    "start": 28.84,
+    "end": 28.93
+  },
+  {
+    "text": "trop",
+    "start": 28.98,
+    "end": 29.1
+  },
+  {
+    "text": "quoi",
+    "start": 29.1,
+    "end": 29.25
+  },
+  {
+    "text": "faire.",
+    "start": 29.25,
+    "end": 29.6
+  },
+  {
+    "text": "Moi,",
+    "start": 29.8,
+    "end": 30.05
+  },
+  {
+    "text": "je",
+    "start": 30.05,
+    "end": 30.15
+  },
+  {
+    "text": "mets",
+    "start": 30.15,
+    "end": 30.35
+  },
+  {
+    "text": "plus",
+    "start": 30.35,
+    "end": 30.55
+  },
+  {
+    "text": "de",
+    "start": 30.55,
+    "end": 30.64
+  },
+  {
+    "text": "trust",
+    "start": 30.65,
+    "end": 30.9
+  },
+  {
+    "text": "sur",
+    "start": 30.9,
+    "end": 31.05
+  },
+  {
+    "text": "mon",
+    "start": 31.05,
+    "end": 31.24
+  },
+  {
+    "text": "checkout.",
+    "start": 31.24,
+    "end": 31.8
+  },
+  {
+    "text": "Je",
+    "start": 31.8,
+    "end": 31.9
+  },
+  {
+    "text": "me",
+    "start": 31.9,
+    "end": 32
+  },
+  {
+    "text": "dis",
+    "start": 32,
+    "end": 32.09
+  },
+  {
+    "text": "que",
+    "start": 32.14,
+    "end": 32.26
+  },
+  {
+    "text": "c'est",
+    "start": 32.26,
+    "end": 32.49
+  },
+  {
+    "text": "un",
+    "start": 32.49,
+    "end": 32.58
+  },
+  {
+    "text": "petit",
+    "start": 32.58,
+    "end": 32.82
+  },
+  {
+    "text": "échantillon",
+    "start": 32.82,
+    "end": 33.44
+  },
+  {
+    "text": "et",
+    "start": 33.44,
+    "end": 33.52
+  },
+  {
+    "text": "j'attends",
+    "start": 33.58,
+    "end": 34.03
+  },
+  {
+    "text": "des",
+    "start": 34.1,
+    "end": 34.21
+  },
+  {
+    "text": "conseils",
+    "start": 34.22,
+    "end": 34.71
+  },
+  {
+    "text": "à",
+    "start": 34.72,
+    "end": 34.76
+  },
+  {
+    "text": "me",
+    "start": 34.76,
+    "end": 34.84
+  },
+  {
+    "text": "donner",
+    "start": 34.84,
+    "end": 35
+  },
+  {
+    "text": "en",
+    "start": 35,
+    "end": 35.12
+  },
+  {
+    "text": "commentaire.",
+    "start": 35.32,
+    "end": 35.52
+  },
+  {
+    "text": "Je",
+    "start": 35.52,
+    "end": 35.61
+  },
+  {
+    "text": "suis",
+    "start": 35.61,
+    "end": 35.79
+  },
+  {
+    "text": "preneur.",
+    "start": 35.79,
+    "end": 36.21
+  },
+  {
+    "text": "Sinon,",
+    "start": 36.24,
+    "end": 36.49
+  },
+  {
+    "text": "like",
+    "start": 36.49,
+    "end": 36.63
+  },
+  {
+    "text": "et",
+    "start": 36.64,
+    "end": 36.71
+  },
+  {
+    "text": "abonne-toi",
+    "start": 36.71,
+    "end": 37.06
+  },
+  {
+    "text": "pour",
+    "start": 37.13,
+    "end": 37.18
+  },
+  {
+    "text": "suivre",
+    "start": 37.23,
+    "end": 37.45
+  },
+  {
+    "text": "la",
+    "start": 37.45,
+    "end": 37.59
+  },
+  {
+    "text": "suite.",
+    "start": 37.59,
+    "end": 37.92
+  }
+]
