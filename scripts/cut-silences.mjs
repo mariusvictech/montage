@@ -53,7 +53,8 @@ export function segmentsGardes(blancs, duree, respiration) {
     curseur = Math.max(curseur, Math.max(0, b.fin - respiration));
   }
   if (curseur < duree) segments.push({ start: curseur, end: duree });
-  return segments.filter((s) => s.end - s.start > 0.02);
+  /* Un fragment plus court qu'un dixième de seconde n'est pas une image, c'est un sursaut. */
+  return segments.filter((s) => s.end - s.start > 0.12);
 }
 
 function expressionSelect(segments) {

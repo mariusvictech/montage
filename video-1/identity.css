@@ -114,6 +114,7 @@ body {
   padding: 18px 40px;
   border: 8px solid var(--rouge);
   border-radius: 18px;
+  background: rgba(10, 10, 10, 0.88);
   color: var(--rouge);
   font-size: 96px;
   font-weight: 800;

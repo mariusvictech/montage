@@ -8,39 +8,213 @@
   </head>
   <body>
     <!--
-      Projet vide, en attente du rush.
-
-      Dès que assets/rush.mp4 est là :
-        node scripts/cut-silences.mjs --entree video-2/assets/rush.mp4 \
-             --sortie video-2/assets/rush-coupe.mp4 --plan video-2/cuts.json
-      puis le rush se branche ici (voir README.md du projet), les cartes de
-      motion design se posent sur les moments du discours, et les sous-titres
-      sont générés par scripts/subtitles.mjs.
+      Montage « checkout ». Le rush a déjà été coupé sur les blancs par
+      scripts/cut-silences.mjs : 9 blancs, 1,63 s retirés, 37,24 s → 35,62 s.
+      Les cartes sont calées sur le discours recalé sur la vidéo coupée.
     -->
     <div
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="4"
+      data-duration="35.6"
       data-width="1080"
       data-height="1920"
     >
-      <div class="clip" id="attente" data-start="0" data-duration="4" data-track-index="0">
-        <div class="carte carte--milieu">
-          <div class="etiquette">video-2</div>
-          <div class="titre">En attente<br />du rush</div>
-          <div class="sous-titre">déposer la vidéo dans assets/</div>
+      <video
+        id="rush"
+        class="clip"
+        src="assets/rush-coupe.mp4"
+        muted
+        data-start="0"
+        data-duration="35.6"
+      ></video>
+      <audio
+        id="voix"
+        src="assets/rush-coupe.mp4"
+        data-start="0"
+        data-duration="35.6"
+        data-volume="1"
+      ></audio>
+
+      <!-- « c'est faux » -->
+      <div class="clip" id="c-faux" data-start="1.75" data-duration="1.75" data-track-index="1">
+        <div class="tampon" id="tampon">Faux</div>
+      </div>
+
+      <!-- « trois ou quatre qui tournent pour le Q4 » -->
+      <div class="clip" id="c-objectif" data-start="5.55" data-duration="2.75" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Objectif Q4</div>
+          <div class="titre">3 à 4<br />boutiques</div>
         </div>
       </div>
+
+      <!-- « j'ai un problème » -->
+      <div class="clip" id="c-probleme" data-start="8.70" data-duration="1.60" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Mais</div>
+          <div class="titre negatif">Un problème</div>
+        </div>
+      </div>
+
+      <!-- « on regarde sur ma première boutique, là, juste ici » -->
+      <div class="clip" id="c-boutique" data-start="9.55" data-duration="3.00" data-track-index="2">
+        <div class="capture capture--insert" id="capture">
+          <img src="assets/boutique-kpi.png" alt="" />
+          <div class="surlignage" id="surlignage" style="top: 7px; left: 7px; width: 906px; height: 164px"></div>
+        </div>
+      </div>
+
+      <!-- « 12 mecs qui ont fait toutes les démarches pour payer » -->
+      <div class="clip" id="c-douze" data-start="12.70" data-duration="4.60" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Cette semaine</div>
+          <div class="chiffre negatif" id="compteur-douze">0</div>
+          <div class="sous-titre">arrivés jusqu'au paiement,<br />repartis sans payer</div>
+        </div>
+      </div>
+
+      <!-- « mon panier moyen est de 300 balles » -->
+      <div class="clip" id="c-panier" data-start="21.70" data-duration="2.50" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Panier moyen</div>
+          <div class="chiffre" id="compteur-panier">0 €</div>
+        </div>
+      </div>
+
+      <!-- « j'ai perdu 3000 balles de CA, environ 1200 de bénéfices » -->
+      <div class="clip" id="c-pertes" data-start="24.55" data-duration="3.65" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Ce que ça coûte</div>
+          <div class="titre negatif">− 3 000 €<br />de CA</div>
+          <div class="sous-titre negatif" id="benefice">− 1 200 € de bénéfice</div>
+        </div>
+      </div>
+
+      <!-- « je mets plus de trust sur mon checkout » -->
+      <div class="clip" id="c-trust" data-start="28.95" data-duration="2.35" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Ce que je tente</div>
+          <div class="titre">Plus de trust<br />sur le checkout</div>
+        </div>
+      </div>
+
+      <!-- « j'attends des conseils en commentaire » -->
+      <div class="clip" id="c-conseils" data-start="32.55" data-duration="1.95" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Ton avis</div>
+          <div class="titre">Conseils<br />en commentaire</div>
+        </div>
+      </div>
+
+      <!-- « like et abonne-toi pour suivre la suite » -->
+      <div class="clip" id="c-fin" data-start="34.60" data-duration="1.00" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">La suite</div>
+          <div class="titre">Like ·<br />Abonne-toi</div>
+        </div>
+      </div>
+
+      <!-- Six sons, discrets -->
+      <audio id="son-faux" src="assets/sfx/impact.wav" data-start="1.78" data-duration="0.35" data-volume="0.45"></audio>
+      <audio id="son-objectif" src="assets/sfx/clic.wav" data-start="5.60" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-capture" src="assets/sfx/souffle.wav" data-start="9.55" data-duration="0.55" data-volume="0.35"></audio>
+      <audio id="son-douze" src="assets/sfx/clic.wav" data-start="12.75" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-pertes" src="assets/sfx/notification.wav" data-start="24.60" data-duration="0.42" data-volume="0.35"></audio>
+      <audio id="son-fin" src="assets/sfx/basse.wav" data-start="34.60" data-duration="0.90" data-volume="0.4"></audio>
+
+      <!-- Sous-titres mot par mot, générés par scripts/subtitles.mjs -->
+      <div
+        class="clip"
+        id="sous-titres"
+        data-composition-id="subtitles"
+        data-composition-src="compositions/subtitles.html"
+        data-start="0"
+        data-duration="35.6"
+        data-track-index="3"
+      ></div>
     </div>
+
     <script>
       const tl = gsap.timeline({ paused: true });
+
+      /* Entrée par la droite, sortie vers la gauche : un seul sens sur toute la vidéo. */
+      function carte(selection, debut, duree) {
+        tl.fromTo(
+          selection,
+          { xPercent: 18, opacity: 0 },
+          { xPercent: 0, opacity: 1, duration: 0.4, ease: "power3.out" },
+          debut,
+        );
+        tl.to(
+          selection,
+          { xPercent: -14, opacity: 0, duration: 0.3, ease: "power2.in" },
+          debut + duree - 0.3,
+        );
+      }
+
+      carte("#c-objectif .carte", 5.55, 2.75);
+      carte("#c-probleme .carte", 8.7, 1.6);
+      carte("#c-douze .carte", 12.7, 4.6);
+      carte("#c-panier .carte", 21.7, 2.5);
+      carte("#c-pertes .carte", 24.55, 3.65);
+      carte("#c-trust .carte", 28.95, 2.35);
+      carte("#c-conseils .carte", 32.55, 1.95);
+      carte("#c-fin .carte", 34.6, 1.0);
+
+      /* Le tampon tombe sur « c'est faux ». */
       tl.fromTo(
-        "#attente .carte",
-        { xPercent: 18, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
-        0.2,
+        "#tampon",
+        { scale: 1.9, opacity: 0, rotate: -18 },
+        { scale: 1, opacity: 1, rotate: -8, duration: 0.28, ease: "power4.out" },
+        1.78,
       );
+      tl.to("#tampon", { opacity: 0, duration: 0.25 }, 3.25);
+
+      /* La capture entre par la gauche : elle répond aux cartes. */
+      tl.fromTo(
+        "#capture",
+        { xPercent: -18, opacity: 0 },
+        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
+        9.55,
+      );
+      tl.fromTo("#surlignage", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 10.6);
+      tl.to("#capture", { opacity: 0, duration: 0.3, ease: "power2.in" }, 12.25);
+
+      /* Les 12 paniers perdus, comptés un par un. */
+      const douze = { valeur: 0 };
+      tl.to(
+        douze,
+        {
+          valeur: 12,
+          duration: 0.5,
+          ease: "steps(12)",
+          onUpdate() {
+            document.getElementById("compteur-douze").textContent = String(Math.round(douze.valeur));
+          },
+        },
+        12.72,
+      );
+
+      /* Le panier moyen qui monte jusqu'à 300 €. */
+      const panier = { valeur: 0 };
+      tl.to(
+        panier,
+        {
+          valeur: 300,
+          duration: 0.7,
+          ease: "power2.out",
+          onUpdate() {
+            document.getElementById("compteur-panier").textContent =
+              `${Math.round(panier.valeur)} €`;
+          },
+        },
+        21.95,
+      );
+
+      /* Le bénéfice perdu arrive après le chiffre d'affaires. */
+      tl.fromTo("#benefice", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3 }, 26.3);
+
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);

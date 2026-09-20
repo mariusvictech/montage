@@ -43,16 +43,17 @@ export function lireMots(transcript) {
 
 /**
  * Recale un instant de la vidéo source sur la vidéo coupée.
- * Renvoie null si l'instant tombe dans un blanc supprimé.
+ * Un instant tombé dans un blanc supprimé est ramené au bord le plus proche :
+ * les timings d'un transcript sont approximatifs, on ne perd pas un mot pour ça.
  */
 export function recaler(t, segments) {
   let ecoule = 0;
   for (const seg of segments) {
-    if (t < seg.start) return null;
+    if (t < seg.start) return ecoule;
     if (t <= seg.end) return ecoule + (t - seg.start);
     ecoule += seg.end - seg.start;
   }
-  return null;
+  return ecoule;
 }
 
 /** Découpe la suite de mots en lignes courtes, en respectant les silences. */
@@ -157,10 +158,9 @@ function principal() {
     mots = mots
       .map((m) => {
         const debut = recaler(m.debut, segments);
-        const fin = recaler(m.fin, segments);
-        return debut === null || fin === null ? null : { ...m, debut, fin };
-      })
-      .filter(Boolean);
+        const fin = Math.max(recaler(m.fin, segments), debut + 0.08);
+        return { ...m, debut, fin };
+      });
   }
 
   if (!mots.length) {
