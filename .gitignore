@@ -1,0 +1,16 @@
+node_modules/
+snapshots/
+.hyperframes/
+*.log
+
+# Les rushes et les captures restent en local : trop lourds pour git.
+video-*/assets/*.mp4
+video-*/assets/*.mov
+video-*/assets/*.webm
+video-*/assets/*.png
+video-*/assets/*.jpg
+video-*/assets/*.jpeg
+!video-*/assets/sfx/
+
+# Les rendus
+video-*/*.mp4

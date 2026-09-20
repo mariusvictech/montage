@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="fr" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="./vendor/gsap.min.js"></script>
+    <link rel="stylesheet" href="./identity.css" />
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="14"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!--
+        LE RUSH se branche ici : voir README.md du projet, section « Brancher le rush ».
+        La vidéo reste muette et la piste son passe par un élément audio séparé,
+        c'est ce qui permet de couper les blancs sans désynchroniser l'image.
+      -->
+
+      <!-- 1 — L'objectif -->
+      <div class="clip" id="c1" data-start="0.3" data-duration="2.7" data-track-index="1">
+        <div class="carte carte--haut">
+          <div class="etiquette">Objectif Q4 2026</div>
+          <div class="titre">3 à 4<br />boutiques</div>
+        </div>
+      </div>
+
+      <!-- 2 — Le compteur -->
+      <div class="clip" id="c2" data-start="3.2" data-duration="2.8" data-track-index="1">
+        <div class="carte carte--milieu">
+          <div class="etiquette">Aujourd'hui → Q4</div>
+          <div class="chiffre" id="compteur">1</div>
+          <div class="sous-titre">boutiques qui tournent</div>
+        </div>
+      </div>
+
+      <!-- 3 — La capture de la boutique + ses chiffres -->
+      <div class="clip" id="c3" data-start="6.2" data-duration="3.3" data-track-index="2">
+        <div class="capture capture--vide" id="capture">
+          <!--
+            Remplacer par la vraie capture :
+            <div class="capture"><img src="./assets/boutique.png" alt="" /></div>
+            et, pour entourer une zone, ajouter :
+            <div class="surlignage" style="top: 180px; left: 120px; width: 300px; height: 90px"></div>
+          -->
+          assets/boutique.png
+        </div>
+        <div class="carte carte--bas">
+          <div class="etiquette">La boutique qui tourne</div>
+          <div class="titre">769,70 €</div>
+          <div class="sous-titre">3 commandes · <span style="color: var(--vert)">+120 %</span></div>
+        </div>
+      </div>
+
+      <!-- 4 — Le contraste -->
+      <div class="clip" id="c4" data-start="9.7" data-duration="1.8" data-track-index="1">
+        <div class="tampon" id="tampon">Faux</div>
+        <div class="carte carte--milieu">
+          <div class="titre barre">Expert</div>
+          <div class="titre">6 mois<br />de Google Ads</div>
+        </div>
+      </div>
+
+      <!-- 5 — La cartouche de fin -->
+      <div class="clip" id="c5" data-start="11.7" data-duration="2.3" data-track-index="1">
+        <div class="carte carte--milieu">
+          <div class="etiquette">La suite</div>
+          <div class="titre">Like ·<br />Abonne-toi</div>
+        </div>
+      </div>
+
+      <!-- 6 — Les sons : cinq effets discrets, fabriqués par scripts/sfx.mjs -->
+      <audio id="son-clic-1" src="assets/sfx/clic.wav" data-start="3.90" data-duration="0.12" data-volume="0.5"></audio>
+      <audio id="son-clic-2" src="assets/sfx/clic.wav" data-start="4.50" data-duration="0.12" data-volume="0.5"></audio>
+      <audio id="son-souffle" src="assets/sfx/souffle.wav" data-start="6.20" data-duration="0.55" data-volume="0.45"></audio>
+      <audio id="son-impact" src="assets/sfx/impact.wav" data-start="9.90" data-duration="0.35" data-volume="0.5"></audio>
+      <audio id="son-basse" src="assets/sfx/basse.wav" data-start="11.70" data-duration="0.90" data-volume="0.45"></audio>
+
+      <!-- 7 — Les sous-titres, générés par scripts/subtitles.mjs -->
+      <div
+        class="clip"
+        id="sous-titres"
+        data-composition-id="subtitles"
+        data-composition-src="compositions/subtitles.html"
+        data-start="0"
+        data-duration="14"
+        data-track-index="3"
+      ></div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      /* Entrée par la droite, sortie vers la gauche : toujours le même sens. */
+      function carte(selection, debut, duree) {
+        tl.fromTo(
+          selection,
+          { xPercent: 18, opacity: 0 },
+          { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
+          debut,
+        );
+        tl.to(
+          selection,
+          { xPercent: -14, opacity: 0, duration: 0.35, ease: "power2.in" },
+          debut + duree - 0.35,
+        );
+      }
+
+      carte("#c1 .carte", 0.3, 2.7);
+      carte("#c2 .carte", 3.2, 2.8);
+      carte("#c3 .carte", 6.6, 2.9);
+      carte("#c4 .carte", 9.7, 1.8);
+      carte("#c5 .carte", 11.7, 2.3);
+
+      /* La capture arrive par la gauche : elle répond aux cartes. */
+      tl.fromTo(
+        "#capture",
+        { xPercent: -16, opacity: 0 },
+        { xPercent: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
+        6.2,
+      );
+      tl.to("#capture", { opacity: 0, duration: 0.3, ease: "power2.in" }, 9.2);
+
+      /* Le compteur : 1 boutique aujourd'hui, 4 visées pour le Q4. */
+      const compte = { valeur: 1 };
+      tl.to(
+        compte,
+        {
+          valeur: 4,
+          duration: 1.2,
+          ease: "steps(3)",
+          onUpdate() {
+            document.getElementById("compteur").textContent = String(Math.round(compte.valeur));
+          },
+        },
+        3.9,
+      );
+
+      /* Le tampon tombe sur l'accroche. */
+      tl.fromTo(
+        "#tampon",
+        { scale: 1.8, opacity: 0, rotate: -18 },
+        { scale: 1, opacity: 1, rotate: -8, duration: 0.3, ease: "power4.out" },
+        9.9,
+      );
+      tl.to("#tampon", { opacity: 0, duration: 0.25 }, 11.3);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
