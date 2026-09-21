@@ -8,37 +8,310 @@
   </head>
   <body>
     <!--
-      Projet vide, en attente des fichiers (voir assets/README.md) :
-        assets/rush.MOV      la vidéo face caméra
-        assets/appel.MOV     l'extrait de l'appel client, à insérer en plein cadre
-        assets/commande.PNG  la capture de la commande
-      Le montage se construit ensuite comme video-2 : coupes sur les creux,
-      transcription, sous-titres mot par mot, motion design, sons.
+      Montage « l'appel client ». Le rush est coupé sur ses creux par
+      scripts/cut-silences.mjs : 9 coupes, 1,68 s retirés, 50,48 s → 48,80 s.
+      À 19 s, le rush s'interrompt et l'extrait de l'appel passe en plein
+      cadre pendant 7,8 s, avec son propre son ; le rush reprend ensuite
+      exactement là où il s'était arrêté. Total : 56,6 s.
     -->
     <div
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="4"
+      data-duration="56.6"
       data-width="1080"
       data-height="1920"
     >
-      <div class="clip" id="attente" data-start="0" data-duration="4" data-track-index="0">
+      <!-- Le rush, première partie -->
+      <video
+        id="rush-a"
+        class="clip"
+        src="assets/rush-coupe.mp4"
+        muted
+        data-start="0"
+        data-duration="19"
+      ></video>
+      <audio id="voix-a" src="assets/rush-coupe.mp4" data-start="0" data-duration="19" data-volume="1"></audio>
+
+      <!-- L'extrait de l'appel, plein cadre, avec son son -->
+      <video
+        id="appel"
+        class="clip"
+        src="assets/appel.mp4"
+        muted
+        data-start="19"
+        data-duration="7.8"
+      ></video>
+      <audio id="voix-appel" src="assets/appel.mp4" data-start="19" data-duration="7.8" data-volume="1"></audio>
+
+      <!-- Le rush reprend où il s'était arrêté -->
+      <video
+        id="rush-b"
+        class="clip"
+        src="assets/rush-coupe.mp4"
+        muted
+        data-start="26.8"
+        data-duration="29.8"
+        data-media-start="19"
+      ></video>
+      <audio
+        id="voix-b"
+        src="assets/rush-coupe.mp4"
+        data-start="26.8"
+        data-duration="29.8"
+        data-media-start="19"
+        data-volume="1"
+      ></audio>
+
+      <div class="clip" id="voile" data-start="0" data-duration="56.6" data-track-index="0">
+        <div class="voile"></div>
+      </div>
+
+      <!-- 1 — Le sérieux -->
+      <div class="clip" id="c-serieux" data-start="0.35" data-duration="3.60" data-track-index="1">
         <div class="carte carte--sommet">
-          <div class="etiquette">video-3</div>
-          <div class="titre">En attente<br />du rush</div>
-          <div class="sous-titre">rush · extrait de l'appel · capture commande</div>
+          <div class="etiquette">Google Ads</div>
+          <div class="titre">C'est<br />du sérieux</div>
         </div>
       </div>
+
+      <!-- 2 — Trois jours de pubs -->
+      <div class="clip" id="c-jours" data-start="4.40" data-duration="2.00" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Les pubs tournent depuis</div>
+          <div class="chiffre" id="compteur-jours">0 jours</div>
+        </div>
+      </div>
+
+      <!-- 3 — L'appel entrant -->
+      <div class="clip" id="c-appel" data-start="6.70" data-duration="4.20" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Et là</div>
+          <div class="ligne-appel">
+            <span class="point" id="point-appel"></span>
+            <span class="titre">Appel entrant</span>
+          </div>
+          <div class="sous-titre">un client, pour de vrai</div>
+        </div>
+      </div>
+
+      <!-- 4 — Ce qu'il imagine -->
+      <div class="clip" id="c-marque" data-start="11.60" data-duration="4.90" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Dans sa tête</div>
+          <div class="titre">Une marque<br />reconnue</div>
+        </div>
+      </div>
+
+      <!-- 5 — Et moi -->
+      <div class="clip" id="c-pasleve" data-start="16.90" data-duration="2.00" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Et moi</div>
+          <div class="titre">Même pas levé</div>
+        </div>
+      </div>
+
+      <!-- 6 — Le bandeau de l'extrait -->
+      <div class="clip" id="c-badge" data-start="19.15" data-duration="2.05" data-track-index="2">
+        <div class="badge-insert"><span class="point"></span> L'appel, en vrai</div>
+      </div>
+
+      <!-- 7 — La vente, avec la notification -->
+      <div class="clip" id="c-vente" data-start="28.70" data-duration="2.30" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Juste après · une vente</div>
+          <div class="titre">244,80 €</div>
+          <div class="sous-titre">commande #1005</div>
+        </div>
+        <div class="notif" id="notif">
+          <img src="assets/commande-notif.png" alt="" />
+        </div>
+      </div>
+
+      <!-- 8 — Le téléphone -->
+      <div class="clip" id="c-tel" data-start="31.20" data-duration="2.70" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Pourquoi</div>
+          <div class="titre">Rien ne vaut<br />le téléphone</div>
+        </div>
+      </div>
+
+      <!-- 9 — Les paniers abandonnés -->
+      <div class="clip" id="c-paniers" data-start="35.90" data-duration="3.00" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Le move</div>
+          <div class="titre">Appeler les paniers<br />abandonnés</div>
+        </div>
+      </div>
+
+      <!-- 10 — Ce que ça fait aux clients -->
+      <div class="clip" id="c-privilege" data-start="40.70" data-duration="3.20" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Les clients</div>
+          <div class="titre">Ils se sentent<br />privilégiés</div>
+          <div class="sous-titre" id="alors">Alors fais-le</div>
+        </div>
+      </div>
+
+      <!-- 11 — L'état des shops -->
+      <div class="clip" id="c-shops" data-start="45.40" data-duration="6.90" data-track-index="2">
+        <div class="shops">
+          <div class="chip" id="chip-1">
+            <span class="chip-nom">Shop 1</span>
+            <span class="chip-etat" id="etat-1">En ligne</span>
+          </div>
+          <div class="chip" id="chip-2">
+            <span class="chip-nom">Shop 2</span>
+            <span class="chip-etat" id="etat-2">En ligne</span>
+          </div>
+          <div class="chip" id="chip-3">
+            <span class="chip-nom">Shop 3</span>
+            <span class="chip-etat" id="etat-3">En ligne</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12 — L'objectif -->
+      <div class="clip" id="c-objectif" data-start="53.40" data-duration="1.90" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Objectif</div>
+          <div class="titre">1K day · Q4</div>
+        </div>
+      </div>
+
+      <!-- 13 — La cartouche de fin -->
+      <div class="clip" id="c-fin" data-start="55.40" data-duration="1.20" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">La suite</div>
+          <div class="titre">Like ·<br />Abonne-toi</div>
+        </div>
+      </div>
+
+      <!-- Six sons, discrets -->
+      <audio id="son-appel" src="assets/sfx/notification.wav" data-start="6.75" data-duration="0.42" data-volume="0.4"></audio>
+      <audio id="son-bascule" src="assets/sfx/souffle.wav" data-start="18.95" data-duration="0.55" data-volume="0.35"></audio>
+      <audio id="son-retour" src="assets/sfx/impact.wav" data-start="26.80" data-duration="0.35" data-volume="0.35"></audio>
+      <audio id="son-vente" src="assets/sfx/clic.wav" data-start="28.75" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-shops" src="assets/sfx/clic.wav" data-start="45.45" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-fin" src="assets/sfx/basse.wav" data-start="55.40" data-duration="0.90" data-volume="0.45"></audio>
+
+      <!-- Sous-titres mot par mot, générés par scripts/subtitles.mjs -->
+      <div
+        class="clip"
+        id="sous-titres"
+        data-composition-id="subtitles"
+        data-composition-src="compositions/subtitles.html"
+        data-start="0"
+        data-duration="56.6"
+        data-track-index="3"
+      ></div>
     </div>
+
     <script>
       const tl = gsap.timeline({ paused: true });
-      tl.fromTo(
-        "#attente .carte",
-        { xPercent: 18, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
-        0.2,
+
+      /* Entrée par la droite, sortie vers la gauche : un seul sens de lecture. */
+      function bloc(selection, debut, duree, depuis = 18) {
+        tl.fromTo(
+          selection,
+          { xPercent: depuis, opacity: 0 },
+          { xPercent: 0, opacity: 1, duration: 0.4, ease: "power3.out" },
+          debut,
+        );
+        tl.to(
+          selection,
+          { xPercent: -14, opacity: 0, duration: 0.3, ease: "power2.in" },
+          debut + duree - 0.3,
+        );
+      }
+
+      bloc("#c-serieux .carte", 0.35, 3.6);
+      bloc("#c-jours .carte", 4.4, 2.0);
+      bloc("#c-appel .carte", 6.7, 4.2);
+      bloc("#c-marque .carte", 11.6, 4.9);
+      bloc("#c-pasleve .carte", 16.9, 2.0);
+      bloc("#c-badge .badge-insert", 19.15, 2.05);
+      bloc("#c-vente .carte", 28.7, 2.3);
+      bloc("#c-tel .carte", 31.2, 2.7);
+      bloc("#c-paniers .carte", 35.9, 3.0);
+      bloc("#c-privilege .carte", 40.7, 3.2);
+      bloc("#c-shops .shops", 45.4, 6.9);
+      bloc("#c-objectif .carte", 53.4, 1.9);
+      bloc("#c-fin .carte", 55.4, 1.2);
+
+      /* Les trois jours de pubs, comptés. */
+      const jours = { valeur: 0 };
+      tl.to(
+        jours,
+        {
+          valeur: 3,
+          duration: 0.5,
+          ease: "steps(3)",
+          onUpdate() {
+            document.getElementById("compteur-jours").textContent =
+              Math.round(jours.valeur) + " jours";
+          },
+        },
+        4.7,
       );
+
+      /* Le point vert de l'appel : deux pulsations, pas plus. */
+      tl.fromTo(
+        "#point-appel",
+        { scale: 1, boxShadow: "0 0 0 0 rgba(0,230,118,0.6)" },
+        { scale: 1.25, boxShadow: "0 0 0 26px rgba(0,230,118,0)", duration: 0.75, ease: "power2.out" },
+        6.85,
+      );
+      tl.fromTo(
+        "#point-appel",
+        { scale: 1, boxShadow: "0 0 0 0 rgba(0,230,118,0.6)" },
+        { scale: 1.25, boxShadow: "0 0 0 26px rgba(0,230,118,0)", duration: 0.75, ease: "power2.out" },
+        7.8,
+      );
+
+      /* La notification de commande entre par la gauche. */
+      tl.fromTo(
+        "#notif",
+        { xPercent: -18, opacity: 0 },
+        { xPercent: 0, opacity: 1, duration: 0.42, ease: "power3.out" },
+        28.7,
+      );
+      tl.to("#notif", { opacity: 0, duration: 0.3, ease: "power2.in" }, 30.7);
+
+      /* « Alors fais-le » arrive après la phrase. */
+      tl.fromTo("#alors", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3 }, 43.3);
+
+      /* L'état des shops bascule au moment où il les nomme. */
+      function basculer(chip, etat, texte, classe, t) {
+        tl.call(
+          () => {
+            document.querySelector(chip).className = "chip " + classe;
+            document.querySelector(etat).textContent = texte;
+          },
+          null,
+          t,
+        );
+        tl.fromTo(chip, { scale: 1.04 }, { scale: 1, duration: 0.22, ease: "power2.out" }, t);
+      }
+
+      tl.call(
+        () => {
+          for (const [chip, etat] of [
+            ["#chip-1", "#etat-1"],
+            ["#chip-2", "#etat-2"],
+            ["#chip-3", "#etat-3"],
+          ]) {
+            document.querySelector(chip).className = "chip";
+            document.querySelector(etat).textContent = "En ligne";
+          }
+        },
+        null,
+        45.4,
+      );
+      basculer("#chip-1", "#etat-1", "Coupé", "chip--coupe", 46.2);
+      basculer("#chip-2", "#etat-2", "Coupé", "chip--coupe", 46.85);
+      basculer("#chip-3", "#etat-3", "Dans 2 semaines", "chip--attente", 49.55);
+
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);

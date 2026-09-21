@@ -173,6 +173,16 @@ function principal() {
       });
   }
 
+  if (o.insert) {
+    const [debutInsert, dureeInsert] = o.insert.split(":").map(Number);
+    mots = mots.map((m) =>
+      m.debut >= debutInsert
+        ? { ...m, debut: m.debut + dureeInsert, fin: m.fin + dureeInsert }
+        : m,
+    );
+    console.log(`insert de ${dureeInsert} s à ${debutInsert} s`);
+  }
+
   if (!mots.length) {
     console.error("Aucun mot exploitable dans", transcriptPath);
     process.exit(1);
