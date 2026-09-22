@@ -69,6 +69,57 @@
         <div class="flash" id="flash-2"></div>
       </div>
 
+      <!-- Le sujet -->
+      <div class="clip" id="c-sujet" data-start="4.20" data-duration="3.60" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Point d'étape</div>
+          <div class="titre">Où en sont<br />mes shops</div>
+        </div>
+      </div>
+
+      <!-- L'état des trois shops -->
+      <div class="clip" id="c-shops" data-start="8.40" data-duration="7.60" data-track-index="2">
+        <div class="shops">
+          <div class="chip" id="chip-1">
+            <span class="chip-nom">Shop 1</span>
+            <span class="chip-etat" id="etat-1">En ligne</span>
+          </div>
+          <div class="chip" id="chip-2">
+            <span class="chip-nom">Shop 2</span>
+            <span class="chip-etat" id="etat-2">En ligne</span>
+          </div>
+          <div class="chip" id="chip-3">
+            <span class="chip-nom">Shop 3</span>
+            <span class="chip-etat" id="etat-3">En ligne</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ce qui se joue -->
+      <div class="clip" id="c-objectif" data-start="17.00" data-duration="3.80" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Objectif</div>
+          <div class="titre">1K day<br />pour le Q4</div>
+        </div>
+      </div>
+
+      <!-- Le rappel des trois derniers mois -->
+      <div class="clip" id="c-mois" data-start="21.40" data-duration="2.60" data-track-index="1">
+        <div class="rangee">
+          <div class="pastille" id="mois-1">Oct</div>
+          <div class="pastille" id="mois-2">Nov</div>
+          <div class="pastille" id="mois-3">Déc</div>
+        </div>
+      </div>
+
+      <!-- La suite -->
+      <div class="clip" id="c-suite" data-start="24.40" data-duration="2.20" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Je te tiens au courant</div>
+          <div class="titre">Prochain point<br />bientôt</div>
+        </div>
+      </div>
+
       <!-- La cartouche de fin -->
       <div class="clip" id="c-fin" data-start="26.90" data-duration="1.80" data-track-index="1">
         <div class="punch">
@@ -82,6 +133,8 @@
       <audio id="son-coupe-1" src="assets/sfx/souffle.wav" data-start="3.58" data-duration="0.55" data-volume="0.3"></audio>
       <audio id="son-pastille" src="assets/sfx/clic.wav" data-start="4.25" data-duration="0.12" data-volume="0.35"></audio>
       <audio id="son-coupe-2" src="assets/sfx/souffle.wav" data-start="16.36" data-duration="0.55" data-volume="0.3"></audio>
+      <audio id="son-sujet" src="assets/sfx/clic.wav" data-start="4.25" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-shops" src="assets/sfx/notification.wav" data-start="8.45" data-duration="0.42" data-volume="0.3"></audio>
       <audio id="son-impact" src="assets/sfx/impact.wav" data-start="26.95" data-duration="0.35" data-volume="0.4"></audio>
       <audio id="son-fin" src="assets/sfx/basse.wav" data-start="27.30" data-duration="0.90" data-volume="0.45"></audio>
     </div>
@@ -152,6 +205,73 @@
       tl.fromTo("#f1", { opacity: 0, scale: 1.3, y: 18 }, { opacity: 1, scale: 1, y: 0, duration: 0.26, ease: "power4.out" }, 26.95);
       tl.fromTo("#f2", { opacity: 0, scale: 1.3, y: 18 }, { opacity: 1, scale: 1, y: 0, duration: 0.26, ease: "power4.out" }, 27.3);
       tl.fromTo("#punch-barre", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power3.out" }, 27.7);
+
+      /* Entrée par la droite, sortie vers la gauche : un seul sens de lecture. */
+      function bloc(selection, debut, duree, depuis = 18) {
+        tl.fromTo(
+          selection,
+          { xPercent: depuis, opacity: 0 },
+          { xPercent: 0, opacity: 1, duration: 0.4, ease: "power3.out" },
+          debut,
+        );
+        tl.to(
+          selection,
+          { xPercent: -14, opacity: 0, duration: 0.3, ease: "power2.in" },
+          debut + duree - 0.3,
+        );
+      }
+
+      bloc("#c-sujet .carte", 4.2, 3.6);
+      bloc("#c-shops .shops", 8.4, 7.6);
+      bloc("#c-objectif .carte", 17.0, 3.8);
+      bloc("#c-mois .rangee", 21.4, 2.6);
+      bloc("#c-suite .carte", 24.4, 2.2);
+
+      /* L'état des shops bascule un par un. */
+      function basculer(chip, etat, texte, classe, t) {
+        tl.call(
+          () => {
+            document.querySelector(chip).className = "chip " + classe;
+            document.querySelector(etat).textContent = texte;
+          },
+          null,
+          t,
+        );
+        tl.fromTo(chip, { scale: 1.04 }, { scale: 1, duration: 0.22, ease: "power2.out" }, t);
+      }
+
+      tl.call(
+        () => {
+          for (const [chip, etat] of [
+            ["#chip-1", "#etat-1"],
+            ["#chip-2", "#etat-2"],
+            ["#chip-3", "#etat-3"],
+          ]) {
+            document.querySelector(chip).className = "chip";
+            document.querySelector(etat).textContent = "En ligne";
+          }
+        },
+        null,
+        8.4,
+      );
+      basculer("#chip-1", "#etat-1", "En retravail", "chip--coupe", 9.4);
+      basculer("#chip-2", "#etat-2", "En retravail", "chip--coupe", 10.6);
+      basculer("#chip-3", "#etat-3", "Bientôt", "chip--attente", 11.8);
+
+      /* Les trois derniers mois s'allument. */
+      [
+        ["#mois-1", 21.7],
+        ["#mois-2", 21.97],
+        ["#mois-3", 22.25],
+      ].forEach(([sel, t]) => {
+        tl.fromTo(
+          sel,
+          { borderColor: "rgba(255,255,255,0.18)", color: "#8a8a8f", scale: 1 },
+          { borderColor: "#00e676", color: "#00e676", scale: 1.06, duration: 0.18 },
+          t,
+        );
+        tl.to(sel, { scale: 1, duration: 0.18 }, t + 0.18);
+      });
 
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
