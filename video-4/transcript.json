@@ -1,0 +1,42 @@
+[
+  {
+    "text": "C'est",
+    "start": 0.03,
+    "end": 0.21
+  },
+  {
+    "text": "maintenant",
+    "start": 0.21,
+    "end": 0.64
+  },
+  {
+    "text": "que",
+    "start": 0.64,
+    "end": 0.78
+  },
+  {
+    "text": "tout",
+    "start": 0.78,
+    "end": 0.95
+  },
+  {
+    "text": "se",
+    "start": 0.95,
+    "end": 1.03
+  },
+  {
+    "text": "joue",
+    "start": 1.03,
+    "end": 1.19
+  },
+  {
+    "text": "en",
+    "start": 1.19,
+    "end": 1.28
+  },
+  {
+    "text": "vrai.",
+    "start": 1.28,
+    "end": 28.94
+  }
+]
