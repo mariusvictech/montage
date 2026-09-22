@@ -8,35 +8,74 @@
   </head>
   <body>
     <!--
-      Projet vide, en attente du rush (voir assets/README.md) :
-        assets/rush.MOV      la vidéo face caméra
-        transcript.json      la transcription mot à mot, lancée sur le Mac
-      Aucune capture cette fois : uniquement du motion design.
+      Montage « point sur les shops ». Premier passage : le rush est coupé sur
+      ses creux (2 coupes, 0,46 s retirés, 29,21 s → 28,75 s), l'ouverture
+      reprend la phrase réellement transcrite, et la cartouche de fin ferme.
+      Les cartes du milieu et les sous-titres attendent une transcription
+      exploitable : celle livrée ne contient que les 8 premiers mots.
     -->
     <div
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="4"
+      data-duration="28.7"
       data-width="1080"
       data-height="1920"
     >
-      <div class="clip" id="attente" data-start="0" data-duration="4" data-track-index="0">
+      <video
+        id="rush"
+        class="clip"
+        src="assets/rush-coupe.mp4"
+        muted
+        data-start="0"
+        data-duration="28.7"
+      ></video>
+      <audio id="voix" src="assets/rush-coupe.mp4" data-start="0" data-duration="28.7" data-volume="1"></audio>
+
+      <div class="clip" id="voile" data-start="0" data-duration="28.7" data-track-index="0">
+        <div class="voile"></div>
+      </div>
+
+      <!-- L'ouverture, sur ses mots -->
+      <div class="clip" id="c-hook" data-start="0.30" data-duration="3.10" data-track-index="1">
         <div class="carte carte--sommet">
-          <div class="etiquette">video-4</div>
-          <div class="titre">En attente<br />du rush</div>
-          <div class="sous-titre">full motion design, zéro capture</div>
+          <div class="etiquette">Q4</div>
+          <div class="titre">C'est maintenant<br />que tout se joue</div>
         </div>
       </div>
+
+      <!-- La cartouche de fin -->
+      <div class="clip" id="c-fin" data-start="27.30" data-duration="1.40" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">La suite</div>
+          <div class="titre">Like ·<br />Abonne-toi</div>
+        </div>
+      </div>
+
+      <audio id="son-hook" src="assets/sfx/souffle.wav" data-start="0.30" data-duration="0.55" data-volume="0.3"></audio>
+      <audio id="son-fin" src="assets/sfx/basse.wav" data-start="27.30" data-duration="0.90" data-volume="0.45"></audio>
     </div>
+
     <script>
       const tl = gsap.timeline({ paused: true });
-      tl.fromTo(
-        "#attente .carte",
-        { xPercent: 18, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
-        0.2,
-      );
+
+      function bloc(selection, debut, duree) {
+        tl.fromTo(
+          selection,
+          { xPercent: 18, opacity: 0 },
+          { xPercent: 0, opacity: 1, duration: 0.4, ease: "power3.out" },
+          debut,
+        );
+        tl.to(
+          selection,
+          { xPercent: -14, opacity: 0, duration: 0.3, ease: "power2.in" },
+          debut + duree - 0.3,
+        );
+      }
+
+      bloc("#c-hook .carte", 0.3, 3.1);
+      bloc("#c-fin .carte", 27.3, 1.4);
+
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);
