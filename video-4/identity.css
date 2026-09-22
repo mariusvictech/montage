@@ -449,3 +449,77 @@ body {
   width: 100%;
   height: auto;
 }
+
+/* ---------- Habillage permanent ---------- */
+
+.jauge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 10px;
+  width: 100%;
+  background: var(--vert);
+  transform-origin: left center;
+}
+
+.coin {
+  position: absolute;
+  width: 96px;
+  height: 96px;
+  border: 8px solid var(--vert);
+}
+
+.coin--hg { top: 120px; left: 60px; border-right: 0; border-bottom: 0; border-radius: 22px 0 0 0; }
+.coin--hd { top: 120px; right: 60px; border-left: 0; border-bottom: 0; border-radius: 0 22px 0 0; }
+.coin--bg { bottom: 150px; left: 60px; border-right: 0; border-top: 0; border-radius: 0 0 0 22px; }
+.coin--bd { bottom: 150px; right: 60px; border-left: 0; border-top: 0; border-radius: 0 0 22px 0; }
+
+.pastille-fixe {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 28px;
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Le flash blanc posé sur chaque coupe */
+.flash {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  opacity: 0;
+}
+
+/* Le titre d'ouverture, mot par mot */
+.kinetique {
+  position: absolute;
+  left: 60px;
+  right: 60px;
+  top: 230px;
+  padding: 36px 40px 44px;
+  border-radius: 28px;
+  border-left: 8px solid var(--vert);
+  background: rgba(8, 8, 9, 0.82);
+  box-shadow: var(--contour);
+  text-align: left;
+}
+
+.kinetique-mot {
+  display: inline-block;
+  margin: 0 10px 8px 0;
+  font-size: 104px;
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.85);
+}
