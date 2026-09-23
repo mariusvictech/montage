@@ -523,3 +523,12 @@ body {
   text-transform: uppercase;
   text-shadow: 0 6px 30px rgba(0, 0, 0, 0.85);
 }
+
+/* Un shop en ligne mais sans vente : le nom reste, l'état passe en rouge. */
+.chip--zero {
+  border-left-color: var(--rouge);
+}
+
+.chip--zero .chip-etat {
+  color: var(--rouge);
+}
