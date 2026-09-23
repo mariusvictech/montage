@@ -26,6 +26,17 @@ fonctionne sans elles ; seule la transcription automatique demande whisper-cpp.
 
 ## 2. Monter une vidéo
 
+Le chemin court :
+
+```bash
+bash scripts/nouvelle-video.sh "sujet"   # ouvre video-N, prêt à recevoir le rush
+# … le rush est déposé dans video-N/assets/rush.MOV …
+bash scripts/monter.sh video-N           # coupe + transcription + sous-titres
+```
+
+Reste le motion design dans `video-N/index.html` et le rendu. Le détail, étape
+par étape :
+
 ```bash
 # a. Le rush arrive dans le projet
 cp ~/ma-video.mp4 video-1/assets/rush.mp4
@@ -65,7 +76,9 @@ Pour une nouvelle vidéo, on copie le projet plutôt que de l'écraser :
 
 | Script | Ce qu'il fait |
 | --- | --- |
-| `scripts/setup.sh` | Installe bun, ffmpeg, ffprobe, HyperFrames et GSAP |
+| `scripts/setup.sh` | Installe bun, ffmpeg, ffprobe, HyperFrames, whisper-cpp et GSAP |
+| `scripts/nouvelle-video.sh` | Ouvre le projet suivant (`video-N`) avec l'identité, les sons et un écran d'attente |
+| `scripts/monter.sh` | Enchaîne coupe, transcription (fr, modèle `medium`) et sous-titres |
 | `scripts/cut-silences.mjs` | Détecte les blancs, écrit `cuts.json`, produit la vidéo coupée |
 | `scripts/subtitles.mjs` | Transcript mot à mot → `compositions/subtitles.html` |
 | `scripts/sfx.mjs` | Fabrique les cinq sound effects avec ffmpeg, sans rien télécharger |
