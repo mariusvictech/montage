@@ -532,3 +532,12 @@ body {
 .chip--zero .chip-etat {
   color: var(--rouge);
 }
+
+/* Un shop en ligne mais sans vente : le nom reste, l'état passe en rouge. */
+.chip--zero {
+  border-left-color: var(--rouge);
+}
+
+.chip--zero .chip-etat {
+  color: var(--rouge);
+}

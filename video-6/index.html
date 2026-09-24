@@ -7,31 +7,358 @@
     <link rel="stylesheet" href="./identity.css" />
   </head>
   <body>
-    <!-- Projet vide, en attente du rush (voir assets/README.md). -->
+    <!--
+      Montage « l'appel de coaching », jour 11. Le rush est coupé sur ses
+      creux (8 coupes, 36,04 s → 33,93 s). Chaque coupe reçoit une respiration
+      d'échelle ; les deux changements de sujet (shop 1 à 16,33 s, shop 3 à
+      23,83 s) reçoivent en plus un flash.
+      Tous les timings des cartes suivent le transcript recalé sur la coupe.
+    -->
     <div
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="4"
+      data-duration="33.93"
       data-width="1080"
       data-height="1920"
     >
-      <div class="clip" id="attente" data-start="0" data-duration="4" data-track-index="0">
-        <div class="carte carte--sommet">
-          <div class="etiquette">video-6</div>
-          <div class="titre">En attente<br />du rush</div>
-          <div class="sous-titre">video-6</div>
+      <video
+        id="rush"
+        class="clip"
+        src="assets/rush-coupe.mp4"
+        muted
+        data-start="0"
+        data-duration="33.93"
+      ></video>
+      <audio id="voix" src="assets/rush-coupe.mp4" data-start="0" data-duration="33.93" data-volume="1"></audio>
+
+      <div class="clip" id="voile" data-start="0" data-duration="33.93" data-track-index="0">
+        <div class="voile"></div>
+      </div>
+
+      <!-- L'habillage, présent du début à la fin -->
+      <div class="clip" id="habillage" data-start="0" data-duration="33.93" data-track-index="0">
+        <div class="jauge" id="jauge"></div>
+        <div class="coin coin--hg" id="coin-hg"></div>
+        <div class="coin coin--hd" id="coin-hd"></div>
+        <div class="coin coin--bg" id="coin-bg"></div>
+        <div class="coin coin--bd" id="coin-bd"></div>
+      </div>
+
+      <!-- 1 — L'accroche, mot par mot -->
+      <div class="clip" id="c-hook" data-start="0" data-duration="2.45" data-track-index="1">
+        <div class="kinetique">
+          <span class="kinetique-mot" id="k1">L'appel</span>
+          <span class="kinetique-mot" id="k2">de coaching</span>
+          <span class="kinetique-mot" id="k3">va changer</span>
+          <span class="kinetique-mot punch-mot--vert" id="k4">ma trajectoire</span>
         </div>
       </div>
+
+      <!-- 2 — Jour 11 -->
+      <div class="clip" id="c-jour" data-start="2.50" data-duration="1.10" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">On est au</div>
+          <div class="chiffre" id="compteur-jour">Jour 0</div>
+        </div>
+      </div>
+
+      <!-- 3 — L'objectif -->
+      <div class="clip" id="c-objectif" data-start="3.60" data-duration="1.45" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Objectif</div>
+          <div class="titre">1K/day<br />pour le Q4</div>
+        </div>
+      </div>
+
+      <!-- La pastille, posée après l'objectif -->
+      <div class="clip" id="c-pastille" data-start="5.10" data-duration="27.40" data-track-index="3">
+        <div class="pastille-fixe" id="pastille"><span class="point"></span> Jour 11 · Q4</div>
+      </div>
+
+      <!-- 4 — L'appel de coaching -->
+      <div class="clip" id="c-appel" data-start="5.10" data-duration="3.95" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Appel de coaching</div>
+          <div class="ligne-appel">
+            <span class="point" id="point-appel"></span>
+            <span class="titre">Expert branding</span>
+          </div>
+          <div class="sous-titre" id="site">+ site internet</div>
+        </div>
+      </div>
+
+      <!-- 5 — Les conseils pour le shop 2 -->
+      <div class="clip" id="c-shop2" data-start="9.15" data-duration="2.55" data-track-index="1">
+        <div class="shops">
+          <div class="chip" id="chip-2">
+            <span class="chip-nom">Shop 2</span>
+            <span class="chip-etat" id="etat-2">…</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 — Presque tout changer -->
+      <div class="clip" id="c-changer" data-start="11.75" data-duration="2.40" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Shop 2</div>
+          <div class="titre">Presque tout<br />changer</div>
+        </div>
+      </div>
+
+      <!-- 7 — Plus de marque -->
+      <div class="clip" id="c-marque" data-start="14.20" data-duration="2.10" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Il faut</div>
+          <div class="titre">Plus de<br /><span class="punch-mot--vert">marque</span></div>
+        </div>
+      </div>
+      <div class="clip" id="c-tampon" data-start="15.75" data-duration="0.55" data-track-index="2">
+        <div class="tampon" id="tampon" data-layout-allow-overlap>Pas assez</div>
+      </div>
+
+      <!-- Le flash des deux changements de sujet -->
+      <div class="clip" id="c-flash-1" data-start="16.28" data-duration="0.30" data-track-index="4">
+        <div class="flash" id="flash-1"></div>
+      </div>
+      <div class="clip" id="c-flash-2" data-start="23.78" data-duration="0.30" data-track-index="4">
+        <div class="flash" id="flash-2"></div>
+      </div>
+
+      <!-- 8 — Shop 1 : toujours pas de vente -->
+      <div class="clip" id="c-shop1" data-start="16.40" data-duration="3.75" data-track-index="1">
+        <div class="shops">
+          <div class="chip" id="chip-1">
+            <span class="chip-nom">Shop 1</span>
+            <span class="chip-etat" id="etat-1">…</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 — Pas grave -->
+      <div class="clip" id="c-algo" data-start="20.25" data-duration="3.50" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Pas très grave</div>
+          <div class="titre">Début de<br />l'algorithme</div>
+        </div>
+      </div>
+
+      <!-- 10 — Shop 3 en attente, shop 4 qui arrive -->
+      <div class="clip" id="c-shops" data-start="23.90" data-duration="6.85" data-track-index="1">
+        <div class="shops">
+          <div class="chip" id="chip-3">
+            <span class="chip-nom">Shop 3</span>
+            <span class="chip-etat" id="etat-3">…</span>
+          </div>
+          <div class="chip" id="chip-4">
+            <span class="chip-nom">Shop 4</span>
+            <span class="chip-etat" id="etat-4">À lancer</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11 — La suite -->
+      <div class="clip" id="c-suite" data-start="30.85" data-duration="1.90" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">La suite</div>
+          <div class="titre">Je vous tiens<br />au courant</div>
+        </div>
+      </div>
+
+      <!-- 12 — La cartouche de fin -->
+      <div class="clip" id="c-fin" data-start="32.80" data-duration="1.13" data-track-index="1">
+        <div class="punch">
+          <span class="punch-mot" id="f1">Like</span>
+          <span class="punch-mot punch-mot--vert" id="f2">Abonne-toi</span>
+          <div class="punch-barre" id="punch-barre"></div>
+        </div>
+      </div>
+
+      <audio id="son-hook" src="assets/sfx/clic.wav" data-start="0.45" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-jour" src="assets/sfx/clic.wav" data-start="2.90" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-appel" src="assets/sfx/notification.wav" data-start="5.64" data-duration="0.42" data-volume="0.35"></audio>
+      <audio id="son-shop2" src="assets/sfx/clic.wav" data-start="10.13" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-tampon" src="assets/sfx/impact.wav" data-start="15.78" data-duration="0.35" data-volume="0.45"></audio>
+      <audio id="son-coupe-1" src="assets/sfx/souffle.wav" data-start="16.31" data-duration="0.55" data-volume="0.3"></audio>
+      <audio id="son-zero" src="assets/sfx/impact.wav" data-start="17.67" data-duration="0.35" data-volume="0.35"></audio>
+      <audio id="son-coupe-2" src="assets/sfx/souffle.wav" data-start="23.81" data-duration="0.55" data-volume="0.3"></audio>
+      <audio id="son-shop4" src="assets/sfx/clic.wav" data-start="26.77" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-fin" src="assets/sfx/basse.wav" data-start="32.90" data-duration="0.90" data-volume="0.45"></audio>
+
+      <!-- Sous-titres mot par mot, générés par scripts/subtitles.mjs -->
+      <div
+        class="clip"
+        id="sous-titres"
+        data-composition-id="subtitles"
+        data-composition-src="compositions/subtitles.html"
+        data-start="0"
+        data-duration="33.93"
+        data-track-index="5"
+      ></div>
     </div>
+
     <script>
       const tl = gsap.timeline({ paused: true });
+
+      /* L'accroche : les mots tombent sur la voix. */
+      [
+        ["#k1", 0.02],
+        ["#k2", 0.45],
+        ["#k3", 0.96],
+        ["#k4", 1.41],
+      ].forEach(([sel, t]) => {
+        tl.fromTo(
+          sel,
+          { opacity: 0, scale: 1.4, y: 24 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.26, ease: "power4.out" },
+          t,
+        );
+      });
+      tl.to("#c-hook .kinetique", { xPercent: -16, opacity: 0, duration: 0.25, ease: "power2.in" }, 2.2);
+
+      /* La jauge se remplit sur toute la durée. */
+      tl.fromTo("#jauge", { scaleX: 0 }, { scaleX: 1, duration: 33.93, ease: "none" }, 0);
+
+      /* Les coins entrent, puis tiennent le cadre en retrait. */
+      [
+        ["#coin-hg", -40, -40],
+        ["#coin-hd", 40, -40],
+        ["#coin-bg", -40, 40],
+        ["#coin-bd", 40, 40],
+      ].forEach(([sel, dx, dy], i) => {
+        tl.fromTo(
+          sel,
+          { opacity: 0, x: dx, y: dy },
+          { opacity: 0.85, x: 0, y: 0, duration: 0.5, ease: "power3.out" },
+          0.3 + i * 0.07,
+        );
+        tl.to(sel, { opacity: 0.35, duration: 1.2, ease: "sine.inOut" }, 2.6);
+      });
+
+      /* Entrée par la droite, sortie vers la gauche : un seul sens de lecture. */
+      function bloc(selection, debut, duree, depuis = 18) {
+        tl.fromTo(
+          selection,
+          { xPercent: depuis, opacity: 0 },
+          { xPercent: 0, opacity: 1, duration: 0.4, ease: "power3.out" },
+          debut,
+        );
+        tl.to(
+          selection,
+          { xPercent: -14, opacity: 0, duration: 0.3, ease: "power2.in" },
+          debut + duree - 0.3,
+        );
+      }
+
+      bloc("#c-jour .carte", 2.5, 1.1);
+      bloc("#c-objectif .carte", 3.6, 1.45);
+      bloc("#c-appel .carte", 5.1, 3.95);
+      bloc("#c-shop2 .shops", 9.15, 2.55);
+      bloc("#c-changer .carte", 11.75, 2.4);
+      bloc("#c-marque .carte", 14.2, 2.1);
+      bloc("#c-shop1 .shops", 16.4, 3.75);
+      bloc("#c-algo .carte", 20.25, 3.5);
+      bloc("#c-shops .shops", 23.9, 6.85);
+      bloc("#c-suite .carte", 30.85, 1.9);
+
+      /* Jour 0 → jour 11, compté sur « le jour 11 ». */
+      const jour = { valeur: 0 };
       tl.fromTo(
-        "#attente .carte",
-        { xPercent: 18, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
-        0.2,
+        jour,
+        { valeur: 0 },
+        {
+          valeur: 11,
+          duration: 0.4,
+          ease: "steps(11)",
+          onUpdate() {
+            document.getElementById("compteur-jour").textContent = "Jour " + Math.round(jour.valeur);
+          },
+        },
+        2.6,
       );
+
+      /* La pastille arrive après l'objectif, part avant la fin. */
+      tl.fromTo(
+        "#pastille",
+        { xPercent: -20, opacity: 0 },
+        { xPercent: 0, opacity: 1, duration: 0.4, ease: "power3.out" },
+        5.1,
+      );
+      tl.to("#pastille", { opacity: 0, duration: 0.3 }, 32.2);
+
+      /* Le point de l'appel pulse sur « appel », le site arrive sur « site internet ». */
+      [5.64, 6.4].forEach((t) => {
+        tl.fromTo(
+          "#point-appel",
+          { scale: 1, boxShadow: "0 0 0 0 rgba(0,230,118,0.6)" },
+          { scale: 1.25, boxShadow: "0 0 0 26px rgba(0,230,118,0)", duration: 0.75, ease: "power2.out" },
+          t,
+        );
+      });
+      tl.fromTo("#site", { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 8.19);
+
+      /* Le tampon tombe sur « pas assez ». */
+      tl.fromTo(
+        "#tampon",
+        { opacity: 0, scale: 1.8 },
+        { opacity: 1, scale: 1, duration: 0.18, ease: "power4.in" },
+        15.78,
+      );
+      tl.to("#tampon", { xPercent: -14, opacity: 0, duration: 0.25, ease: "power2.in" }, 16.05);
+
+      /* Chaque coupe respire ; les deux changements de sujet flashent. */
+      [2.45, 9.07, 11.69, 14.15, 16.33, 23.83, 26.21, 30.79].forEach((t) => {
+        tl.fromTo("#rush", { scale: 1.04 }, { scale: 1, duration: 0.45, ease: "power3.out" }, t);
+      });
+      [
+        ["#flash-1", 16.33],
+        ["#flash-2", 23.83],
+      ].forEach(([sel, t]) => {
+        tl.fromTo(sel, { opacity: 0 }, { opacity: 0.55, duration: 0.06, ease: "power2.out" }, t);
+        tl.to(sel, { opacity: 0, duration: 0.2, ease: "power2.in" }, t + 0.06);
+      });
+
+      /* L'état des shops bascule au mot près. */
+      function etat(chip, sel, texte, classe, t) {
+        tl.call(
+          () => {
+            document.querySelector(chip).className = "chip " + classe;
+            document.querySelector(sel).textContent = texte;
+          },
+          null,
+          t,
+        );
+        tl.fromTo(chip, { scale: 1.04 }, { scale: 1, duration: 0.22, ease: "power2.out" }, t);
+      }
+      function remettre(chip, sel, texte, t) {
+        tl.call(
+          () => {
+            document.querySelector(chip).className = "chip";
+            document.querySelector(sel).textContent = texte;
+          },
+          null,
+          t,
+        );
+      }
+
+      remettre("#chip-2", "#etat-2", "…", 9.15);
+      etat("#chip-2", "#etat-2", "En retravail", "chip--attente", 10.13);
+
+      remettre("#chip-1", "#etat-1", "…", 16.4);
+      etat("#chip-1", "#etat-1", "0 vente", "chip--zero", 17.67);
+      etat("#chip-1", "#etat-1", "Jour 3 sans vente", "chip--zero", 18.74);
+
+      remettre("#chip-3", "#etat-3", "…", 23.9);
+      remettre("#chip-4", "#etat-4", "À lancer", 23.9);
+      etat("#chip-3", "#etat-3", "En attente", "chip--attente", 25.84);
+      tl.fromTo("#chip-4", { opacity: 0, xPercent: 18 }, { opacity: 1, xPercent: 0, duration: 0.35, ease: "power3.out" }, 26.77);
+      etat("#chip-4", "#etat-4", "Dans 2–3 jours", "", 28.16);
+
+      /* La fin : like, abonne-toi, la barre verte. */
+      tl.fromTo("#f1", { opacity: 0, scale: 1.3, y: 18 }, { opacity: 1, scale: 1, y: 0, duration: 0.22, ease: "power4.out" }, 32.86);
+      tl.fromTo("#f2", { opacity: 0, scale: 1.3, y: 18 }, { opacity: 1, scale: 1, y: 0, duration: 0.22, ease: "power4.out" }, 33.13);
+      tl.fromTo("#punch-barre", { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 33.35);
+
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);
