@@ -1,0 +1,543 @@
+/* Identité visuelle du montage — vertical 1080x1920.
+   Typo épaisse, fond sombre, accent vert, contour sombre sur tout le texte.
+   Réutilisée par les cartes (motion design) et par les sous-titres. */
+
+:root {
+  --fond: #0a0a0a;
+  --texte: #f4f4f5;
+  --vert: #00e676;
+  --rouge: #ff3b30;
+  --gris: #8a8a8f;
+  --contour: 0 4px 18px rgba(0, 0, 0, 0.75);
+  --typo: "Inter", "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  background: var(--fond);
+  font-family: var(--typo);
+  color: var(--texte);
+}
+
+.clip {
+  position: absolute;
+  inset: 0;
+}
+
+/* ---------- Cartes de motion design ----------
+   Toutes les cartes entrent par la droite et sortent vers la gauche :
+   un seul sens de lecture, comme un mouvement de caméra continu. */
+
+.carte {
+  position: absolute;
+  left: 80px;
+  right: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 44px 48px;
+  border-radius: 28px;
+  background: rgba(16, 16, 18, 0.92);
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-left: 8px solid var(--vert);
+  box-shadow: var(--contour);
+  will-change: transform, opacity;
+}
+
+.carte--haut {
+  top: 260px;
+}
+.carte--milieu {
+  top: 760px;
+}
+.carte--bas {
+  bottom: 420px;
+}
+
+.etiquette {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--vert);
+}
+
+.titre {
+  font-size: 92px;
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.sous-titre {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--gris);
+}
+
+.chiffre {
+  font-size: 180px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--vert);
+  font-variant-numeric: tabular-nums;
+}
+
+.barre {
+  text-decoration: line-through;
+  text-decoration-thickness: 10px;
+  text-decoration-color: var(--rouge);
+  color: var(--gris);
+}
+
+.negatif {
+  color: var(--rouge);
+}
+
+/* Tampon posé sur l'image (le « FAUX » rouge) */
+.tampon {
+  position: absolute;
+  top: 300px;
+  left: 50%;
+  padding: 18px 40px;
+  border: 8px solid var(--rouge);
+  border-radius: 18px;
+  background: rgba(10, 10, 10, 0.88);
+  color: var(--rouge);
+  font-size: 96px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transform: translate(-50%, 0) rotate(-8deg);
+}
+
+/* ---------- Emplacement d'une capture d'écran ---------- */
+
+.capture {
+  position: absolute;
+  left: 80px;
+  right: 80px;
+  top: 520px;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--contour);
+  background: #141416;
+}
+
+.capture img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Réservé quand la capture n'est pas encore dans assets/ */
+.capture--vide {
+  height: 620px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: repeating-linear-gradient(
+    135deg,
+    #141416,
+    #141416 28px,
+    #1b1b1f 28px,
+    #1b1b1f 56px
+  );
+  color: var(--gris);
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Cadre rouge qui entoure la zone d'une capture à souligner */
+.surlignage {
+  position: absolute;
+  border: 6px solid var(--rouge);
+  border-radius: 14px;
+  box-shadow: 0 0 0 4px rgba(255, 59, 48, 0.18);
+}
+
+/* ---------- Sous-titres mot par mot ---------- */
+
+.rail-sous-titres {
+  position: absolute;
+  left: 60px;
+  right: 60px;
+  bottom: 220px;
+  text-align: center;
+}
+
+.ligne {
+  position: relative;
+  font-size: 66px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 18px rgba(0, 0, 0, 0.9),
+    0 4px 10px rgba(0, 0, 0, 0.9);
+  -webkit-text-stroke: 3px rgba(0, 0, 0, 0.85);
+  paint-order: stroke fill;
+}
+
+.mot {
+  display: inline-block;
+  margin: 0 10px;
+  color: var(--texte);
+}
+
+.mot--actif {
+  color: var(--vert);
+}
+
+/* Cadrage serré du rush : les cartes se posent sur le plafond, au-dessus du visage. */
+.carte--sommet {
+  top: 130px;
+}
+
+.capture--insert {
+  top: 430px;
+}
+
+/* ---------- Voile haut et bas ----------
+   Le rush est tourné sur un plafond blanc : sans ce dégradé, ni les cartes
+   ni les sous-titres ne tiennent. */
+
+.voile {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 32%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 26%);
+}
+
+/* ---------- Les trois derniers mois ---------- */
+
+.rangee {
+  position: absolute;
+  left: 80px;
+  top: 300px;
+  width: 920px;
+  display: flex;
+  gap: 20px;
+}
+
+.pastille {
+  flex: 1;
+  padding: 26px 0;
+  border-radius: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.18);
+  background: rgba(16, 16, 18, 0.92);
+  color: var(--gris);
+  font-size: 46px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.pastille--active {
+  border-color: var(--vert);
+  color: var(--vert);
+}
+
+/* ---------- L'état des trois shops ---------- */
+
+.shops {
+  position: absolute;
+  left: 80px;
+  right: 80px;
+  top: 190px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 26px 34px;
+  border-radius: 22px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-left: 8px solid var(--gris);
+  background: rgba(16, 16, 18, 0.93);
+  box-shadow: var(--contour);
+}
+
+.chip-nom {
+  font-size: 50px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.chip-etat {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gris);
+}
+
+.chip--coupe {
+  border-left-color: var(--rouge);
+}
+
+.chip--coupe .chip-nom {
+  color: var(--gris);
+  text-decoration: line-through;
+  text-decoration-thickness: 7px;
+  text-decoration-color: var(--rouge);
+}
+
+.chip--coupe .chip-etat {
+  color: var(--rouge);
+}
+
+.chip--attente {
+  border-left-color: #f5a623;
+}
+
+.chip--attente .chip-etat {
+  color: #f5a623;
+}
+
+/* ---------- Le plan, ligne par ligne ---------- */
+
+.plan {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+}
+
+.plan li {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.plan .rang {
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--vert);
+}
+
+/* ---------- Trois barres qui montent ---------- */
+
+.barres {
+  display: flex;
+  align-items: flex-end;
+  gap: 22px;
+  height: 190px;
+}
+
+.barre-shop {
+  flex: 1;
+  height: 100%;
+  border-radius: 12px 12px 4px 4px;
+  background: linear-gradient(to top, #0b7a41, var(--vert));
+  transform-origin: bottom center;
+}
+
+/* ---------- La punchline ---------- */
+
+.punch {
+  position: absolute;
+  left: 70px;
+  right: 70px;
+  top: 640px;
+  text-align: center;
+}
+
+.punch-mot {
+  display: inline-block;
+  margin: 0 12px;
+  font-size: 118px;
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.85);
+}
+
+.punch-mot--vert {
+  color: var(--vert);
+}
+
+.punch-barre {
+  height: 12px;
+  margin: 28px auto 0;
+  width: 70%;
+  border-radius: 6px;
+  background: var(--vert);
+  transform-origin: left center;
+}
+
+/* ---------- L'appel entrant ---------- */
+
+.ligne-appel {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.point {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--vert);
+  box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.6);
+}
+
+/* ---------- Le bandeau de l'extrait inséré ---------- */
+
+.badge-insert {
+  position: absolute;
+  left: 80px;
+  top: 150px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 32px;
+  border-radius: 18px;
+  border-left: 8px solid var(--vert);
+  background: rgba(10, 10, 10, 0.86);
+  box-shadow: var(--contour);
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ---------- La notification de commande ---------- */
+
+.notif {
+  position: absolute;
+  left: 80px;
+  top: 470px;
+  width: 920px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 4px solid var(--vert);
+  box-shadow: var(--contour);
+}
+
+.notif img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- Habillage permanent ---------- */
+
+.jauge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 10px;
+  width: 100%;
+  background: var(--vert);
+  transform-origin: left center;
+}
+
+.coin {
+  position: absolute;
+  width: 96px;
+  height: 96px;
+  border: 8px solid var(--vert);
+}
+
+.coin--hg { top: 120px; left: 60px; border-right: 0; border-bottom: 0; border-radius: 22px 0 0 0; }
+.coin--hd { top: 120px; right: 60px; border-left: 0; border-bottom: 0; border-radius: 0 22px 0 0; }
+.coin--bg { bottom: 150px; left: 60px; border-right: 0; border-top: 0; border-radius: 0 0 0 22px; }
+.coin--bd { bottom: 150px; right: 60px; border-left: 0; border-top: 0; border-radius: 0 0 22px 0; }
+
+.pastille-fixe {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 28px;
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Le flash blanc posé sur chaque coupe */
+.flash {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  opacity: 0;
+}
+
+/* Le titre d'ouverture, mot par mot */
+.kinetique {
+  position: absolute;
+  left: 60px;
+  right: 60px;
+  top: 230px;
+  padding: 36px 40px 44px;
+  border-radius: 28px;
+  border-left: 8px solid var(--vert);
+  background: rgba(8, 8, 9, 0.82);
+  box-shadow: var(--contour);
+  text-align: left;
+}
+
+.kinetique-mot {
+  display: inline-block;
+  margin: 0 10px 8px 0;
+  font-size: 104px;
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.85);
+}
+
+/* Un shop en ligne mais sans vente : le nom reste, l'état passe en rouge. */
+.chip--zero {
+  border-left-color: var(--rouge);
+}
+
+.chip--zero .chip-etat {
+  color: var(--rouge);
+}
+
+/* Un shop en ligne mais sans vente : le nom reste, l'état passe en rouge. */
+.chip--zero {
+  border-left-color: var(--rouge);
+}
+
+.chip--zero .chip-etat {
+  color: var(--rouge);
+}
