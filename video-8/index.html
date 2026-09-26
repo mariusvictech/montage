@@ -7,31 +7,354 @@
     <link rel="stylesheet" href="./identity.css" />
   </head>
   <body>
-    <!-- Projet vide, en attente du rush (voir assets/README.md). -->
+    <!--
+      Montage « confiant ». Le rush est coupé sur ses creux (9 coupes,
+      34,67 s → 31,73 s). Chaque coupe reçoit une respiration d'échelle ; le
+      passage au shop 2 (9,89 s) et aux shops 3 et 4 (18,83 s) reçoivent en
+      plus un flash.
+      Tous les timings des cartes suivent le transcript recalé sur la coupe.
+    -->
     <div
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="4"
+      data-duration="31.73"
       data-width="1080"
       data-height="1920"
     >
-      <div class="clip" id="attente" data-start="0" data-duration="4" data-track-index="0">
-        <div class="carte carte--sommet">
-          <div class="etiquette">video-8</div>
-          <div class="titre">En attente<br />du rush</div>
-          <div class="sous-titre">video-8</div>
+      <video
+        id="rush"
+        class="clip"
+        src="assets/rush-coupe.mp4"
+        muted
+        data-start="0"
+        data-duration="31.73"
+      ></video>
+      <audio id="voix" src="assets/rush-coupe.mp4" data-start="0" data-duration="31.73" data-volume="1"></audio>
+
+      <div class="clip" id="voile" data-start="0" data-duration="31.73" data-track-index="0">
+        <div class="voile"></div>
+      </div>
+
+      <!-- L'habillage, présent du début à la fin -->
+      <div class="clip" id="habillage" data-start="0" data-duration="31.73" data-track-index="0">
+        <div class="jauge" id="jauge"></div>
+        <div class="coin coin--hg" id="coin-hg"></div>
+        <div class="coin coin--hd" id="coin-hd"></div>
+        <div class="coin coin--bg" id="coin-bg"></div>
+        <div class="coin coin--bd" id="coin-bd"></div>
+      </div>
+
+      <!-- 1 — L'accroche, mot par mot -->
+      <div class="clip" id="c-hook" data-start="0" data-duration="1.72" data-track-index="1">
+        <div class="kinetique">
+          <span class="kinetique-mot" id="k1">Je suis</span>
+          <span class="kinetique-mot punch-mot--vert" id="k2">confiant</span>
+          <span class="kinetique-mot" id="k3">les ventes</span>
+          <span class="kinetique-mot" id="k4">vont revenir</span>
         </div>
       </div>
+
+      <!-- 2 — Shop 1 refait -->
+      <div class="clip" id="c-shop1" data-start="1.72" data-duration="3.25" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Shop 1</div>
+          <div class="titre">Refait à neuf</div>
+          <div class="sous-titre" id="skills">avec les skills appris sur Claude</div>
+        </div>
+      </div>
+
+      <!-- La pastille, posée après l'ouverture -->
+      <div class="clip" id="c-pastille" data-start="5.00" data-duration="24.30" data-track-index="3">
+        <div class="pastille-fixe" id="pastille"><span class="point"></span> Confiant · Q4</div>
+      </div>
+
+      <!-- 3 — Trop beau -->
+      <div class="clip" id="c-beau" data-start="5.00" data-duration="1.28" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Franchement</div>
+          <div class="titre"><span class="punch-mot--vert">Trop beau</span></div>
+        </div>
+      </div>
+
+      <!-- 4 — Avant, un site dégueulasse -->
+      <div class="clip" id="c-avant" data-start="6.30" data-duration="2.12" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Avant</div>
+          <div class="titre">Site <span class="negatif">dégueulasse</span></div>
+          <div class="sous-titre" id="commandes">et déjà des commandes</div>
+        </div>
+      </div>
+
+      <!-- 5 — Si ça ne commande pas… -->
+      <div class="clip" id="c-comprends" data-start="8.44" data-duration="1.45" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Là, sans commande</div>
+          <div class="titre">Je comprends pas</div>
+        </div>
+      </div>
+
+      <!-- Le flash des deux changements de sujet -->
+      <div class="clip" id="c-flash-1" data-start="9.84" data-duration="0.30" data-track-index="4">
+        <div class="flash" id="flash-1"></div>
+      </div>
+      <div class="clip" id="c-flash-2" data-start="18.78" data-duration="0.30" data-track-index="4">
+        <div class="flash" id="flash-2"></div>
+      </div>
+
+      <!-- 6 — Shop 2 -->
+      <div class="clip" id="c-shop2" data-start="10.55" data-duration="3.05" data-track-index="1">
+        <div class="shops">
+          <div class="chip" id="chip-2">
+            <span class="chip-nom">Shop 2</span>
+            <span class="chip-etat" id="etat-2">…</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 — Quelques visites -->
+      <div class="clip" id="c-visites" data-start="13.65" data-duration="3.40" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Shop 2 · pour l'instant</div>
+          <div class="titre">Quelques visites</div>
+          <div class="sous-titre" id="compte">pas à prendre en compte</div>
+        </div>
+      </div>
+
+      <!-- 8 — L'algo apprend -->
+      <div class="clip" id="c-algo" data-start="17.11" data-duration="1.72" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Patience</div>
+          <div class="titre">L'algo apprend</div>
+        </div>
+      </div>
+
+      <!-- 9 — Shops 3 et 4 -->
+      <div class="clip" id="c-shops" data-start="18.85" data-duration="5.25" data-track-index="1">
+        <div class="shops">
+          <div class="chip" id="chip-3">
+            <span class="chip-nom">Shop 3</span>
+            <span class="chip-etat" id="etat-3">…</span>
+          </div>
+          <div class="chip" id="chip-4">
+            <span class="chip-nom">Shop 4</span>
+            <span class="chip-etat" id="etat-4">…</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 — J'avance de fou -->
+      <div class="clip" id="c-avance" data-start="24.11" data-duration="1.72" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Vraiment content</div>
+          <div class="titre">J'avance<br /><span class="punch-mot--vert">de fou</span></div>
+        </div>
+      </div>
+
+      <!-- 11 — Un cinquième shop ? -->
+      <div class="clip" id="c-cinq" data-start="25.85" data-duration="3.60" data-track-index="1">
+        <div class="carte carte--sommet">
+          <div class="etiquette">Et limite</div>
+          <div class="titre">Un 5ᵉ shop<br />pour le Q4</div>
+          <div class="sous-titre" id="avoir">à voir</div>
+        </div>
+      </div>
+      <div class="clip" id="c-rangee" data-start="25.85" data-duration="3.60" data-track-index="2">
+        <div class="rangee" style="top: 620px">
+          <div class="pastille" id="s1">S1</div>
+          <div class="pastille" id="s2">S2</div>
+          <div class="pastille" id="s3">S3</div>
+          <div class="pastille" id="s4">S4</div>
+          <div class="pastille" id="s5">S5 ?</div>
+        </div>
+      </div>
+
+      <!-- 12 — La cartouche de fin -->
+      <div class="clip" id="c-fin" data-start="29.50" data-duration="2.23" data-track-index="1">
+        <div class="punch">
+          <span class="punch-mot" id="f0">À suivre</span>
+          <br />
+          <span class="punch-mot" id="f1">Like</span>
+          <span class="punch-mot punch-mot--vert" id="f2">Abonne-toi</span>
+          <div class="punch-barre" id="punch-barre"></div>
+        </div>
+      </div>
+
+      <audio id="son-hook" src="assets/sfx/clic.wav" data-start="0.33" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-shop1" src="assets/sfx/clic.wav" data-start="1.93" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-beau" src="assets/sfx/clic.wav" data-start="5.81" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-degueu" src="assets/sfx/impact.wav" data-start="7.81" data-duration="0.35" data-volume="0.35"></audio>
+      <audio id="son-coupe-1" src="assets/sfx/souffle.wav" data-start="9.87" data-duration="0.55" data-volume="0.3"></audio>
+      <audio id="son-shop2" src="assets/sfx/notification.wav" data-start="12.45" data-duration="0.42" data-volume="0.35"></audio>
+      <audio id="son-coupe-2" src="assets/sfx/souffle.wav" data-start="18.81" data-duration="0.55" data-volume="0.3"></audio>
+      <audio id="son-shop4" src="assets/sfx/clic.wav" data-start="22.89" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-cinq" src="assets/sfx/clic.wav" data-start="27.84" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-fin" src="assets/sfx/basse.wav" data-start="30.30" data-duration="0.90" data-volume="0.45"></audio>
+
+      <!-- Sous-titres mot par mot, générés par scripts/subtitles.mjs -->
+      <div
+        class="clip"
+        id="sous-titres"
+        data-composition-id="subtitles"
+        data-composition-src="compositions/subtitles.html"
+        data-start="0"
+        data-duration="31.73"
+        data-track-index="5"
+      ></div>
     </div>
+
     <script>
       const tl = gsap.timeline({ paused: true });
+
+      /* L'accroche : les mots tombent sur la voix. */
+      [
+        ["#k1", 0.02],
+        ["#k2", 0.33],
+        ["#k3", 1.0],
+        ["#k4", 1.11],
+      ].forEach(([sel, t]) => {
+        tl.fromTo(
+          sel,
+          { opacity: 0, scale: 1.4, y: 24 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.22, ease: "power4.out" },
+          t,
+        );
+      });
+      tl.to("#c-hook .kinetique", { xPercent: -16, opacity: 0, duration: 0.2, ease: "power2.in" }, 1.5);
+
+      /* La jauge se remplit sur toute la durée. */
+      tl.fromTo("#jauge", { scaleX: 0 }, { scaleX: 1, duration: 31.73, ease: "none" }, 0);
+
+      /* Les coins entrent, puis tiennent le cadre en retrait. */
+      [
+        ["#coin-hg", -40, -40],
+        ["#coin-hd", 40, -40],
+        ["#coin-bg", -40, 40],
+        ["#coin-bd", 40, 40],
+      ].forEach(([sel, dx, dy], i) => {
+        tl.fromTo(
+          sel,
+          { opacity: 0, x: dx, y: dy },
+          { opacity: 0.85, x: 0, y: 0, duration: 0.5, ease: "power3.out" },
+          0.3 + i * 0.07,
+        );
+        tl.to(sel, { opacity: 0.35, duration: 1.2, ease: "sine.inOut" }, 2.4);
+      });
+
+      /* Entrée par la droite, sortie vers la gauche : un seul sens de lecture. */
+      function bloc(selection, debut, duree, depuis = 18) {
+        tl.fromTo(
+          selection,
+          { xPercent: depuis, opacity: 0 },
+          { xPercent: 0, opacity: 1, duration: 0.35, ease: "power3.out" },
+          debut,
+        );
+        tl.to(
+          selection,
+          { xPercent: -14, opacity: 0, duration: 0.25, ease: "power2.in" },
+          debut + duree - 0.25,
+        );
+      }
+
+      bloc("#c-shop1 .carte", 1.72, 3.25);
+      bloc("#c-beau .carte", 5.0, 1.28);
+      bloc("#c-avant .carte", 6.3, 2.12);
+      bloc("#c-comprends .carte", 8.44, 1.45);
+      bloc("#c-shop2 .shops", 10.55, 3.05);
+      bloc("#c-visites .carte", 13.65, 3.4);
+      bloc("#c-algo .carte", 17.11, 1.72);
+      bloc("#c-shops .shops", 18.85, 5.25);
+      bloc("#c-avance .carte", 24.11, 1.72);
+      bloc("#c-cinq .carte", 25.85, 3.6);
+      bloc("#c-rangee .rangee", 25.85, 3.6);
+
+      /* Les compléments arrivent sur le mot qui les porte. */
+      [
+        ["#skills", 3.76],
+        ["#commandes", 6.72],
+        ["#compte", 16.29],
+        ["#avoir", 29.23],
+      ].forEach(([sel, t]) => {
+        tl.fromTo(sel, { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.25, ease: "power3.out" }, t);
+      });
+
+      /* La pastille arrive après l'ouverture, part avant la fin. */
       tl.fromTo(
-        "#attente .carte",
-        { xPercent: 18, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
-        0.2,
+        "#pastille",
+        { xPercent: -20, opacity: 0 },
+        { xPercent: 0, opacity: 1, duration: 0.4, ease: "power3.out" },
+        5.0,
       );
+      tl.to("#pastille", { opacity: 0, duration: 0.3 }, 29.0);
+
+      /* Chaque coupe respire ; les deux changements de sujet flashent. */
+      [1.71, 9.89, 13.61, 17.11, 18.83, 22.29, 24.11, 25.83, 29.47].forEach((t) => {
+        tl.fromTo("#rush", { scale: 1.04 }, { scale: 1, duration: 0.45, ease: "power3.out" }, t);
+      });
+      [
+        ["#flash-1", 9.89],
+        ["#flash-2", 18.83],
+      ].forEach(([sel, t]) => {
+        tl.fromTo(sel, { opacity: 0 }, { opacity: 0.55, duration: 0.06, ease: "power2.out" }, t);
+        tl.to(sel, { opacity: 0, duration: 0.2, ease: "power2.in" }, t + 0.06);
+      });
+
+      /* L'état des shops bascule au mot près. */
+      function etat(chip, sel, texte, classe, t) {
+        tl.call(
+          () => {
+            document.querySelector(chip).className = "chip " + classe;
+            document.querySelector(sel).textContent = texte;
+          },
+          null,
+          t,
+        );
+        tl.fromTo(chip, { scale: 1.04 }, { scale: 1, duration: 0.22, ease: "power2.out" }, t);
+      }
+      function remettre(chip, sel, t) {
+        tl.call(
+          () => {
+            document.querySelector(chip).className = "chip";
+            document.querySelector(sel).textContent = "…";
+          },
+          null,
+          t,
+        );
+      }
+
+      remettre("#chip-2", "#etat-2", 10.55);
+      etat("#chip-2", "#etat-2", "Campagnes lancées hier", "", 12.45);
+
+      remettre("#chip-3", "#etat-3", 18.85);
+      remettre("#chip-4", "#etat-4", 18.85);
+      etat("#chip-3", "#etat-3", "Ça avance", "chip--attente", 19.89);
+      etat("#chip-3", "#etat-3", "Fini dans 1 semaine", "chip--attente", 21.89);
+      tl.fromTo("#chip-4", { opacity: 0, xPercent: 18 }, { opacity: 1, xPercent: 0, duration: 0.3, ease: "power3.out" }, 22.89);
+      etat("#chip-4", "#etat-4", "Dans 2 jours", "chip--attente", 23.5);
+
+      /* Les quatre shops s'allument, le cinquième arrive sur « cinquième ». */
+      [
+        ["#s1", 26.0],
+        ["#s2", 26.13],
+        ["#s3", 26.26],
+        ["#s4", 26.39],
+        ["#s5", 27.84],
+      ].forEach(([sel, t]) => {
+        tl.fromTo(
+          sel,
+          { borderColor: "rgba(255,255,255,0.18)", color: "#8a8a8f", scale: 1 },
+          { borderColor: "#00e676", color: "#00e676", scale: 1.06, duration: 0.18 },
+          t,
+        );
+        tl.to(sel, { scale: 1, duration: 0.18 }, t + 0.18);
+      });
+
+      /* La fin : à suivre, like, abonne-toi, la barre verte. */
+      tl.fromTo("#f0", { opacity: 0, scale: 1.3, y: 18 }, { opacity: 1, scale: 1, y: 0, duration: 0.22, ease: "power4.out" }, 29.63);
+      tl.fromTo("#f1", { opacity: 0, scale: 1.3, y: 18 }, { opacity: 1, scale: 1, y: 0, duration: 0.22, ease: "power4.out" }, 30.28);
+      tl.fromTo("#f2", { opacity: 0, scale: 1.3, y: 18 }, { opacity: 1, scale: 1, y: 0, duration: 0.22, ease: "power4.out" }, 30.52);
+      tl.fromTo("#punch-barre", { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 30.9);
+
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);
