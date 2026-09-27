@@ -36,9 +36,16 @@ Si `hyperframes` n'est pas dans le PATH : `bash scripts/setup.sh` puis
    de progression en haut, plus de coins « REC » autour du cadre. Un motion
    design plus premium, plus animé, qui illustre ce qu'il dit au mot près
    (typo cinétique, chiffres qui comptent, captures intégrées en scène,
-   transitions soignées) plutôt que des cartes posées.
+   transitions soignées) plutôt que des cartes posées. Référence :
+   `video-9/index.html` et `premium.css` (Inter 900 + Instrument Serif
+   italique embarquées, révélations au masque, panneaux de verre, compteurs,
+   cadrage du rush qui alterne d'une prise à l'autre).
+   Une phrase dite deux fois (prise ratée) : ne garder que la dernière, avec
+   `RETIRER="début-fin" bash scripts/monter.sh video-N` (secondes du rush).
 5. **Captures d'écran** : il les dépose dans `video-N/assets/` avec le rush
-   (png, jpg, heic). Les convertir en png si besoin (`ffmpeg -i x.HEIC x.png`)
+   (png, jpg, heic). Un HEIC d'iPhone est en tuiles, ffmpeg n'en lit qu'une :
+   le convertir avec `pip install pillow-heif` puis PIL. Ne garder que la
+   partie utile (recadrer les autres notifications, paiements, adresses)
    et les faire apparaître au moment où il en parle.
 6. Ne jamais inventer de chiffres ou de noms : ce qui n'est pas dans le
    transcript est signalé comme « à vérifier » dans le message de commit.
