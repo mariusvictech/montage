@@ -5,33 +5,369 @@
     <meta name="viewport" content="width=1080, height=1920" />
     <script src="./vendor/gsap.min.js"></script>
     <link rel="stylesheet" href="./identity.css" />
+    <link rel="stylesheet" href="./premium.css" />
   </head>
   <body>
-    <!-- Projet vide, en attente du rush (voir assets/README.md). -->
+    <!--
+      Montage « première vente », premier montage en motion design premium :
+      ni jauge ni coins, typo en masque, panneaux de verre, la capture de la
+      vente en scène. Le rush est coupé sur ses creux, et la prise ratée de
+      la fin (dite deux fois) est retirée : 36,41 s → 27,79 s, 8 coupes.
+      Chaque prise alterne deux cadrages (1,00 / 1,10) avec une lente dérive.
+    -->
     <div
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="4"
+      data-duration="27.79"
       data-width="1080"
       data-height="1920"
     >
-      <div class="clip" id="attente" data-start="0" data-duration="4" data-track-index="0">
-        <div class="carte carte--sommet">
-          <div class="etiquette">video-9</div>
-          <div class="titre">En attente<br />du rush</div>
-          <div class="sous-titre">video-9</div>
+      <video
+        id="rush"
+        class="clip"
+        src="assets/rush-coupe.mp4"
+        muted
+        data-start="0"
+        data-duration="27.79"
+      ></video>
+      <audio id="voix" src="assets/rush-coupe.mp4" data-start="0" data-duration="27.79" data-volume="1"></audio>
+
+      <div class="clip" id="voile" data-start="0" data-duration="27.79" data-track-index="0">
+        <div class="voile-haut"></div>
+      </div>
+
+      <!-- 1 — « Travail payé, enfin » -->
+      <div class="clip" id="s-hook" data-start="0" data-duration="2.05" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="display">
+            <span class="ligne-display"><span class="masque"><span id="h1">Travail</span></span></span>
+            <span class="ligne-display"><span class="masque"><span id="h2">payé,</span></span></span>
+            <span class="ligne-display"><span class="masque"><span id="h3" class="serif accent" style="font-size: 190px">enfin.</span></span></span>
+          </div>
         </div>
       </div>
+
+      <!-- 2 — La première vente, capture à l'appui -->
+      <div class="clip" id="s-vente" data-start="2.05" data-duration="3.55" data-track-index="1">
+        <div class="scene" style="top: 170px; height: 620px">
+          <div class="date" id="date" style="position: absolute; top: 0; left: 0">Samedi 26 sept. · 20:34</div>
+          <div class="notif" id="notif" style="position: absolute; top: 64px; left: 0; margin-top: 0">
+            <img src="assets/vente-notif.png" alt="Notification Shopify : commande #1001, 109,90 €" />
+            <div class="reflet" id="reflet"></div>
+          </div>
+          <div class="montant" id="montant" style="position: absolute; top: 290px; left: 0; margin-top: 0">
+            <span id="montant-valeur">0,00 €</span>
+            <span class="etincelle"></span><span class="etincelle"></span><span class="etincelle"></span>
+            <span class="etincelle"></span><span class="etincelle"></span><span class="etincelle"></span>
+            <span class="etincelle"></span><span class="etincelle"></span><span class="etincelle"></span>
+            <span class="etincelle"></span><span class="etincelle"></span><span class="etincelle"></span>
+          </div>
+          <div class="rangee-pilules" style="position: absolute; top: 510px; left: 0; margin-top: 0">
+            <div class="pilule" id="p-vente"><span class="pastille-point"></span> 1ʳᵉ vente · Shop 2</div>
+            <div class="pilule" id="p-jour">Jour 1 de pub</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 — Google Ads en apprentissage, et les signaux -->
+      <div class="clip" id="s-ads" data-start="5.61" data-duration="4.30" data-track-index="1">
+        <div class="scene" style="top: 170px">
+          <div class="verre" id="v-ads">
+            <div class="kicker">Google Ads</div>
+            <div class="titre-verre">Phase d'<span class="serif accent" style="text-transform: none; font-size: 80px">apprentissage</span></div>
+            <div class="chargement">
+              <div class="chargement-plein" id="charge"></div>
+              <div class="chargement-lueur" id="charge-lueur"></div>
+            </div>
+          </div>
+          <div class="verre" id="v-signaux" style="margin-top: 30px">
+            <div class="signaux">
+              <div class="barres">
+                <span id="b1" style="height: 40%"></span>
+                <span id="b2" style="height: 60%"></span>
+                <span id="b3" style="height: 80%"></span>
+                <span id="b4" style="height: 100%"></span>
+              </div>
+              <div>
+                <div class="kicker">Franchement</div>
+                <div class="titre-verre">Très très bons<br /><span class="accent">signaux</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 — Shop 1 : zéro vente -->
+      <div class="clip" id="s-shop1" data-start="9.95" data-duration="4.02" data-track-index="1">
+        <div class="scene" style="top: 150px">
+          <div class="kicker" id="k-shop1">Shop 1 · par contre</div>
+          <div class="zero" id="zero" style="margin-top: 50px">
+            <span class="zero-chiffre" id="zero-chiffre" style="font-size: 270px">0</span>
+            <span class="display" style="font-size: 110px">vente</span>
+          </div>
+          <div class="phrase" id="refait">alors que j'ai tout refait le site…</div>
+          <div class="phrase" id="attente" style="margin-top: 16px; color: rgba(244, 244, 245, 0.85)">
+            on attend encore un peu
+            <span class="points"><span id="pt1"></span><span id="pt2"></span><span id="pt3"></span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 — Shop 3 : une semaine -->
+      <div class="clip" id="s-shop3" data-start="14.00" data-duration="3.33" data-track-index="1">
+        <div class="scene" style="top: 200px">
+          <div class="rebours">
+            <div class="anneau" id="anneau">
+              <svg viewBox="0 0 330 330" width="330" height="330">
+                <circle cx="165" cy="165" r="145" fill="rgba(16,16,18,0.6)" stroke="rgba(255,255,255,0.12)" stroke-width="18" />
+                <circle id="arc" cx="165" cy="165" r="145" fill="none" stroke="#00e676" stroke-width="18" stroke-linecap="round" stroke-dasharray="911" stroke-dashoffset="911" />
+              </svg>
+              <div class="anneau-centre">
+                <div class="anneau-chiffre" id="jours">0</div>
+                <div class="anneau-unite">jours</div>
+              </div>
+            </div>
+            <div>
+              <div class="kicker" id="k-shop3">Shop 3</div>
+              <div class="display" style="font-size: 96px"><span class="masque"><span id="t-shop3">Encore<br />une</span></span></div>
+              <div class="display" style="font-size: 96px"><span class="masque"><span id="t-shop3b">semaine</span></span></div>
+              <div class="phrase" id="sortie" style="font-size: 60px; margin-top: 14px">puis on le sort</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 — Cap sur le shop 4 -->
+      <div class="clip" id="s-shop4" data-start="17.35" data-duration="2.00" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="kicker">Prochaine étape</div>
+          <div class="phrase" id="cap" style="margin-top: 20px; font-size: 90px">cap sur le</div>
+          <div class="display display--xl"><span class="masque"><span id="shop4">Shop <span class="accent">4</span></span></span></div>
+        </div>
+      </div>
+
+      <!-- 7 — Une deuxième vente aujourd'hui ? -->
+      <div class="clip" id="s-deux" data-start="19.35" data-duration="2.52" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="kicker" id="k-deux">Aujourd'hui, j'espère</div>
+          <div class="display" style="margin-top: 18px">
+            <span class="masque"><span id="d-vente">Vente</span></span>
+            <span class="masque"><span id="d-num" class="accent">n°1</span></span>
+          </div>
+          <div class="phrase" id="d-shop2" style="margin-top: 12px">sur le shop 2</div>
+        </div>
+      </div>
+
+      <!-- 8 — Le shop 2, celui des 1K/day -->
+      <div class="clip" id="s-1k" data-start="21.90" data-duration="3.70" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="kicker" id="k-1k">Surtout, le shop 2</div>
+          <div class="phrase" id="apporter" style="margin-top: 20px">celui qui va m'apporter les</div>
+          <div class="display display--xl"><span class="masque"><span id="unk" class="lueur-balayage">1K/day</span></span></div>
+        </div>
+      </div>
+
+      <!-- 9 — La suite -->
+      <div class="clip" id="s-fin" data-start="25.35" data-duration="2.44" data-track-index="1">
+        <div class="scene" style="top: 260px; text-align: center">
+          <div class="phrase" id="suivre" style="font-size: 88px">Tu veux suivre ça ?</div>
+          <div class="rangee-pilules" style="justify-content: center; margin-top: 44px">
+            <div class="pilule" id="like" style="font-size: 44px; padding: 22px 44px">Like</div>
+            <div class="pilule pilule--pleine" id="abonne" style="font-size: 44px; padding: 22px 44px">Abonne-toi</div>
+          </div>
+          <div class="kicker" id="asuivre" style="margin-top: 44px">À suivre</div>
+        </div>
+      </div>
+
+      <audio id="son-hook" src="assets/sfx/clic.wav" data-start="0.26" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-enfin" src="assets/sfx/souffle.wav" data-start="1.30" data-duration="0.55" data-volume="0.25"></audio>
+      <audio id="son-notif" src="assets/sfx/notification.wav" data-start="2.25" data-duration="0.42" data-volume="0.45"></audio>
+      <audio id="son-montant" src="assets/sfx/impact.wav" data-start="3.36" data-duration="0.35" data-volume="0.35"></audio>
+      <audio id="son-ads" src="assets/sfx/souffle.wav" data-start="5.58" data-duration="0.55" data-volume="0.25"></audio>
+      <audio id="son-signaux" src="assets/sfx/clic.wav" data-start="9.35" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-zero" src="assets/sfx/impact.wav" data-start="10.93" data-duration="0.35" data-volume="0.4"></audio>
+      <audio id="son-shop3" src="assets/sfx/souffle.wav" data-start="13.97" data-duration="0.55" data-volume="0.25"></audio>
+      <audio id="son-shop4" src="assets/sfx/clic.wav" data-start="18.85" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-deux" src="assets/sfx/clic.wav" data-start="20.52" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-1k" src="assets/sfx/impact.wav" data-start="24.69" data-duration="0.35" data-volume="0.4"></audio>
+      <audio id="son-fin" src="assets/sfx/basse.wav" data-start="26.51" data-duration="0.90" data-volume="0.4"></audio>
+
+      <!-- Sous-titres mot par mot, générés par scripts/subtitles.mjs -->
+      <div
+        class="clip"
+        id="sous-titres"
+        data-composition-id="subtitles"
+        data-composition-src="compositions/subtitles.html"
+        data-start="0"
+        data-duration="27.79"
+        data-track-index="5"
+      ></div>
     </div>
+
     <script>
       const tl = gsap.timeline({ paused: true });
+      const doux = "expo.out";
+
+      /* ---------- Le rush : deux cadrages qui alternent, et une lente dérive ---------- */
+      const prises = [0, 2.91, 5.61, 9.93, 13.99, 17.35, 19.35, 21.87, 25.07, 27.79];
+      prises.slice(0, -1).forEach((debut, i) => {
+        const base = i % 2 ? 1.1 : 1.0;
+        tl.fromTo(
+          "#rush",
+          { scale: base },
+          { scale: base + 0.03, duration: prises[i + 1] - debut, ease: "none", immediateRender: false },
+          debut,
+        );
+      });
+
+      /* Un mot monte de sous sa ligne, net, sans rebond. */
+      function monte(sel, t, duree = 0.55) {
+        tl.fromTo(sel, { yPercent: 110 }, { yPercent: 0, duration: duree, ease: doux }, t);
+      }
+      /* Une phrase arrive floue et se pose. */
+      function pose(sel, t, dx = 0) {
+        tl.fromTo(
+          sel,
+          { opacity: 0, y: 26, x: dx, filter: "blur(12px)" },
+          { opacity: 1, y: 0, x: 0, filter: "blur(0px)", duration: 0.5, ease: doux },
+          t,
+        );
+      }
+      /* Une scène part vers le haut en se floutant. */
+      function part(sel, t) {
+        tl.to(sel, { opacity: 0, y: -40, filter: "blur(14px)", duration: 0.28, ease: "power2.in" }, t);
+      }
+
+      /* ---------- 1 — Travail payé, enfin ---------- */
+      monte("#h1", 0.26);
+      monte("#h2", 0.87);
+      monte("#h3", 1.36, 0.7);
+      part("#s-hook .scene", 1.8);
+
+      /* ---------- 2 — La vente ---------- */
+      pose("#date", 2.08);
       tl.fromTo(
-        "#attente .carte",
-        { xPercent: 18, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
-        0.2,
+        "#notif",
+        { y: -180, opacity: 0, scale: 0.94 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.7, ease: "back.out(1.4)" },
+        2.2,
       );
+      tl.fromTo("#reflet", { xPercent: -120 }, { xPercent: 320, duration: 0.9, ease: "power2.inOut" }, 2.75);
+      pose("#montant", 2.7);
+      const montant = { v: 0 };
+      tl.fromTo(
+        montant,
+        { v: 0 },
+        {
+          v: 109.9,
+          duration: 0.65,
+          ease: "power3.out",
+          onUpdate() {
+            document.getElementById("montant-valeur").textContent =
+              montant.v.toFixed(2).replace(".", ",") + " €";
+          },
+        },
+        2.76,
+      );
+      tl.fromTo("#montant-valeur", { scale: 1 }, { scale: 1.08, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out" }, 3.36);
+      document.querySelectorAll("#montant .etincelle").forEach((e, i) => {
+        const angle = (i / 12) * Math.PI * 2;
+        const r = 260 + (i % 3) * 70;
+        tl.fromTo(
+          e,
+          { x: 0, y: 0, opacity: 1, scale: 1 },
+          { x: Math.cos(angle) * r, y: Math.sin(angle) * r * 0.5, opacity: 0, scale: 0.3, duration: 0.8, ease: "expo.out" },
+          3.36,
+        );
+      });
+      pose("#p-vente", 3.21, 40);
+      pose("#p-jour", 4.8, 40);
+      part("#s-vente .scene", 5.3);
+
+      /* ---------- 3 — Google Ads et les signaux ---------- */
+      pose("#v-ads", 5.66, 60);
+      tl.fromTo("#charge", { scaleX: 0 }, { scaleX: 0.62, duration: 1.6, ease: "power2.out" }, 6.3);
+      tl.fromTo("#charge-lueur", { xPercent: -120 }, { xPercent: 420, duration: 1.1, ease: "none", repeat: 2 }, 6.4);
+      pose("#v-signaux", 7.8, 60);
+      [
+        ["#b1", 8.78],
+        ["#b2", 8.98],
+        ["#b3", 9.1],
+        ["#b4", 9.35],
+      ].forEach(([sel, t]) => {
+        tl.fromTo(
+          sel,
+          { backgroundColor: "rgba(255,255,255,0.14)", boxShadow: "0 0 0 rgba(0,230,118,0)" },
+          { backgroundColor: "#00e676", boxShadow: "0 0 24px rgba(0,230,118,0.7)", duration: 0.2 },
+          t,
+        );
+      });
+      part("#s-ads .scene", 9.62);
+
+      /* ---------- 4 — Shop 1 : zéro vente ---------- */
+      pose("#k-shop1", 10.0);
+      tl.fromTo("#zero", { opacity: 0, scale: 1.6, filter: "blur(20px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "power4.in" }, 10.62);
+      tl.to("#zero", { keyframes: [{ x: -18 }, { x: 16 }, { x: -10 }, { x: 6 }, { x: 0 }], duration: 0.35 }, 10.97);
+      pose("#refait", 11.79);
+      pose("#attente", 13.08);
+      ["#pt1", "#pt2", "#pt3"].forEach((sel, i) => {
+        tl.fromTo(sel, { opacity: 0.25 }, { opacity: 1, duration: 0.18, yoyo: true, repeat: 1 }, 13.3 + i * 0.16);
+      });
+      part("#s-shop1 .scene", 13.68);
+
+      /* ---------- 5 — Shop 3 : une semaine ---------- */
+      tl.fromTo("#anneau", { opacity: 0, scale: 0.7, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.6, ease: doux }, 14.05);
+      pose("#k-shop3", 14.12);
+      monte("#t-shop3", 15.21);
+      monte("#t-shop3b", 15.61);
+      tl.fromTo("#arc", { strokeDashoffset: 911 }, { strokeDashoffset: 0, duration: 0.9, ease: "power3.inOut" }, 15.21);
+      const jours = { v: 0 };
+      tl.fromTo(
+        jours,
+        { v: 0 },
+        {
+          v: 7,
+          duration: 0.9,
+          ease: "power3.inOut",
+          onUpdate() {
+            document.getElementById("jours").textContent = Math.round(jours.v);
+          },
+        },
+        15.21,
+      );
+      pose("#sortie", 16.62);
+      part("#s-shop3 .scene", 17.05);
+
+      /* ---------- 6 — Cap sur le shop 4 ---------- */
+      pose("#cap", 18.12);
+      monte("#shop4", 18.8, 0.6);
+      part("#s-shop4 .scene", 19.07);
+
+      /* ---------- 7 — Une deuxième vente ---------- */
+      pose("#k-deux", 19.4);
+      monte("#d-vente", 20.2);
+      monte("#d-num", 20.2);
+      tl.call(() => { document.getElementById("d-num").textContent = "n°1"; }, null, 19.36);
+      tl.call(() => { document.getElementById("d-num").textContent = "n°2"; }, null, 20.52);
+      tl.fromTo("#d-num", { scale: 1.25 }, { scale: 1, duration: 0.4, ease: doux }, 20.52);
+      pose("#d-shop2", 21.28);
+      part("#s-deux .scene", 21.6);
+
+      /* ---------- 8 — 1K/day ---------- */
+      pose("#k-1k", 21.95);
+      pose("#apporter", 23.48);
+      monte("#unk", 24.6, 0.6);
+      tl.fromTo("#unk", { backgroundPosition: "100% 0" }, { backgroundPosition: "0% 0", duration: 0.9, ease: "power2.inOut" }, 24.9);
+      part("#s-1k .scene", 25.3);
+
+      /* ---------- 9 — La suite ---------- */
+      pose("#suivre", 25.45);
+      tl.fromTo("#like", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 26.21);
+      tl.fromTo("#abonne", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 26.51);
+      tl.fromTo("#abonne", { boxShadow: "0 0 0 0 rgba(0,230,118,0.7)" }, { boxShadow: "0 0 0 30px rgba(0,230,118,0)", duration: 0.8, ease: "power2.out" }, 26.8);
+      pose("#asuivre", 27.3);
+
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);

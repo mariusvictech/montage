@@ -164,7 +164,9 @@ function principal() {
   }
 
   if (o.coupes) {
-    const { segments } = JSON.parse(readFileSync(resolve(o.coupes), "utf8"));
+    const { segments, retires = [] } = JSON.parse(readFileSync(resolve(o.coupes), "utf8"));
+    /* Les mots d'un passage retiré à la main (prise ratée) disparaissent avec lui. */
+    mots = mots.filter((m) => !retires.some((z) => (m.debut + m.fin) / 2 >= z.start && (m.debut + m.fin) / 2 <= z.end));
     mots = mots
       .map((m) => {
         const debut = recaler(m.debut, segments);

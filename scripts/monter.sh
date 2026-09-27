@@ -8,7 +8,8 @@
 # La transcription est sautée si video-N/transcript.json existe déjà
 # (transcrit sur le Mac, par exemple). Le modèle whisper se choisit avec
 # WHISPER_MODEL (défaut : medium, multilingue — les modèles *.en ne font
-# que l'anglais).
+# que l'anglais). RETIRER="23.55-30.02" enlève en plus une prise ratée
+# (secondes du rush).
 
 set -euo pipefail
 
@@ -26,7 +27,8 @@ echo "→ rush : $RUSH"
 
 echo "→ coupe des blancs"
 node scripts/cut-silences.mjs --entree "$RUSH" \
-  --sortie "$PROJET/assets/rush-coupe.mp4" --plan "$PROJET/cuts.json"
+  --sortie "$PROJET/assets/rush-coupe.mp4" --plan "$PROJET/cuts.json" \
+  ${RETIRER:+--retirer "$RETIRER"}
 
 echo "→ transcription"
 if [ -f "$PROJET/transcript.json" ]; then

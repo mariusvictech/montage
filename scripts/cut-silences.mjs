@@ -8,6 +8,10 @@
  *   node scripts/cut-silences.mjs --entree video-2/assets/rush.MOV \
  *        --sortie video-2/assets/rush-coupe.mp4 --plan video-2/cuts.json
  *
+ * --retirer "23.55-30.02,…" enlève en plus des passages entiers (secondes du
+ * rush) : une prise ratée, une phrase redite. Ils sont notés dans le plan
+ * pour que scripts/subtitles.mjs y laisse aussi tomber les mots.
+ *
  * Écrit un plan de coupe JSON (segments conservés) que scripts/subtitles.mjs
  * réutilise pour recaler les timings des mots sur la vidéo coupée.
  */
@@ -80,6 +84,21 @@ export function segmentsGardes(blancs, duree, respiration) {
   return segments.filter((s) => s.end - s.start > 0.12);
 }
 
+/** Retire des passages entiers des segments gardés. */
+export function retirer(segments, zones) {
+  let gardes = segments;
+  for (const z of zones) {
+    gardes = gardes.flatMap((s) => {
+      if (z.end <= s.start || z.start >= s.end) return [s];
+      const morceaux = [];
+      if (z.start > s.start) morceaux.push({ start: s.start, end: z.start });
+      if (z.end < s.end) morceaux.push({ start: z.end, end: s.end });
+      return morceaux;
+    });
+  }
+  return gardes.filter((s) => s.end - s.start > 0.12);
+}
+
 function expressionSelect(segments) {
   return segments.map((s) => `between(t,${s.start.toFixed(3)},${s.end.toFixed(3)})`).join("+");
 }
@@ -123,7 +142,14 @@ function principal() {
   const voix = centile(valeurs, 0.95);
   const seuil = voix - marge;
   const blancs = creux(valeurs, seuil, minimum);
-  const segments = segmentsGardes(blancs, duree, respiration);
+  const zones = String(o.retirer || "")
+    .split(",")
+    .filter(Boolean)
+    .map((z) => {
+      const [start, end] = z.split("-").map(Number);
+      return { start, end };
+    });
+  const segments = retirer(segmentsGardes(blancs, duree, respiration), zones);
   const gardee = segments.reduce((t, s) => t + (s.end - s.start), 0);
 
   const plan = {
@@ -136,6 +162,7 @@ function principal() {
     thresholdDb: Number(seuil.toFixed(1)),
     minSilence: minimum,
     breath: respiration,
+    retires: zones,
     segments: segments.map((s) => ({
       start: Number(s.start.toFixed(3)),
       end: Number(s.end.toFixed(3)),

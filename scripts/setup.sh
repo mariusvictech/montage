@@ -47,7 +47,10 @@ if [ ! -x "$WHISPER_DIR/whisper.cpp/build/bin/whisper-cli" ]; then
   mkdir -p "$WHISPER_DIR"
   [ -d "$WHISPER_DIR/whisper.cpp" ] ||
     git clone --depth 1 https://github.com/ggml-org/whisper.cpp.git "$WHISPER_DIR/whisper.cpp"
-  (cd "$WHISPER_DIR/whisper.cpp" && cmake -B build -DCMAKE_BUILD_TYPE=Release >/dev/null &&
+  # Pas de -march=native : le conteneur change de processeur d'une session à
+  # l'autre, et un binaire natif y meurt en « Illegal instruction ».
+  (cd "$WHISPER_DIR/whisper.cpp" && cmake -B build -DCMAKE_BUILD_TYPE=Release -DGGML_NATIVE=OFF \
+    -DGGML_AVX2=ON -DGGML_FMA=ON -DGGML_F16C=ON >/dev/null &&
     cmake --build build --config Release -j >/dev/null)
 fi
 ln -sf "$WHISPER_DIR/whisper.cpp/build/bin/whisper-cli" "$PREFIXE/bin/whisper-cli"

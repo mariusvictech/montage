@@ -24,6 +24,9 @@ for f in identity.css hyperframes.json AGENTS.md CLAUDE.md; do
   cp "$MODELE/$f" "$PROJET/$f"
 done
 cp "$MODELE/vendor/gsap.min.js" "$PROJET/vendor/gsap.min.js"
+# Le style premium (à partir de video-9) : sa feuille et ses polices.
+[ -f "$MODELE/premium.css" ] && cp "$MODELE/premium.css" "$PROJET/premium.css"
+[ -d "$MODELE/fonts" ] && cp -r "$MODELE/fonts" "$PROJET/fonts"
 sed "s/\"$MODELE\"/\"$PROJET\"/" "$MODELE/package.json" >"$PROJET/package.json"
 
 cat >"$PROJET/meta.json" <<EOF
