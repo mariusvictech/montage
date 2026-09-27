@@ -32,5 +32,13 @@ Si `hyperframes` n'est pas dans le PATH : `bash scripts/setup.sh` puis
      `hyperframes render -o montage-<sujet>.mp4` ;
    - commit du montage et du rendu (`git add -f` sur le mp4), push, et
      envoyer le rendu à l'utilisateur.
-4. Ne jamais inventer de chiffres ou de noms : ce qui n'est pas dans le
+4. **Style demandé par l'utilisateur (à partir de video-9)** : plus de jauge
+   de progression en haut, plus de coins « REC » autour du cadre. Un motion
+   design plus premium, plus animé, qui illustre ce qu'il dit au mot près
+   (typo cinétique, chiffres qui comptent, captures intégrées en scène,
+   transitions soignées) plutôt que des cartes posées.
+5. **Captures d'écran** : il les dépose dans `video-N/assets/` avec le rush
+   (png, jpg, heic). Les convertir en png si besoin (`ffmpeg -i x.HEIC x.png`)
+   et les faire apparaître au moment où il en parle.
+6. Ne jamais inventer de chiffres ou de noms : ce qui n'est pas dans le
    transcript est signalé comme « à vérifier » dans le message de commit.
