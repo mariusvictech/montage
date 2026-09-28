@@ -99,8 +99,36 @@ export function retirer(segments, zones) {
   return gardes.filter((s) => s.end - s.start > 0.12);
 }
 
-function expressionSelect(segments) {
-  return segments.map((s) => `between(t,${s.start.toFixed(3)},${s.end.toFixed(3)})`).join("+");
+/** Aligne les bords des segments sur les images (1/ips s). */
+export function surLaGrille(segments, ips, duree) {
+  const image = (t) => Math.round(t * ips) / ips;
+  return segments
+    .map((s) => ({ start: image(s.start), end: Math.min(image(s.end), Math.floor(duree * ips) / ips) }))
+    .filter((s) => s.end - s.start > 0.12);
+}
+
+/**
+ * Chaque segment est découpé par trim/atrim aux mêmes instants puis recollé par
+ * concat : image et son gardent exactement la même durée, segment par segment.
+ * La vidéo est d'abord remise à cadence fixe, à la cadence du rush.
+ */
+function filtreCoupe(segments, ips) {
+  const n = segments.length;
+  const v = segments.map((_, i) => `[v${i}]`).join("");
+  const a = segments.map((_, i) => `[a${i}]`).join("");
+  const lignes = [
+    `[0:v]fps=${ips},split=${n}${v}`,
+    `[0:a]asplit=${n}${a}`,
+  ];
+  segments.forEach((s, i) => {
+    const debut = s.start.toFixed(6);
+    const fin = s.end.toFixed(6);
+    lignes.push(`[v${i}]trim=start=${debut}:end=${fin},setpts=PTS-STARTPTS[vt${i}]`);
+    lignes.push(`[a${i}]atrim=start=${debut}:end=${fin},asetpts=PTS-STARTPTS[at${i}]`);
+  });
+  const paires = segments.map((_, i) => `[vt${i}][at${i}]`).join("");
+  lignes.push(`${paires}concat=n=${n}:v=1:a=1[v][a]`);
+  return lignes.join(";");
 }
 
 function principal() {
@@ -149,7 +177,18 @@ function principal() {
       const [start, end] = z.split("-").map(Number);
       return { start, end };
     });
-  const segments = retirer(segmentsGardes(blancs, duree, respiration), zones);
+  /* Les bords de chaque segment tombent sur une image : l'image et le son sont
+     tranchés au même instant, sinon chaque coupe décale un peu la bouche de
+     la voix et le décalage s'additionne d'une coupe à l'autre. */
+  const [num, den] = execFileSync(ffprobe, [
+    "-v", "error",
+    "-select_streams", "v:0",
+    "-show_entries", "stream=r_frame_rate",
+    "-of", "default=noprint_wrappers=1:nokey=1",
+    entree,
+  ]).toString().trim().split("/").map(Number);
+  const ips = Math.round(num / (den || 1)) || 30;
+  const segments = surLaGrille(retirer(segmentsGardes(blancs, duree, respiration), zones), ips, duree);
   const gardee = segments.reduce((t, s) => t + (s.end - s.start), 0);
 
   const plan = {
@@ -180,15 +219,15 @@ function principal() {
 
   if (o.sortie && segments.length) {
     const sortie = resolve(o.sortie);
-    const expr = expressionSelect(segments);
     mkdirSync(dirname(sortie), { recursive: true });
     execFileSync(
       ffmpeg,
       [
         "-hide_banner", "-loglevel", "error", "-nostats", "-y",
         "-i", entree,
-        "-vf", `select='${expr}',setpts=N/FRAME_RATE/TB`,
-        "-af", `aselect='${expr}',asetpts=N/SR/TB`,
+        "-filter_complex", filtreCoupe(segments, ips),
+        "-map", "[v]", "-map", "[a]",
+        "-r", String(ips),
         "-c:v", "libx264", "-preset", "medium", "-crf", "18",
         "-c:a", "aac", "-b:a", "192k",
         sortie,
