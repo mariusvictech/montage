@@ -5,33 +5,507 @@
     <meta name="viewport" content="width=1080, height=1920" />
     <script src="./vendor/gsap.min.js"></script>
     <link rel="stylesheet" href="./identity.css" />
+    <link rel="stylesheet" href="./premium.css" />
+    <link rel="stylesheet" href="./scenes.css" />
   </head>
   <body>
-    <!-- Projet vide, en attente du rush (voir assets/README.md). -->
+    <!--
+      Montage « Bali, les erreurs », dans le style premium de video-9.
+      Le rush est coupé sur ses creux (11 coupes, 67,06 s → 62,93 s) par la
+      nouvelle coupe trim/concat : image et son tranchés au même instant.
+      Les sous-titres viennent de la transcription de la vidéo coupée
+      (transcript-coupe.json) : ils sont calés sur l'image finale.
+    -->
     <div
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="4"
+      data-duration="62.93"
       data-width="1080"
       data-height="1920"
     >
-      <div class="clip" id="attente" data-start="0" data-duration="4" data-track-index="0">
-        <div class="carte carte--sommet">
-          <div class="etiquette">video-10</div>
-          <div class="titre">En attente<br />du rush</div>
-          <div class="sous-titre">video-10</div>
+      <video
+        id="rush"
+        class="clip"
+        src="assets/rush-coupe.mp4"
+        muted
+        data-start="0"
+        data-duration="62.93"
+      ></video>
+      <audio id="voix" src="assets/rush-coupe.mp4" data-start="0" data-duration="62.93" data-volume="1"></audio>
+
+      <div class="clip" id="voile" data-start="0" data-duration="62.93" data-track-index="0">
+        <div class="voile-haut"></div>
+      </div>
+
+      <!-- 1 — Bali, pas le meilleur endroit -->
+      <div class="clip" id="s-hook" data-start="0" data-duration="2.98" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="display">
+            <span class="ligne-display"><span class="masque"><span id="h1" class="serif accent" style="font-size: 200px">Bali,</span></span></span>
+            <span class="ligne-display" style="font-size: 104px"><span class="masque"><span id="h2">pas le meilleur</span></span></span>
+            <span class="ligne-display" style="font-size: 104px"><span class="masque"><span id="h3">endroit pour</span></span></span>
+            <span class="ligne-display" style="font-size: 104px"><span class="masque"><span id="h4">l'e-commerce</span></span></span>
+          </div>
         </div>
       </div>
+
+      <!-- 2 — 300 € perdus -->
+      <div class="clip" id="s-perte" data-start="3.00" data-duration="3.00" data-track-index="1">
+        <div class="scene" style="top: 240px">
+          <div class="kicker" id="k-perte">Potentiellement perdu</div>
+          <div class="zero-chiffre" id="perte" style="font-size: 250px; line-height: 1.05; margin-top: 40px">−0 €</div>
+          <div class="phrase" id="acause" style="margin-top: 20px">à cause de ça.</div>
+        </div>
+      </div>
+
+      <!-- 3 — Le seum -->
+      <div class="clip" id="s-seum" data-start="6.00" data-duration="1.00" data-track-index="1">
+        <div class="scene" style="top: 300px">
+          <div class="phrase" id="seum" style="font-size: 120px">Franchement,<br />j'ai le <span class="accent">seum.</span></div>
+        </div>
+      </div>
+
+      <!-- 4 — Une cliente, à 2 h du matin -->
+      <div class="clip" id="s-nuit1" data-start="7.00" data-duration="6.00" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="kicker" id="k-nuit1">Hier soir</div>
+          <div class="bulle" id="bulle1" style="margin-top: 26px">
+            <div class="avatar">C</div>
+            <div>
+              <div class="bulle-titre">Une cliente</div>
+              <div class="bulle-texte">une question sur un produit <span class="frappe"><span id="f1a"></span><span id="f1b"></span><span id="f1c"></span></span></div>
+            </div>
+          </div>
+          <div class="heure-nuit" id="heure1">02:00<span class="lune"></span></div>
+        </div>
+      </div>
+
+      <!-- 5 — ChatGPT au lieu d'un appel -->
+      <div class="clip" id="s-gpt" data-start="13.00" data-duration="3.00" data-track-index="1">
+        <div class="scene" style="top: 240px">
+          <div class="kicker">Je lui ai répondu avec</div>
+          <div class="choix">
+            <div class="option option--choisie" id="o-gpt">
+              <div class="option-icone">Ce que j'ai fait</div>
+              <div class="option-nom">ChatGPT</div>
+            </div>
+            <div class="option option--ratee" id="o-appel">
+              <div class="option-icone">Ce que j'aurais pu</div>
+              <div class="option-nom accent">L'appeler</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 — J'aurais dû l'appeler -->
+      <div class="clip" id="s-du" data-start="16.00" data-duration="3.00" data-track-index="1">
+        <div class="scene" style="top: 240px">
+          <div class="display" style="font-size: 120px">
+            <span class="ligne-display"><span class="masque"><span id="du1">J'aurais dû</span></span></span>
+            <span class="ligne-display"><span class="masque"><span id="du2" class="serif accent" style="font-size: 150px">l'appeler.</span></span></span>
+          </div>
+          <div class="phrase" id="du3" style="margin-top: 18px">mais à 2 h du mat', compliqué…</div>
+        </div>
+      </div>
+
+      <!-- 7 — Rappelée aujourd'hui, pas de réponse -->
+      <div class="clip" id="s-rappel" data-start="19.00" data-duration="2.00" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="verre appel">
+            <div class="combine" id="combine">
+              <span class="onde" id="onde1"></span><span class="onde" id="onde2"></span>
+              <svg viewBox="0 0 24 24"><path fill="#04140a" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+            </div>
+            <div>
+              <div class="kicker">Aujourd'hui</div>
+              <div class="titre-verre" id="rappel-etat">Je la rappelle…</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 — Pas le bon move -->
+      <div class="clip" id="s-move" data-start="21.00" data-duration="2.00" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="kicker" id="k-move">C'était pas fou</div>
+          <div class="display" style="margin-top: 16px">
+            <span class="masque"><span id="mv1">Pas le bon</span></span>
+            <span class="masque"><span id="mv2" class="serif alerte" style="font-size: 180px">move.</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 — Une autre, à 3 h -->
+      <div class="clip" id="s-nuit2" data-start="23.00" data-duration="3.10" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="kicker">Et une autre</div>
+          <div class="bulle" id="bulle2" style="margin-top: 26px">
+            <div class="avatar">C</div>
+            <div>
+              <div class="bulle-titre">Une autre cliente</div>
+              <div class="bulle-texte">nouveau message <span class="frappe"><span id="f2a"></span><span id="f2b"></span><span id="f2c"></span></span></div>
+            </div>
+          </div>
+          <div class="heure-nuit" id="heure2">03:00<span class="lune"></span></div>
+        </div>
+      </div>
+
+      <!-- 10 — J'étais couché -->
+      <div class="clip" id="s-couche" data-start="26.10" data-duration="3.90" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="kicker">Pareil</div>
+          <div class="display" style="font-size: 110px; margin-top: 16px">
+            <span class="ligne-display"><span class="masque"><span id="c1">J'aurais dû l'appeler</span></span></span>
+          </div>
+          <div class="phrase" id="c2" style="font-size: 110px; margin-top: 10px">mais j'étais <span class="accent">couché.</span></div>
+        </div>
+      </div>
+
+      <!-- 11 — Hier, la vente -->
+      <div class="clip" id="s-hier" data-start="30.00" data-duration="3.12" data-track-index="1">
+        <div class="scene" style="top: 220px; height: 420px">
+          <div class="kicker" id="k-hier" style="position: absolute; top: 0; left: 0">Hier, on s'était quittés sur</div>
+          <div class="notif" id="notif" style="position: absolute; top: 70px; left: 0; margin-top: 0">
+            <img src="assets/vente-notif.png" alt="Notification Shopify : commande #1001, 109,90 €" />
+            <div class="reflet" id="reflet"></div>
+          </div>
+          <div class="rangee-pilules" style="position: absolute; top: 300px; left: 0; margin-top: 0">
+            <div class="pilule" id="p-hier"><span class="pastille-point"></span> Shop 2 · 1ʳᵉ journée de campagne</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12 — Clarity -->
+      <div class="clip" id="s-clarity" data-start="33.15" data-duration="3.85" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="kicker" id="k-clarity">Aujourd'hui, sans faire exprès</div>
+          <div class="phrase" id="cl1" style="margin-top: 20px">j'installe</div>
+          <div class="display display--xl"><span class="masque"><span id="cl2">Clarity</span></span></div>
+          <div class="phrase" id="cl3" style="font-size: 56px; margin-top: 36px; color: rgba(244,244,245,0.85)">pour ceux qui connaissent</div>
+        </div>
+      </div>
+
+      <!-- 13 — L'agent : un gros chatbot qui cache tout -->
+      <div class="clip" id="s-agent" data-start="37.00" data-duration="9.00" data-track-index="1">
+        <div class="scene" style="top: 150px">
+          <div class="kicker" id="k-agent" style="display: flex; justify-content: center">J'active l'agent</div>
+          <div class="phrase" id="legende" style="text-align: center; font-size: 64px; margin: 14px 0 26px">un gros chatbot IA…</div>
+          <div class="ecran" id="ecran" style="width: 460px; height: 540px">
+            <div class="ecran-barre"></div>
+            <div class="ecran-image" style="height: 200px"></div>
+            <div class="ecran-ligne"></div>
+            <div class="ecran-ligne" style="width: 60%"></div>
+            <div class="ecran-bouton"></div>
+            <div class="chatbot" id="chatbot">
+              <div class="chatbot-titre">Chatbot IA</div>
+              <div class="chatbot-bulle"></div>
+              <div class="chatbot-bulle" style="width: 55%"></div>
+              <div class="chatbot-bulle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 14 — Les conversions perdues -->
+      <div class="clip" id="s-conv" data-start="46.00" data-duration="4.00" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="verre">
+            <div class="kicker">Une journée à perdre</div>
+            <div class="titre-verre">des <span class="alerte">conversions</span></div>
+            <svg class="courbe" viewBox="0 0 840 280" width="840" height="280">
+              <line x1="0" y1="270" x2="840" y2="270" stroke="rgba(255,255,255,0.15)" stroke-width="3" />
+              <polyline id="ligne-conv" fill="none" stroke="#ff3b30" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"
+                points="0,40 120,60 240,50 360,120 480,110 600,190 720,210 830,250"
+                stroke-dasharray="1100" stroke-dashoffset="1100" />
+              <circle id="point-conv" cx="830" cy="250" r="18" fill="#ff3b30" opacity="0" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 15 — Agent enlevé -->
+      <div class="clip" id="s-enleve" data-start="50.00" data-duration="2.00" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="display">
+            <span class="masque"><span id="e1">Agent</span></span>
+            <span class="masque"><span id="e2" class="serif accent" style="font-size: 170px">enlevé.</span></span>
+          </div>
+          <div class="phrase" id="e3" style="margin-top: 16px">on va voir si les ventes arrivent</div>
+        </div>
+      </div>
+
+      <!-- 16 — Plusieurs erreurs -->
+      <div class="clip" id="s-erreurs" data-start="52.00" data-duration="1.00" data-track-index="1">
+        <div class="scene" style="top: 300px">
+          <div class="display">
+            <span class="ligne-display"><span class="masque"><span id="er1">Plusieurs</span></span></span>
+            <span class="ligne-display"><span class="masque"><span id="er2" class="serif alerte" style="font-size: 180px">erreurs.</span></span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 17 — Les nouvelles règles -->
+      <div class="clip" id="s-regles" data-start="53.00" data-duration="5.95" data-track-index="1">
+        <div class="scene" style="top: 240px">
+          <div class="kicker">Maintenant</div>
+          <div class="regle" id="r1">
+            <div class="coche" id="coche1"><svg viewBox="0 0 24 24"><path id="v1" d="M4 12.5l5 5L20 6.5" fill="none" stroke="#00e676" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="26" stroke-dashoffset="26"/></svg></div>
+            <div class="regle-texte">Un message WhatsApp ?<br /><span class="accent">J'appelle direct.</span></div>
+          </div>
+          <div class="regle" id="r2">
+            <div class="coche" id="coche2"><svg viewBox="0 0 24 24"><path id="v2" d="M4 12.5l5 5L20 6.5" fill="none" stroke="#00e676" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="26" stroke-dashoffset="26"/></svg></div>
+            <div class="regle-texte">L'agent IA<br /><span class="accent">enlevé.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 18 — 1K/day pour le Q4 -->
+      <div class="clip" id="s-1k" data-start="59.00" data-duration="3.00" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="phrase" id="k1a">Tu veux voir si j'arrive au</div>
+          <div class="display display--xl"><span class="masque"><span id="unk" class="lueur-balayage">1K/day</span></span></div>
+          <div class="kicker" id="k1b" style="margin-top: 10px">pour le Q4</div>
+        </div>
+      </div>
+
+      <!-- 19 — La suite -->
+      <div class="clip" id="s-fin" data-start="61.95" data-duration="0.98" data-track-index="1">
+        <div class="scene" style="top: 400px; text-align: center">
+          <div class="rangee-pilules" style="justify-content: center">
+            <div class="pilule" id="like" style="font-size: 48px; padding: 24px 48px">Like</div>
+            <div class="pilule pilule--pleine" id="abonne" style="font-size: 48px; padding: 24px 48px">Abonne-toi</div>
+          </div>
+        </div>
+      </div>
+
+      <audio id="son-hook" src="assets/sfx/clic.wav" data-start="0.27" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-perte" src="assets/sfx/impact.wav" data-start="4.58" data-duration="0.35" data-volume="0.4"></audio>
+      <audio id="son-msg1" src="assets/sfx/notification.wav" data-start="8.31" data-duration="0.42" data-volume="0.4"></audio>
+      <audio id="son-2h" src="assets/sfx/clic.wav" data-start="9.74" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-gpt" src="assets/sfx/clic.wav" data-start="13.66" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-rappel" src="assets/sfx/clic.wav" data-start="19.49" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-rate" src="assets/sfx/impact.wav" data-start="20.63" data-duration="0.35" data-volume="0.35"></audio>
+      <audio id="son-msg2" src="assets/sfx/notification.wav" data-start="24.21" data-duration="0.42" data-volume="0.4"></audio>
+      <audio id="son-vente" src="assets/sfx/notification.wav" data-start="31.66" data-duration="0.42" data-volume="0.4"></audio>
+      <audio id="son-clarity" src="assets/sfx/clic.wav" data-start="35.68" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-agent" src="assets/sfx/souffle.wav" data-start="39.8" data-duration="0.55" data-volume="0.3"></audio>
+      <audio id="son-optimal" src="assets/sfx/impact.wav" data-start="41.57" data-duration="0.35" data-volume="0.35"></audio>
+      <audio id="son-conv" src="assets/sfx/impact.wav" data-start="49.43" data-duration="0.35" data-volume="0.35"></audio>
+      <audio id="son-enleve" src="assets/sfx/clic.wav" data-start="50.39" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-r1" src="assets/sfx/clic.wav" data-start="56.19" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-r2" src="assets/sfx/clic.wav" data-start="57.6" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-1k" src="assets/sfx/impact.wav" data-start="60.81" data-duration="0.35" data-volume="0.4"></audio>
+      <audio id="son-fin" src="assets/sfx/basse.wav" data-start="62.0" data-duration="0.90" data-volume="0.4"></audio>
+
+      <!-- Sous-titres mot par mot, calés sur la vidéo coupée -->
+      <div
+        class="clip"
+        id="sous-titres"
+        data-composition-id="subtitles"
+        data-composition-src="compositions/subtitles.html"
+        data-start="0"
+        data-duration="62.93"
+        data-track-index="5"
+      ></div>
     </div>
+
     <script>
       const tl = gsap.timeline({ paused: true });
-      tl.fromTo(
-        "#attente .carte",
-        { xPercent: 18, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
-        0.2,
-      );
+      const doux = "expo.out";
+
+      /* ---------- Le rush : deux cadrages qui alternent, et une lente dérive ---------- */
+      const prises = [0, 6.3, 12.67, 18.77, 20.57, 26.07, 28.7, 33.2, 36.77, 42.4, 46.2, 52.27, 62.93];
+      prises.slice(0, -1).forEach((debut, i) => {
+        const base = i % 2 ? 1.1 : 1.0;
+        tl.fromTo(
+          "#rush",
+          { scale: base },
+          { scale: base + 0.03, duration: prises[i + 1] - debut, ease: "none", immediateRender: false },
+          debut,
+        );
+      });
+
+      function monte(sel, t, duree = 0.55) {
+        tl.fromTo(sel, { yPercent: 110 }, { yPercent: 0, duration: duree, ease: doux }, t);
+      }
+      function pose(sel, t, dx = 0) {
+        tl.fromTo(
+          sel,
+          { opacity: 0, y: 26, x: dx, filter: "blur(12px)" },
+          { opacity: 1, y: 0, x: 0, filter: "blur(0px)", duration: 0.5, ease: doux },
+          t,
+        );
+      }
+      function part(sel, t) {
+        tl.to(sel, { opacity: 0, y: -40, filter: "blur(14px)", duration: 0.26, ease: "power2.in" }, t);
+      }
+      function compte(sel, de, a, t, duree, format) {
+        const o = { v: de };
+        tl.fromTo(
+          o,
+          { v: de },
+          {
+            v: a,
+            duration: duree,
+            ease: "power3.out",
+            onUpdate() {
+              document.querySelector(sel).firstChild.textContent = format(o.v);
+            },
+          },
+          t,
+        );
+      }
+      function frappe(ids, t) {
+        ids.forEach((sel, i) => {
+          tl.fromTo(sel, { opacity: 0.3 }, { opacity: 1, duration: 0.2, yoyo: true, repeat: 3 }, t + i * 0.15);
+        });
+      }
+
+      /* 1 — Bali */
+      monte("#h1", 0.27, 0.7);
+      monte("#h2", 1.03);
+      monte("#h3", 1.62);
+      monte("#h4", 2.43);
+      part("#s-hook .scene", 2.72);
+
+      /* 2 — 300 € */
+      pose("#k-perte", 3.1);
+      tl.fromTo("#perte", { opacity: 0, scale: 1.3, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.4, ease: doux }, 4.3);
+      compte("#perte", 0, 300, 4.58, 0.55, (v) => "−" + Math.round(v) + " €");
+      tl.to("#perte", { keyframes: [{ x: -14 }, { x: 12 }, { x: -8 }, { x: 0 }], duration: 0.3 }, 5.13);
+      pose("#acause", 5.48);
+      part("#s-perte .scene", 5.75);
+
+      /* 3 — Le seum */
+      pose("#seum", 6.0);
+      part("#s-seum .scene", 6.76);
+
+      /* 4 — Cliente à 2 h */
+      pose("#k-nuit1", 7.1);
+      tl.fromTo("#bulle1", { opacity: 0, y: -60, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.5)" }, 8.31);
+      frappe(["#f1a", "#f1b", "#f1c"], 8.8);
+      tl.fromTo("#heure1", { opacity: 0, y: 40, filter: "blur(16px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: doux }, 9.74);
+      part("#s-nuit1 .scene", 12.74);
+
+      /* 5 — ChatGPT plutôt qu'un appel */
+      pose("#o-gpt", 13.66, 40);
+      pose("#o-appel", 15.44, 40);
+      tl.to("#o-gpt", { opacity: 0.55, scale: 0.96, duration: 0.3 }, 15.5);
+      part("#s-gpt .scene", 15.74);
+
+      /* 6 — J'aurais dû l'appeler */
+      monte("#du1", 16.36);
+      monte("#du2", 16.65, 0.7);
+      pose("#du3", 17.2);
+      part("#s-du .scene", 18.74);
+
+      /* 7 — Rappel sans réponse */
+      pose("#s-rappel .verre", 19.05, 50);
+      [19.3, 19.8].forEach((t, i) => {
+        tl.fromTo(i ? "#onde2" : "#onde1", { opacity: 0.8, scale: 1 }, { opacity: 0, scale: 1.8, duration: 0.8, ease: "power2.out" }, t);
+      });
+      tl.call(() => {
+        document.getElementById("rappel-etat").textContent = "Je la rappelle…";
+        document.getElementById("rappel-etat").style.color = "";
+        document.getElementById("combine").style.background = "";
+      }, null, 19.0);
+      tl.call(() => {
+        document.getElementById("rappel-etat").textContent = "Pas de réponse";
+        document.getElementById("rappel-etat").style.color = "#ff3b30";
+        document.getElementById("combine").style.background = "#ff3b30";
+      }, null, 20.63);
+      tl.fromTo("#combine", { rotation: 0 }, { rotation: 135, duration: 0.35, ease: "back.out(2)" }, 20.63);
+      part("#s-rappel .scene", 20.74);
+
+      /* 8 — Pas le bon move */
+      pose("#k-move", 21.4);
+      monte("#mv1", 22.33);
+      monte("#mv2", 22.7, 0.6);
+      part("#s-move .scene", 22.74);
+
+      /* 9 — Une autre à 3 h */
+      tl.fromTo("#bulle2", { opacity: 0, y: -60, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.5)" }, 24.1);
+      frappe(["#f2a", "#f2b", "#f2c"], 24.6);
+      tl.fromTo("#heure2", { opacity: 0, y: 40, filter: "blur(16px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: doux }, 25.31);
+      part("#s-nuit2 .scene", 25.84);
+
+      /* 10 — Couché */
+      monte("#c1", 26.72);
+      pose("#c2", 28.43);
+      part("#s-couche .scene", 29.74);
+
+      /* 11 — Hier, la vente */
+      pose("#k-hier", 30.05);
+      tl.fromTo("#notif", { y: -160, opacity: 0, scale: 0.94 }, { y: 0, opacity: 1, scale: 1, duration: 0.7, ease: "back.out(1.4)" }, 31.5);
+      tl.fromTo("#reflet", { xPercent: -120 }, { xPercent: 320, duration: 0.9, ease: "power2.inOut" }, 32.0);
+      pose("#p-hier", 32.6, 40);
+      part("#s-hier .scene", 32.88);
+
+      /* 12 — Clarity */
+      pose("#k-clarity", 33.3);
+      pose("#cl1", 35.2);
+      monte("#cl2", 35.6, 0.6);
+      pose("#cl3", 36.3);
+      part("#s-clarity .scene", 36.74);
+
+      /* 13 — L'agent */
+      pose("#k-agent", 37.1);
+      tl.fromTo("#ecran", { opacity: 0, y: 60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: doux }, 37.3);
+      tl.fromTo("#chatbot", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2)" }, 38.31);
+      tl.to("#chatbot", { width: 416, height: 470, borderRadius: 30, duration: 0.9, ease: "power3.inOut" }, 39.82);
+      function legende(texte, couleur, t) {
+        tl.call(() => {
+          const l = document.getElementById("legende");
+          l.textContent = texte;
+          l.style.color = couleur;
+        }, null, t);
+        tl.fromTo("#legende", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3, ease: doux }, t);
+      }
+      legende("un gros chatbot IA…", "", 39.6);
+      legende("vraiment pas optimal", "#ff3b30", 41.57);
+      legende("il cachait la vue à tous mes clients", "", 42.24);
+      legende("vu grâce à Clarity", "#00e676", 45.23);
+      tl.to("#ecran", { keyframes: [{ x: -10 }, { x: 10 }, { x: -6 }, { x: 0 }], duration: 0.3 }, 41.6);
+      part("#s-agent .scene", 45.74);
+
+      /* 14 — Conversions */
+      pose("#s-conv .verre", 46.05, 50);
+      tl.fromTo("#ligne-conv", { strokeDashoffset: 1100 }, { strokeDashoffset: 0, duration: 2.4, ease: "power1.inOut" }, 47.0);
+      tl.fromTo("#point-conv", { opacity: 0, scale: 0.3, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, 49.4);
+      part("#s-conv .scene", 49.74);
+
+      /* 15 — Agent enlevé */
+      monte("#e1", 50.1);
+      monte("#e2", 50.39, 0.6);
+      pose("#e3", 51.0);
+      part("#s-enleve .scene", 51.74);
+
+      /* 16 — Plusieurs erreurs */
+      monte("#er1", 52.05);
+      monte("#er2", 52.4, 0.5);
+      part("#s-erreurs .scene", 52.76);
+
+      /* 17 — Les nouvelles règles */
+      pose("#r1", 54.4, 50);
+      tl.fromTo("#coche1", { borderColor: "rgba(255,255,255,0.25)" }, { borderColor: "#00e676", duration: 0.2 }, 56.19);
+      tl.fromTo("#v1", { strokeDashoffset: 26 }, { strokeDashoffset: 0, duration: 0.35, ease: "power2.out" }, 56.19);
+      pose("#r2", 57.0, 50);
+      tl.fromTo("#coche2", { borderColor: "rgba(255,255,255,0.25)" }, { borderColor: "#00e676", duration: 0.2 }, 57.6);
+      tl.fromTo("#v2", { strokeDashoffset: 26 }, { strokeDashoffset: 0, duration: 0.35, ease: "power2.out" }, 57.6);
+      part("#s-regles .scene", 58.7);
+
+      /* 18 — 1K/day */
+      pose("#k1a", 59.3);
+      monte("#unk", 60.7, 0.6);
+      tl.fromTo("#unk", { backgroundPosition: "100% 0" }, { backgroundPosition: "0% 0", duration: 0.9, ease: "power2.inOut" }, 61.0);
+      pose("#k1b", 61.4);
+      part("#s-1k .scene", 61.74);
+
+      /* 19 — Like, abonne-toi */
+      tl.fromTo("#like", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 62.0);
+      tl.fromTo("#abonne", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 62.26);
+
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);
