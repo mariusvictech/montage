@@ -1,0 +1,364 @@
+/* Motion design premium — à partir de video-9.
+   Ni jauge ni coins : la typo et le mouvement portent tout.
+   Grosse typo Inter 900, accents en Instrument Serif italique, panneaux en
+   verre dépoli, révélations au masque. Même palette que identity.css. */
+
+:root {
+  --serif: "Instrument Serif", Georgia, serif;
+  --verre: rgba(16, 16, 18, 0.62);
+  --liseré: rgba(255, 255, 255, 0.14);
+  --ombre: 0 30px 80px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Le rush zoome d'une prise à l'autre, cadré sur le visage. */
+#rush {
+  object-fit: cover;
+  transform-origin: 50% 58%;
+}
+
+/* Un voile haut plus profond que celui des cartes : la typo flotte au-dessus. */
+.voile-haut {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.35) 30%, rgba(0, 0, 0, 0) 48%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 24%),
+    radial-gradient(ellipse at 50% 60%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.35) 100%);
+}
+
+.scene {
+  position: absolute;
+  left: 80px;
+  right: 80px;
+  top: 250px;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--vert);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+.kicker::before {
+  content: "";
+  width: 44px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--vert);
+}
+
+.display {
+  font-size: 150px;
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  color: var(--texte);
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.display--xl {
+  font-size: 230px;
+}
+
+.serif {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+
+.accent {
+  color: var(--vert);
+}
+
+.alerte {
+  color: var(--rouge);
+}
+
+.phrase {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 72px;
+  line-height: 1.05;
+  color: var(--texte);
+  text-shadow: 0 6px 24px rgba(0, 0, 0, 0.7);
+}
+
+/* Révélation au masque : le mot monte depuis sous sa ligne. */
+.masque {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding: 0.04em 0.06em 0.08em;
+  margin: -0.04em -0.06em -0.08em;
+}
+
+.masque > span {
+  display: inline-block;
+  will-change: transform;
+}
+
+.ligne-display {
+  display: block;
+}
+
+/* Panneau de verre dépoli */
+.verre {
+  position: relative;
+  padding: 40px 44px;
+  border-radius: 40px;
+  background: var(--verre);
+  backdrop-filter: blur(28px) saturate(140%);
+  border: 1.5px solid var(--liseré);
+  box-shadow: var(--ombre);
+}
+
+.pilule {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 30px;
+  border-radius: 999px;
+  background: var(--verre);
+  backdrop-filter: blur(20px);
+  border: 1.5px solid var(--liseré);
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--texte);
+  box-shadow: var(--ombre);
+}
+
+.pilule .pastille-point {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--vert);
+  box-shadow: 0 0 18px var(--vert);
+}
+
+.pilule--pleine {
+  background: var(--vert);
+  border-color: transparent;
+  color: #04140a;
+}
+
+/* ---------- La vente ---------- */
+
+.date {
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: rgba(244, 244, 245, 0.92);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85);
+}
+
+.notif {
+  position: relative;
+  margin-top: 26px;
+  width: 920px;
+  border-radius: 46px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1.5px rgba(255, 255, 255, 0.18),
+    0 30px 90px rgba(0, 0, 0, 0.55),
+    0 0 80px rgba(0, 230, 118, 0.25);
+}
+
+.notif img {
+  display: block;
+  width: 100%;
+}
+
+.reflet {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 40%;
+  background: linear-gradient(100deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.35) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: translateX(-120%) skewX(-12deg);
+}
+
+.montant {
+  position: relative;
+  margin-top: 40px;
+  font-size: 200px;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: var(--vert);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 60px rgba(0, 230, 118, 0.45), 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.etincelle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: var(--vert);
+  box-shadow: 0 0 16px var(--vert);
+  opacity: 0;
+}
+
+.rangee-pilules {
+  display: flex;
+  gap: 18px;
+  margin-top: 34px;
+}
+
+/* ---------- Google Ads ---------- */
+
+.chargement {
+  position: relative;
+  height: 18px;
+  margin-top: 30px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.chargement-plein {
+  position: absolute;
+  inset: 0;
+  border-radius: 9px;
+  background: linear-gradient(90deg, #00b35c, var(--vert));
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+
+.chargement-lueur {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 30%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0));
+  transform: translateX(-120%);
+}
+
+.signaux {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.barres {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  height: 150px;
+}
+
+.barres span {
+  width: 34px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.titre-verre {
+  font-size: 66px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin-top: 14px;
+}
+
+/* ---------- Shop 1 ---------- */
+
+.zero {
+  display: flex;
+  align-items: baseline;
+  gap: 30px;
+}
+
+.zero-chiffre {
+  font-size: 330px;
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+  color: var(--rouge);
+  text-shadow: 0 0 60px rgba(255, 59, 48, 0.4), 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.points span {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin: 0 6px;
+  border-radius: 50%;
+  background: var(--texte);
+  opacity: 0.25;
+}
+
+/* ---------- Shop 3 : le compte à rebours ---------- */
+
+.rebours {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.anneau {
+  position: relative;
+  width: 330px;
+  height: 330px;
+  flex: none;
+}
+
+.anneau svg {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+
+.anneau-centre {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.anneau-chiffre {
+  font-size: 150px;
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.anneau-unite {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gris);
+}
+
+/* ---------- 1K/day ---------- */
+
+.lueur-balayage {
+  background: linear-gradient(100deg, var(--vert) 0%, var(--vert) 40%, #d9ffe9 50%, var(--vert) 60%, var(--vert) 100%);
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(0 0 40px rgba(0, 230, 118, 0.45));
+}
