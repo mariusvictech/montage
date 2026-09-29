@@ -1,0 +1,30 @@
+{
+  "source": "/home/user/montage/video-12/assets/rush.MOV",
+  "duration": 77.996,
+  "kept": 77.333,
+  "removed": 0.663,
+  "cuts": 3,
+  "voiceLevelDb": -5.8,
+  "thresholdDb": -27.8,
+  "minSilence": 0.25,
+  "breath": 0.05,
+  "retires": [],
+  "segments": [
+    {
+      "start": 0,
+      "end": 39.067
+    },
+    {
+      "start": 39.367,
+      "end": 43.567
+    },
+    {
+      "start": 43.733,
+      "end": 43.933
+    },
+    {
+      "start": 44.1,
+      "end": 77.967
+    }
+  ]
+}

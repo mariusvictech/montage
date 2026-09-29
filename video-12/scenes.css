@@ -375,3 +375,51 @@
   font-weight: 800;
   color: var(--gris);
 }
+
+/* ---------- video-12 : le tableau de bord du jour ---------- */
+.tableau {
+  position: relative;
+  width: 640px;
+  margin: 0 auto;
+  border-radius: 44px;
+  overflow: hidden;
+  border: 10px solid #1c1c1e;
+  box-shadow: var(--ombre), 0 0 80px rgba(0, 230, 118, 0.18);
+}
+
+.tableau img {
+  display: block;
+  width: 100%;
+}
+
+/* ---------- video-12 : le compte du jour ---------- */
+.compte-ligne {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 18px 0;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.compte-ligne:last-child {
+  border-bottom: none;
+}
+
+.compte-label {
+  font-size: 38px;
+  font-weight: 800;
+  color: rgba(244, 244, 245, 0.85);
+}
+
+.compte-valeur {
+  font-size: 80px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.coeur {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+}

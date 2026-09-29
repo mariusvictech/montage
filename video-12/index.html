@@ -5,33 +5,421 @@
     <meta name="viewport" content="width=1080, height=1920" />
     <script src="./vendor/gsap.min.js"></script>
     <link rel="stylesheet" href="./identity.css" />
+    <link rel="stylesheet" href="./premium.css" />
+    <link rel="stylesheet" href="./scenes.css" />
   </head>
   <body>
-    <!-- Projet vide, en attente du rush (voir assets/README.md). -->
+    <!--
+      Montage « 619 € dans la journée », dans le style de video-10.
+      Le rush est coupé sur ses creux (3 coupes, 78,00 s → 77,33 s) par la
+      coupe trim/concat ; sous-titres faits sur la vidéo coupée.
+      Capture : le tableau de bord Shopify du 28 sept. (619,50 € de ventes
+      brutes, 2 commandes). Le rush n'ayant que 3 coupes, le cadrage change
+      aussi à chaque nouvelle idée.
+    -->
     <div
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="4"
+      data-duration="77.31"
       data-width="1080"
       data-height="1920"
     >
-      <div class="clip" id="attente" data-start="0" data-duration="4" data-track-index="0">
-        <div class="carte carte--sommet">
-          <div class="etiquette">video-12</div>
-          <div class="titre">En attente<br />du rush</div>
-          <div class="sous-titre">video-12</div>
+      <video
+        id="rush"
+        class="clip"
+        src="assets/rush-coupe.mp4"
+        muted
+        data-start="0"
+        data-duration="77.31"
+      ></video>
+      <audio id="voix" src="assets/rush-coupe.mp4" data-start="0" data-duration="77.31" data-volume="1"></audio>
+
+      <div class="clip" id="voile" data-start="0" data-duration="77.31" data-track-index="0">
+        <div class="voile-haut"></div>
+      </div>
+
+      <!-- 1 — À deux doigts de l'objectif -->
+      <div class="clip" id="s-hook" data-start="0" data-duration="3.90" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="phrase" id="h0">Je suis à</div>
+          <div class="display" style="font-size: 130px">
+            <span class="ligne-display"><span class="masque"><span id="h1" class="serif accent" style="font-size: 170px">deux doigts</span></span></span>
+            <span class="ligne-display"><span class="masque"><span id="h2">de l'objectif</span></span></span>
+          </div>
+          <div class="kicker" id="h3" style="margin-top: 56px">Le travail paye, les gars</div>
         </div>
       </div>
+
+      <!-- 2 — Regardez cette journée -->
+      <div class="clip" id="s-journee" data-start="3.90" data-duration="3.45" data-track-index="1">
+        <div class="scene" style="top: 150px">
+          <div class="kicker" id="k-journee" style="display: flex; justify-content: center">Regardez cette journée</div>
+          <div class="tableau" id="tableau" style="margin-top: 26px">
+            <img src="assets/resultats-crop.png" alt="Tableau de bord Shopify du 28 sept. 2026 : 619,50 € de ventes brutes, 2 commandes" />
+            <div class="cadre-lumiere" id="cadre-ventes" style="left: 4px; top: 112px; width: 612px; height: 108px"></div>
+            <div class="cadre-lumiere" id="cadre-cmd" style="left: 4px; top: 505px; width: 612px; height: 106px"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 — Jamais cru, aussi vite -->
+      <div class="clip" id="s-vite" data-start="7.35" data-duration="3.00" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="display">
+            <span class="ligne-display"><span class="masque"><span id="v1">Jamais cru</span></span></span>
+            <span class="ligne-display"><span class="masque"><span id="v2" class="serif accent" style="font-size: 180px">aussi vite.</span></span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 — Le compte : CA, pub, poche -->
+      <div class="clip" id="s-compte" data-start="10.40" data-duration="7.20" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="verre">
+            <div class="kicker">Le compte du jour</div>
+            <div class="compte-ligne" id="l-ca">
+              <span class="compte-label">Chiffre d'affaires</span>
+              <span class="compte-valeur">619 €</span>
+            </div>
+            <div class="compte-ligne" id="l-pub">
+              <span class="compte-label">Pub</span>
+              <span class="compte-valeur alerte" id="pub">−0 €</span>
+            </div>
+            <div class="compte-ligne" id="l-poche">
+              <span class="compte-label">Dans ma poche</span>
+              <span class="compte-valeur accent" id="poche">≥ 0 €</span>
+            </div>
+          </div>
+          <div class="phrase" id="porc" style="margin-top: 26px">une marge de <span class="accent">porc</span></div>
+        </div>
+      </div>
+
+      <!-- 5 — Tous les jours ? -->
+      <div class="clip" id="s-jours" data-start="17.60" data-duration="2.50" data-track-index="1">
+        <div class="scene" style="top: 280px">
+          <div class="phrase" id="j0">Si je faisais ça</div>
+          <div class="display display--xl"><span class="masque"><span id="j1">tous les <span class="serif accent">jours</span></span></span></div>
+        </div>
+      </div>
+
+      <!-- 6 — Le cœur qui palpite -->
+      <div class="clip" id="s-coeur" data-start="20.10" data-duration="4.15" data-track-index="1">
+        <div class="scene" style="top: 280px; text-align: center">
+          <svg class="coeur" id="coeur" viewBox="0 0 24 24"><path fill="#ff3b30" d="M12 21s-7.5-4.6-10-9.3C.3 8.4 2 4.5 5.8 4.5c2.3 0 3.7 1.3 4.4 2.4h1.6c.7-1.1 2.1-2.4 4.4-2.4 3.8 0 5.5 3.9 3.8 7.2C19.5 16.4 12 21 12 21z"/></svg>
+          <div class="phrase" id="c1" style="margin-top: 20px; font-size: 90px">le cœur a <span class="alerte">palpité</span></div>
+        </div>
+      </div>
+
+      <!-- 7 — Faut que ça soit stable -->
+      <div class="clip" id="s-stable" data-start="24.25" data-duration="3.25" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="kicker" id="k-stable">Je sais pas encore</div>
+          <div class="display" style="margin-top: 16px">
+            <span class="ligne-display"><span class="masque"><span id="st1">Faut que ça</span></span></span>
+            <span class="ligne-display"><span class="masque"><span id="st2" class="serif accent" style="font-size: 180px">soit stable.</span></span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 — Le Q4 arrive -->
+      <div class="clip" id="s-q4" data-start="27.50" data-duration="3.00" data-track-index="1">
+        <div class="scene" style="top: 240px">
+          <div class="kicker">Mais</div>
+          <div class="display display--xl" style="font-size: 280px"><span class="masque"><span id="q4" class="lueur-balayage">Q4</span></span></div>
+          <div class="phrase" id="pile">pile la bonne période</div>
+        </div>
+      </div>
+
+      <!-- 9 — Les quatre shops -->
+      <div class="clip" id="s-shops" data-start="30.50" data-duration="17.05" data-track-index="1">
+        <div class="scene" style="top: 200px">
+          <div class="kicker">Les shops</div>
+          <div class="shop-ligne" id="l1"><div class="shop-nom">Shop 1</div><div class="shop-etat" id="e1">…</div></div>
+          <div class="shop-ligne" id="l2"><div class="shop-nom">Shop 2</div><div class="shop-etat" id="e2">…</div></div>
+          <div class="shop-ligne" id="l3"><div class="shop-nom">Shop 3</div><div class="shop-etat" id="e3">…</div></div>
+          <div class="shop-ligne" id="l4"><div class="shop-nom">Shop 4</div><div class="shop-etat" id="e4">…</div></div>
+        </div>
+      </div>
+
+      <!-- 10 — Les quatre qui tournent pour le Q4 -->
+      <div class="clip" id="s-quatre" data-start="47.60" data-duration="2.95" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="kicker">L'objectif pour le Q4</div>
+          <div class="rangee" style="position: relative; top: 0; left: 0; width: 920px; margin-top: 30px">
+            <div class="pastille" id="s1">S1</div>
+            <div class="pastille" id="s2">S2</div>
+            <div class="pastille" id="s3">S3</div>
+            <div class="pastille" id="s4">S4</div>
+          </div>
+          <div class="phrase" id="tournent" style="margin-top: 26px">les quatre shops qui tournent</div>
+        </div>
+      </div>
+
+      <!-- 11 — Le shop 2 vers le 1K/day -->
+      <div class="clip" id="s-shop2" data-start="50.60" data-duration="4.60" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="phrase" id="p1">celui qui m'amènera au</div>
+          <div class="display display--xl"><span class="masque"><span id="p2" class="lueur-balayage">1K/day</span></span></div>
+          <div class="rangee-pilules">
+            <div class="pilule pilule--pleine" id="p3" style="font-size: 44px; padding: 20px 40px">le shop 2</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12 — Vente B2B, facture -->
+      <div class="clip" id="s-b2b" data-start="55.20" data-duration="4.10" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="kicker">En plus</div>
+          <div class="display" style="margin-top: 16px"><span class="masque"><span id="b1">Vente <span class="accent">B2B</span></span></span></div>
+          <div class="phrase" id="b2" style="margin-top: 16px">avec une vraie facture</div>
+          <div class="rangee-pilules"><div class="pilule" id="b3"><span class="pastille-point"></span> Du concret</div></div>
+        </div>
+      </div>
+
+      <!-- 13 — Google Ads, foncez ; l'accompagnement -->
+      <div class="clip" id="s-ads" data-start="59.30" data-duration="9.10" data-track-index="1">
+        <div class="scene" style="top: 230px">
+          <div class="kicker" id="k-ads">Google Ads, les gars</div>
+          <div class="display display--xl" style="margin-top: 10px"><span class="masque"><span id="a1" class="serif accent">foncez.</span></span></div>
+          <div class="verre" id="v-accomp" style="margin-top: 30px">
+            <div class="kicker">Pour vous faire accompagner</div>
+            <div class="titre-verre" style="margin-top: 12px">Gaspard</div>
+            <div class="phrase" id="experts" style="font-size: 54px; margin-top: 10px">des experts à peu près de partout</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 14 — 1K/day pour le Q4, et sûrement avant -->
+      <div class="clip" id="s-1k" data-start="68.40" data-duration="6.35" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="phrase" id="k1a">Tu veux voir si j'arrive au</div>
+          <div class="display display--xl"><span class="masque"><span id="unk" class="lueur-balayage">1K/day</span></span></div>
+          <div class="kicker" id="k1b" style="margin-top: 44px">pour le Q4</div>
+          <div class="phrase" id="k1c" style="margin-top: 20px">et sûrement <span class="accent">avant.</span></div>
+        </div>
+      </div>
+
+      <!-- 15 — Like, abonne-toi -->
+      <div class="clip" id="s-fin" data-start="74.75" data-duration="2.56" data-track-index="1">
+        <div class="scene" style="top: 400px; text-align: center">
+          <div class="rangee-pilules" style="justify-content: center">
+            <div class="pilule" id="like" style="font-size: 48px; padding: 24px 48px">Like</div>
+            <div class="pilule pilule--pleine" id="abonne" style="font-size: 48px; padding: 24px 48px">Abonne-toi</div>
+          </div>
+        </div>
+      </div>
+
+      <audio id="son-doigts" src="assets/sfx/clic.wav" data-start="0.71" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-journee" src="assets/sfx/souffle.wav" data-start="3.9" data-duration="0.55" data-volume="0.3"></audio>
+      <audio id="son-619" src="assets/sfx/notification.wav" data-start="5.62" data-duration="0.42" data-volume="0.45"></audio>
+      <audio id="son-pub" src="assets/sfx/clic.wav" data-start="11.99" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-poche" src="assets/sfx/impact.wav" data-start="16.56" data-duration="0.35" data-volume="0.4"></audio>
+      <audio id="son-coeur" src="assets/sfx/basse.wav" data-start="21.16" data-duration="0.90" data-volume="0.3"></audio>
+      <audio id="son-q4" src="assets/sfx/impact.wav" data-start="27.67" data-duration="0.35" data-volume="0.35"></audio>
+      <audio id="son-zero" src="assets/sfx/impact.wav" data-start="33.4" data-duration="0.35" data-volume="0.3"></audio>
+      <audio id="son-record" src="assets/sfx/notification.wav" data-start="35.31" data-duration="0.42" data-volume="0.4"></audio>
+      <audio id="son-quatre" src="assets/sfx/clic.wav" data-start="48.74" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-shop2" src="assets/sfx/clic.wav" data-start="54.68" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-b2b" src="assets/sfx/clic.wav" data-start="57.24" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-foncez" src="assets/sfx/impact.wav" data-start="60.35" data-duration="0.35" data-volume="0.35"></audio>
+      <audio id="son-1k" src="assets/sfx/impact.wav" data-start="70.56" data-duration="0.35" data-volume="0.4"></audio>
+      <audio id="son-fin" src="assets/sfx/basse.wav" data-start="74.84" data-duration="0.90" data-volume="0.4"></audio>
+
+      <!-- Sous-titres mot par mot, calés sur la vidéo coupée -->
+      <div
+        class="clip"
+        id="sous-titres"
+        data-composition-id="subtitles"
+        data-composition-src="compositions/subtitles.html"
+        data-start="0"
+        data-duration="77.31"
+        data-track-index="5"
+      ></div>
     </div>
+
     <script>
       const tl = gsap.timeline({ paused: true });
-      tl.fromTo(
-        "#attente .carte",
-        { xPercent: 18, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
-        0.2,
-      );
+      const doux = "expo.out";
+
+      /* ---------- Le rush : le cadrage change à chaque idée, avec une lente dérive ---------- */
+      const prises = [0, 3.9, 7.35, 10.4, 17.6, 20.1, 24.25, 27.5, 30.5, 39.07, 43.47, 47.6, 50.6, 55.2, 59.3, 68.4, 74.75, 77.31];
+      prises.slice(0, -1).forEach((debut, i) => {
+        const base = i % 2 ? 1.1 : 1.0;
+        tl.fromTo(
+          "#rush",
+          { scale: base },
+          { scale: base + 0.03, duration: prises[i + 1] - debut, ease: "none", immediateRender: false },
+          debut,
+        );
+      });
+
+      function monte(sel, t, duree = 0.55) {
+        tl.fromTo(sel, { yPercent: 110 }, { yPercent: 0, duration: duree, ease: doux }, t);
+      }
+      function pose(sel, t, dx = 0) {
+        tl.fromTo(
+          sel,
+          { opacity: 0, y: 26, x: dx, filter: "blur(12px)" },
+          { opacity: 1, y: 0, x: 0, filter: "blur(0px)", duration: 0.5, ease: doux },
+          t,
+        );
+      }
+      function part(sel, t) {
+        tl.to(sel, { opacity: 0, y: -40, filter: "blur(14px)", duration: 0.26, ease: "power2.in" }, t);
+      }
+      function compte(sel, de, a, t, duree, format) {
+        const o = { v: de };
+        tl.fromTo(
+          o,
+          { v: de },
+          {
+            v: a,
+            duration: duree,
+            ease: "power3.out",
+            onUpdate() {
+              document.querySelector(sel).textContent = format(o.v);
+            },
+          },
+          t,
+        );
+      }
+      function etat(sel, texte, couleur, t) {
+        tl.call(() => {
+          const e = document.querySelector(sel);
+          e.textContent = texte;
+          e.style.color = couleur;
+        }, null, t);
+      }
+      function vif(sel, couleur, t) {
+        tl.fromTo(sel, { borderColor: "rgba(255,255,255,0.14)" }, { borderColor: couleur, duration: 0.3 }, t);
+        tl.fromTo(sel, { scale: 1.04 }, { scale: 1, duration: 0.3, ease: "power2.out" }, t);
+      }
+
+      /* 1 — Deux doigts */
+      pose("#h0", 0.05);
+      monte("#h1", 0.45, 0.65);
+      monte("#h2", 1.23);
+      pose("#h3", 2.2);
+      part("#s-hook .scene", 3.64);
+
+      /* 2 — Le tableau du jour */
+      pose("#k-journee", 3.95);
+      tl.fromTo("#tableau", { opacity: 0, y: 80, scale: 0.9, rotation: -3 }, { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.7, ease: doux }, 4.1);
+      tl.fromTo("#cadre-ventes", { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.35, ease: doux }, 5.62);
+      tl.fromTo("#cadre-cmd", { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.35, ease: doux }, 6.4);
+      part("#s-journee .scene", 7.09);
+
+      /* 3 — Aussi vite */
+      monte("#v1", 7.8);
+      monte("#v2", 9.3, 0.6);
+      part("#s-vite .scene", 10.1);
+
+      /* 4 — Le compte */
+      pose("#s-compte .verre", 10.45, 50);
+      compte("#pub", 0, 60, 11.99, 0.5, (v) => "−" + Math.round(v) + " €");
+      tl.fromTo("#l-poche", { opacity: 0.35 }, { opacity: 0.35, duration: 0.01 }, 10.4);
+      tl.to("#l-poche", { opacity: 1, duration: 0.3 }, 16.3);
+      compte("#poche", 0, 450, 16.56, 0.6, (v) => "≥ " + Math.round(v) + " €");
+      tl.fromTo("#poche", { scale: 1 }, { scale: 1.12, duration: 0.15, yoyo: true, repeat: 1 }, 17.16);
+      pose("#porc", 14.54);
+      part("#s-compte .scene", 17.34);
+
+      /* 5 — Tous les jours */
+      pose("#j0", 18.54);
+      monte("#j1", 19.4, 0.6);
+      part("#s-jours .scene", 19.84);
+
+      /* 6 — Le cœur */
+      tl.fromTo("#coeur", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 20.9);
+      [21.5, 21.9, 22.7, 23.1].forEach((t) => {
+        tl.fromTo("#coeur", { scale: 1 }, { scale: 1.18, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out" }, t);
+      });
+      pose("#c1", 21.2);
+      part("#s-coeur .scene", 23.99);
+
+      /* 7 — Stable */
+      pose("#k-stable", 25.07);
+      monte("#st1", 26.16);
+      monte("#st2", 26.56, 0.6);
+      part("#s-stable .scene", 27.24);
+
+      /* 8 — Q4 */
+      monte("#q4", 27.6, 0.6);
+      tl.fromTo("#q4", { backgroundPosition: "100% 0" }, { backgroundPosition: "0% 0", duration: 1.0, ease: "power2.inOut" }, 28.0);
+      pose("#pile", 29.26);
+      part("#s-q4 .scene", 30.24);
+
+      /* 9 — Les shops */
+      ["#e1", "#e2", "#e3", "#e4"].forEach((sel) => etat(sel, "…", "", 30.5));
+      pose("#l1", 32.7, 50);
+      etat("#e1", "0 vente", "#ff3b30", 33.4);
+      vif("#l1", "#ff3b30", 33.4);
+      pose("#l2", 33.95, 50);
+      etat("#e2", "record · 619 €", "#00e676", 35.31);
+      vif("#l2", "#00e676", 35.31);
+      pose("#l3", 36.54, 50);
+      etat("#e3", "pas encore touché", "#f5a623", 38.16);
+      etat("#e3", "dans 3–4 jours", "#f5a623", 40.41);
+      vif("#l3", "#f5a623", 40.41);
+      etat("#e2", "record · à optimiser", "#00e676", 42.2);
+      vif("#l2", "#00e676", 42.2);
+      pose("#l4", 43.67, 50);
+      etat("#e4", "réglé fin de semaine", "#f5a623", 46.88);
+      vif("#l4", "#f5a623", 46.88);
+      part("#s-shops .scene", 47.29);
+
+      /* 10 — Les quatre qui tournent */
+      [
+        ["#s1", 48.74],
+        ["#s2", 48.86],
+        ["#s3", 48.98],
+        ["#s4", 49.1],
+      ].forEach(([sel, t]) => {
+        tl.fromTo(
+          sel,
+          { borderColor: "rgba(255,255,255,0.18)", color: "#8a8a8f", scale: 1 },
+          { borderColor: "#00e676", color: "#00e676", scale: 1.06, duration: 0.18 },
+          t,
+        );
+        tl.to(sel, { scale: 1, duration: 0.18 }, t + 0.18);
+      });
+      pose("#tournent", 49.4);
+      part("#s-quatre .scene", 50.3);
+
+      /* 11 — Le shop 2 vers le 1K/day */
+      pose("#p1", 51.6);
+      monte("#p2", 52.5, 0.6);
+      tl.fromTo("#p2", { backgroundPosition: "100% 0" }, { backgroundPosition: "0% 0", duration: 0.9, ease: "power2.inOut" }, 52.9);
+      tl.fromTo("#p3", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 54.5);
+      part("#s-shop2 .scene", 54.94);
+
+      /* 12 — B2B */
+      monte("#b1", 57.0);
+      pose("#b2", 57.8);
+      pose("#b3", 59.0 - 0.2, 40);
+      part("#s-b2b .scene", 59.04);
+
+      /* 13 — Google Ads, foncez ; l'accompagnement */
+      pose("#k-ads", 59.5);
+      monte("#a1", 60.25, 0.6);
+      pose("#v-accomp", 61.8, 50);
+      pose("#experts", 66.3);
+      part("#s-ads .scene", 68.14);
+
+      /* 14 — 1K/day */
+      pose("#k1a", 69.3);
+      monte("#unk", 70.45, 0.55);
+      tl.fromTo("#unk", { backgroundPosition: "100% 0" }, { backgroundPosition: "0% 0", duration: 0.9, ease: "power2.inOut" }, 70.8);
+      pose("#k1b", 71.3);
+      pose("#k1c", 73.1);
+      part("#s-1k .scene", 74.49);
+
+      /* 15 — Like, abonne-toi */
+      tl.fromTo("#like", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 74.84);
+      tl.fromTo("#abonne", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 75.24);
+      tl.fromTo("#abonne", { boxShadow: "0 0 0 0 rgba(0,230,118,0.7)" }, { boxShadow: "0 0 0 30px rgba(0,230,118,0)", duration: 0.8, ease: "power2.out" }, 75.6);
+
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);
