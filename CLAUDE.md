@@ -36,10 +36,17 @@ Si `hyperframes` n'est pas dans le PATH : `bash scripts/setup.sh` puis
    de progression en haut, plus de coins « REC » autour du cadre. Un motion
    design plus premium, plus animé, qui illustre ce qu'il dit au mot près
    (typo cinétique, chiffres qui comptent, captures intégrées en scène,
-   transitions soignées) plutôt que des cartes posées. Référence :
-   `video-9/index.html` et `premium.css` (Inter 900 + Instrument Serif
+   transitions soignées) plutôt que des cartes posées. Référence validée
+   par l'utilisateur : `video-10/index.html` (+ `scenes.css`), et
+   `premium.css` (Inter 900 + Instrument Serif
    italique embarquées, révélations au masque, panneaux de verre, compteurs,
    cadrage du rush qui alterne d'une prise à l'autre).
+   Lèvres calées sur la voix : la coupe trim/concat de `cut-silences.mjs`
+   s'en charge ; vérifier que l'image et le son de `rush-coupe.mp4` ont la
+   même durée. Les sous-titres se font sur la transcription de la vidéo
+   coupée (`hyperframes transcribe assets/rush-coupe.mp4`, puis
+   `subtitles.mjs --transcript transcript-coupe.json`, sans `--coupes`) :
+   les timings du rush recalés dérivent et empilent des mots sur les coupes.
    Une phrase dite deux fois (prise ratée) : ne garder que la dernière, avec
    `RETIRER="début-fin" bash scripts/monter.sh video-N` (secondes du rush).
 5. **Captures d'écran** : il les dépose dans `video-N/assets/` avec le rush
