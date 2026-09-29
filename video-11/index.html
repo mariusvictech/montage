@@ -5,33 +5,350 @@
     <meta name="viewport" content="width=1080, height=1920" />
     <script src="./vendor/gsap.min.js"></script>
     <link rel="stylesheet" href="./identity.css" />
+    <link rel="stylesheet" href="./premium.css" />
+    <link rel="stylesheet" href="./scenes.css" />
   </head>
   <body>
-    <!-- Projet vide, en attente du rush (voir assets/README.md). -->
+    <!--
+      Montage « le bouton WhatsApp », dans le style de video-10.
+      Le rush est coupé sur ses creux (8 coupes, 45,65 s → 43,77 s) par la
+      coupe trim/concat ; sous-titres faits sur la vidéo coupée.
+      Captures : la conversation WhatsApp (le prénom dans le code promo est
+      flouté) et la notification Shopify de la commande #1006.
+    -->
     <div
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="4"
+      data-duration="43.76"
       data-width="1080"
       data-height="1920"
     >
-      <div class="clip" id="attente" data-start="0" data-duration="4" data-track-index="0">
-        <div class="carte carte--sommet">
-          <div class="etiquette">video-11</div>
-          <div class="titre">En attente<br />du rush</div>
-          <div class="sous-titre">video-11</div>
+      <video
+        id="rush"
+        class="clip"
+        src="assets/rush-coupe.mp4"
+        muted
+        data-start="0"
+        data-duration="43.76"
+      ></video>
+      <audio id="voix" src="assets/rush-coupe.mp4" data-start="0" data-duration="43.76" data-volume="1"></audio>
+
+      <div class="clip" id="voile" data-start="0" data-duration="43.76" data-track-index="0">
+        <div class="voile-haut"></div>
+      </div>
+
+      <!-- 1 — Rien qu'avec un petit bouton, 200 balles -->
+      <div class="clip" id="s-hook" data-start="0" data-duration="3.75" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="display" style="font-size: 120px">
+            <span class="ligne-display"><span class="masque"><span id="h1">Rien qu'avec</span></span></span>
+            <span class="ligne-display"><span class="masque"><span id="h2">un petit <span class="serif accent" style="font-size: 150px">bouton</span></span></span></span>
+          </div>
+          <div class="phrase" id="h3" style="margin-top: 26px">j'ai réussi à faire</div>
+          <div class="display display--xl accent" id="h4" style="font-size: 150px; white-space: nowrap; line-height: 1.05; margin-top: 16px">200 balles</div>
         </div>
       </div>
+
+      <!-- 2 — Le bouton WhatsApp -->
+      <div class="clip" id="s-bouton" data-start="3.77" data-duration="3.75" data-track-index="1">
+        <div class="scene" style="top: 250px">
+          <div><div class="kicker" id="k-bouton">Super important</div></div>
+          <div style="position: relative; display: inline-block; margin-top: 40px" id="bouton">
+            <span class="halo" id="halo1"></span><span class="halo" id="halo2"></span>
+            <div class="bouton-wa">
+              <svg viewBox="0 0 32 32"><path fill="#04140a" d="M16 3a13 13 0 0 0-11.3 19.4L3 29l6.8-1.8A13 13 0 1 0 16 3zm0 23.6a10.6 10.6 0 0 1-5.4-1.5l-.4-.2-4 1 1.1-3.9-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.3 6.3 0 0 0 1.3 3.3 14.4 14.4 0 0 0 5.5 4.9c2 .9 2.8.9 3.8.8a3.2 3.2 0 0 0 2.1-1.5 2.6 2.6 0 0 0 .2-1.5c-.1-.2-.3-.3-.6-.4z"/></svg>
+              WhatsApp
+            </div>
+          </div>
+          <div class="phrase" id="boutiques" style="margin-top: 36px">sur vos boutiques, les gars.</div>
+        </div>
+      </div>
+
+      <!-- 3 — Une personne cherchait des infos -->
+      <div class="clip" id="s-infos" data-start="7.56" data-duration="5.70" data-track-index="1">
+        <div class="scene" style="top: 230px">
+          <div class="kicker">Une cliente</div>
+          <div class="bulle" id="b-infos" style="margin-top: 26px">
+            <div class="avatar">C</div>
+            <div>
+              <div class="bulle-titre">Des infos sur le produit ?</div>
+              <div class="bulle-texte">via le bouton WhatsApp <span class="frappe"><span id="fa"></span><span id="fb"></span><span id="fc"></span></span></div>
+            </div>
+          </div>
+          <div class="regle" id="b-rep" style="margin-top: 22px">
+            <div class="coche" id="coche-rep"><svg viewBox="0 0 24 24"><path id="v-rep" d="M4 12.5l5 5L20 6.5" fill="none" stroke="#00e676" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="26" stroke-dashoffset="26"/></svg></div>
+            <div class="regle-texte">Réponse <span class="accent">vite</span><br />et poliment</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 — La conversation : le code promo -->
+      <div class="clip" id="s-conv" data-start="13.28" data-duration="7.40" data-track-index="1">
+        <div class="scene" style="top: 200px; left: 40px; right: 40px">
+          <div class="kicker" id="k-conv">Et direct, elle me demande</div>
+          <div class="fenetre" id="fenetre" style="margin-top: 24px">
+            <div id="pano" style="position: absolute; left: 0; top: 0; width: 1500px; height: 504px">
+              <img src="assets/message-cliente-crop.png" alt="Conversation WhatsApp : la cliente demande un code promo, un code de réduction lui est envoyé" />
+              <div class="cadre-lumiere" id="cadre-cliente" style="left: 4px; top: 33px; width: 990px; height: 130px"></div>
+              <div class="cadre-lumiere" id="cadre-code" style="left: 576px; top: 241px; width: 928px; height: 118px"></div>
+            </div>
+          </div>
+          <div class="rangee-pilules" style="margin-top: 30px">
+            <div class="pilule" id="p-code"><span class="pastille-point"></span> Code de réduction envoyé</div>
+          </div>
+          <div class="phrase" id="marge" style="margin-top: 26px">je fais déjà une bonne marge dessus</div>
+        </div>
+      </div>
+
+      <!-- 5 — Une heure après, la commande -->
+      <div class="clip" id="s-vente" data-start="20.70" data-duration="2.62" data-track-index="1">
+        <div class="scene" style="top: 200px; height: 560px">
+          <div class="kicker" id="k-vente" style="position: absolute; top: 0; left: 0">Une heure après</div>
+          <div class="notif" id="notif" style="position: absolute; top: 70px; left: 0; margin-top: 0">
+            <img src="assets/vente-notif.png" alt="Notification Shopify : commande #1006, 219,90 €" />
+            <div class="reflet" id="reflet"></div>
+          </div>
+          <div class="montant" id="montant" style="position: absolute; top: 310px; left: 0; margin-top: 0">
+            <span id="montant-valeur">0,00 €</span>
+            <span class="etincelle"></span><span class="etincelle"></span><span class="etincelle"></span>
+            <span class="etincelle"></span><span class="etincelle"></span><span class="etincelle"></span>
+            <span class="etincelle"></span><span class="etincelle"></span><span class="etincelle"></span>
+            <span class="etincelle"></span><span class="etincelle"></span><span class="etincelle"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 — L'heure : 04:12, je charbonne le shop 4 -->
+      <div class="clip" id="s-heure" data-start="23.32" data-duration="4.66" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="kicker" id="k-heure">Remarque l'heure</div>
+          <div class="date" id="date" style="margin-top: 20px">Mardi 29 sept.</div>
+          <div class="heure-nuit" id="heure" style="margin-top: 24px; line-height: 1.05">04:12<span class="lune"></span></div>
+          <div class="phrase" id="charbon" style="margin-top: 34px">et là, je <span class="accent">charbonne</span> le shop 4</div>
+        </div>
+      </div>
+
+      <!-- 7 — Deux shops en ligne, c'est le premier qui a vendu -->
+      <div class="clip" id="s-shops" data-start="27.96" data-duration="7.95" data-track-index="1">
+        <div class="scene" style="top: 230px">
+          <div class="kicker">Deux shops en ligne</div>
+          <div class="shop-ligne" id="l-shop1">
+            <div class="shop-nom">Shop 1</div>
+            <div class="shop-etat" id="e-shop1">en ligne</div>
+          </div>
+          <div class="shop-ligne" id="l-shop2">
+            <div class="shop-nom">Shop 2</div>
+            <div class="shop-etat" id="e-shop2">en ligne</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 — Shops 3 et 4 -->
+      <div class="clip" id="s-suite" data-start="35.92" data-duration="3.80" data-track-index="1">
+        <div class="scene" style="top: 230px">
+          <div class="kicker">Il me tarde</div>
+          <div class="shop-ligne" id="l-shop3">
+            <div class="shop-nom">Shop 3</div>
+            <div class="shop-etat" style="color: #f5a623">à lancer</div>
+          </div>
+          <div class="shop-ligne" id="l-shop4">
+            <div class="shop-nom">Shop 4</div>
+            <div class="shop-etat" style="color: #f5a623">démarrage</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 — 1K/day pour le Q4 -->
+      <div class="clip" id="s-1k" data-start="39.77" data-duration="2.90" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="phrase" id="k1a">Tu veux voir si j'arrive au</div>
+          <div class="display display--xl"><span class="masque"><span id="unk" class="lueur-balayage">1K/day</span></span></div>
+          <div class="kicker" id="k1b" style="margin-top: 10px">pour le Q4</div>
+        </div>
+      </div>
+
+      <!-- 10 — Like, abonne-toi -->
+      <div class="clip" id="s-fin" data-start="42.68" data-duration="1.08" data-track-index="1">
+        <div class="scene" style="top: 400px; text-align: center">
+          <div class="rangee-pilules" style="justify-content: center">
+            <div class="pilule" id="like" style="font-size: 48px; padding: 24px 48px">Like</div>
+            <div class="pilule pilule--pleine" id="abonne" style="font-size: 48px; padding: 24px 48px">Abonne-toi</div>
+          </div>
+        </div>
+      </div>
+
+      <audio id="son-bouton" src="assets/sfx/clic.wav" data-start="1.45" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-200" src="assets/sfx/impact.wav" data-start="2.86" data-duration="0.35" data-volume="0.4"></audio>
+      <audio id="son-wa" src="assets/sfx/clic.wav" data-start="6.09" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-infos" src="assets/sfx/notification.wav" data-start="8.69" data-duration="0.42" data-volume="0.35"></audio>
+      <audio id="son-rep" src="assets/sfx/clic.wav" data-start="11.46" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-code" src="assets/sfx/souffle.wav" data-start="17.2" data-duration="0.55" data-volume="0.3"></audio>
+      <audio id="son-vente" src="assets/sfx/notification.wav" data-start="21.6" data-duration="0.42" data-volume="0.45"></audio>
+      <audio id="son-montant" src="assets/sfx/impact.wav" data-start="22.64" data-duration="0.35" data-volume="0.35"></audio>
+      <audio id="son-heure" src="assets/sfx/clic.wav" data-start="24.49" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-shop1" src="assets/sfx/clic.wav" data-start="30.23" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-shop2" src="assets/sfx/clic.wav" data-start="34.78" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-1k" src="assets/sfx/impact.wav" data-start="41.55" data-duration="0.35" data-volume="0.4"></audio>
+      <audio id="son-fin" src="assets/sfx/basse.wav" data-start="42.73" data-duration="0.90" data-volume="0.4"></audio>
+
+      <!-- Sous-titres mot par mot, calés sur la vidéo coupée -->
+      <div
+        class="clip"
+        id="sous-titres"
+        data-composition-id="subtitles"
+        data-composition-src="compositions/subtitles.html"
+        data-start="0"
+        data-duration="43.76"
+        data-track-index="5"
+      ></div>
     </div>
+
     <script>
       const tl = gsap.timeline({ paused: true });
+      const doux = "expo.out";
+
+      /* ---------- Le rush : deux cadrages qui alternent, et une lente dérive ---------- */
+      const prises = [0, 7.56, 15.6, 16.97, 20.7, 28.0, 31.6, 35.93, 37.87, 39.7, 43.76];
+      prises.slice(0, -1).forEach((debut, i) => {
+        const base = i % 2 ? 1.1 : 1.0;
+        tl.fromTo(
+          "#rush",
+          { scale: base },
+          { scale: base + 0.03, duration: prises[i + 1] - debut, ease: "none", immediateRender: false },
+          debut,
+        );
+      });
+
+      function monte(sel, t, duree = 0.55) {
+        tl.fromTo(sel, { yPercent: 110 }, { yPercent: 0, duration: duree, ease: doux }, t);
+      }
+      function pose(sel, t, dx = 0) {
+        tl.fromTo(
+          sel,
+          { opacity: 0, y: 26, x: dx, filter: "blur(12px)" },
+          { opacity: 1, y: 0, x: 0, filter: "blur(0px)", duration: 0.5, ease: doux },
+          t,
+        );
+      }
+      function part(sel, t) {
+        tl.to(sel, { opacity: 0, y: -40, filter: "blur(14px)", duration: 0.26, ease: "power2.in" }, t);
+      }
+      function halo(sel, t) {
+        tl.fromTo(sel, { opacity: 0.8, scale: 1 }, { opacity: 0, scale: 1.35, duration: 0.9, ease: "power2.out" }, t);
+      }
+
+      /* 1 — Un petit bouton, 200 balles */
+      monte("#h1", 0.02);
+      monte("#h2", 0.88);
+      pose("#h3", 2.0);
+      tl.fromTo("#h4", { opacity: 0, scale: 1.4, filter: "blur(18px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: doux }, 2.86);
+      part("#s-hook .scene", 3.5);
+
+      /* 2 — Le bouton WhatsApp */
+      pose("#k-bouton", 4.32);
+      tl.fromTo("#bouton", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.55, ease: "back.out(2.2)" }, 5.9);
+      halo("#halo1", 6.3);
+      halo("#halo2", 6.8);
+      pose("#boutiques", 6.64);
+      part("#s-bouton .scene", 7.26);
+
+      /* 3 — Des infos sur le produit, réponse rapide */
+      tl.fromTo("#b-infos", { opacity: 0, y: -60, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.5)" }, 8.6);
+      ["#fa", "#fb", "#fc"].forEach((sel, i) => {
+        tl.fromTo(sel, { opacity: 0.3 }, { opacity: 1, duration: 0.2, yoyo: true, repeat: 3 }, 9.2 + i * 0.15);
+      });
+      pose("#b-rep", 11.3, 50);
+      tl.fromTo("#coche-rep", { borderColor: "rgba(255,255,255,0.25)" }, { borderColor: "#00e676", duration: 0.2 }, 12.45);
+      tl.fromTo("#v-rep", { strokeDashoffset: 26 }, { strokeDashoffset: 0, duration: 0.35, ease: "power2.out" }, 12.45);
+      part("#s-infos .scene", 13.0);
+
+      /* 4 — La conversation, en travelling : sa demande, puis le code */
+      pose("#k-conv", 13.35);
+      tl.fromTo("#fenetre", { opacity: 0, y: 50, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: doux }, 13.9);
+      tl.fromTo("#pano", { x: 0 }, { x: 0, duration: 0.01 }, 13.9);
+      tl.fromTo("#cadre-cliente", { opacity: 0, scale: 1.05 }, { opacity: 1, scale: 1, duration: 0.35, ease: doux }, 15.7);
+      tl.to("#cadre-cliente", { opacity: 0, duration: 0.25 }, 16.9);
+      tl.to("#pano", { x: -500, duration: 0.9, ease: "power3.inOut" }, 16.9);
+      tl.fromTo("#cadre-code", { opacity: 0, scale: 1.05 }, { opacity: 1, scale: 1, duration: 0.35, ease: doux }, 17.8);
+      pose("#p-code", 17.9, 40);
+      pose("#marge", 18.72);
+      part("#s-conv .scene", 20.44);
+
+      /* 5 — La commande tombe */
+      pose("#k-vente", 20.97);
+      tl.fromTo("#notif", { y: -160, opacity: 0, scale: 0.94 }, { y: 0, opacity: 1, scale: 1, duration: 0.7, ease: "back.out(1.4)" }, 21.55);
+      tl.fromTo("#reflet", { xPercent: -120 }, { xPercent: 320, duration: 0.9, ease: "power2.inOut" }, 22.1);
+      pose("#montant", 22.2);
+      const montant = { v: 0 };
       tl.fromTo(
-        "#attente .carte",
-        { xPercent: 18, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
-        0.2,
+        montant,
+        { v: 0 },
+        {
+          v: 219.9,
+          duration: 0.5,
+          ease: "power3.out",
+          onUpdate() {
+            document.getElementById("montant-valeur").textContent = montant.v.toFixed(2).replace(".", ",") + " €";
+          },
+        },
+        22.3,
       );
+      document.querySelectorAll("#montant .etincelle").forEach((e, i) => {
+        const angle = (i / 12) * Math.PI * 2;
+        const r = 260 + (i % 3) * 70;
+        tl.fromTo(
+          e,
+          { x: 0, y: 0, opacity: 1, scale: 1 },
+          { x: Math.cos(angle) * r, y: Math.sin(angle) * r * 0.5, opacity: 0, scale: 0.3, duration: 0.7, ease: "expo.out" },
+          22.8,
+        );
+      });
+      part("#s-vente .scene", 23.06);
+
+      /* 6 — 04:12 */
+      pose("#k-heure", 23.4);
+      pose("#date", 24.2);
+      tl.fromTo("#heure", { opacity: 0, y: 40, filter: "blur(16px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: doux }, 24.49);
+      pose("#charbon", 26.25);
+      part("#s-heure .scene", 27.72);
+
+      /* 7 — Shop 1 a vendu, shop 2 : une vente, jour 3 */
+      pose("#l-shop1", 28.3, 50);
+      pose("#l-shop2", 28.6, 50);
+      function etat(sel, texte, couleur, t) {
+        tl.call(() => {
+          const e = document.querySelector(sel);
+          e.textContent = texte;
+          e.style.color = couleur;
+        }, null, t);
+      }
+      etat("#e-shop1", "en ligne", "", 27.96);
+      etat("#e-shop2", "en ligne", "", 27.96);
+      etat("#e-shop1", "a fait la vente · 219,90 €", "#00e676", 30.23);
+      tl.fromTo("#l-shop1", { borderColor: "rgba(255,255,255,0.14)" }, { borderColor: "#00e676", duration: 0.3 }, 30.23);
+      tl.fromTo("#l-shop1", { scale: 1.04 }, { scale: 1, duration: 0.3, ease: "power2.out" }, 30.23);
+      etat("#e-shop2", "1 vente", "#f4f4f5", 34.05);
+      etat("#e-shop2", "1 vente · jour 3", "#f4f4f5", 34.78);
+      tl.fromTo("#l-shop2", { scale: 1.04 }, { scale: 1, duration: 0.3, ease: "power2.out" }, 34.78);
+      part("#s-shops .scene", 35.66);
+
+      /* 8 — Shops 3 et 4 */
+      pose("#l-shop3", 37.2, 50);
+      pose("#l-shop4", 38.45, 50);
+      part("#s-suite .scene", 39.46);
+
+      /* 9 — 1K/day */
+      pose("#k1a", 40.0);
+      monte("#unk", 41.45, 0.55);
+      tl.fromTo("#unk", { backgroundPosition: "100% 0" }, { backgroundPosition: "0% 0", duration: 0.9, ease: "power2.inOut" }, 41.7);
+      pose("#k1b", 42.2);
+      part("#s-1k .scene", 42.45);
+
+      /* 10 — Like, abonne-toi */
+      tl.fromTo("#like", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 42.73);
+      tl.fromTo("#abonne", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 43.07);
+
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);

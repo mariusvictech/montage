@@ -1,0 +1,50 @@
+{
+  "source": "/home/user/montage/video-11/assets/rush.MOV",
+  "duration": 45.651,
+  "kept": 43.8,
+  "removed": 1.851,
+  "cuts": 8,
+  "voiceLevelDb": -5.8,
+  "thresholdDb": -27.8,
+  "minSilence": 0.25,
+  "breath": 0.05,
+  "retires": [],
+  "segments": [
+    {
+      "start": 0,
+      "end": 15.6
+    },
+    {
+      "start": 15.8,
+      "end": 17.167
+    },
+    {
+      "start": 17.4,
+      "end": 21.133
+    },
+    {
+      "start": 21.3,
+      "end": 28.6
+    },
+    {
+      "start": 28.9,
+      "end": 32.5
+    },
+    {
+      "start": 32.667,
+      "end": 37
+    },
+    {
+      "start": 37.233,
+      "end": 39.167
+    },
+    {
+      "start": 39.367,
+      "end": 41.2
+    },
+    {
+      "start": 41.533,
+      "end": 45.633
+    }
+  ]
+}
