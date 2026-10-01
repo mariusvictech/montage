@@ -5,33 +5,336 @@
     <meta name="viewport" content="width=1080, height=1920" />
     <script src="./vendor/gsap.min.js"></script>
     <link rel="stylesheet" href="./identity.css" />
+    <link rel="stylesheet" href="./premium.css" />
+    <link rel="stylesheet" href="./scenes.css" />
   </head>
   <body>
-    <!-- Projet vide, en attente du rush (voir assets/README.md). -->
+    <!--
+      Montage « zéro vente, pas peur », dans le style de video-10.
+      Le rush est coupé sur ses creux (15 coupes, 51,04 s → 46,93 s) par la
+      coupe trim/concat ; sous-titres faits sur la vidéo coupée.
+      Images : le tableau de bord d'hier (repris de video-12), la
+      ventilation du taux de conversion, et le visage de Vincent Alonzi
+      recadré depuis une capture de son Reel.
+    -->
     <div
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="4"
+      data-duration="46.92"
       data-width="1080"
       data-height="1920"
     >
-      <div class="clip" id="attente" data-start="0" data-duration="4" data-track-index="0">
-        <div class="carte carte--sommet">
-          <div class="etiquette">video-13</div>
-          <div class="titre">En attente<br />du rush</div>
-          <div class="sous-titre">video-13</div>
+      <video
+        id="rush"
+        class="clip"
+        src="assets/rush-coupe.mp4"
+        muted
+        data-start="0"
+        data-duration="46.92"
+      ></video>
+      <audio id="voix" src="assets/rush-coupe.mp4" data-start="0" data-duration="46.92" data-volume="1"></audio>
+
+      <div class="clip" id="voile" data-start="0" data-duration="46.92" data-track-index="0">
+        <div class="voile-haut"></div>
+      </div>
+
+      <!-- 1 — Personne n'en parle -->
+      <div class="clip" id="s-hook" data-start="0" data-duration="3.37" data-track-index="1">
+        <div class="scene" style="top: 230px">
+          <div class="display">
+            <span class="ligne-display"><span class="masque"><span id="h1">Personne</span></span></span>
+            <span class="ligne-display"><span class="masque"><span id="h2" class="serif accent" style="font-size: 170px">n'en parle.</span></span></span>
+          </div>
+          <div class="phrase" id="h3" style="margin-top: 30px">dans le business en ligne</div>
         </div>
       </div>
+
+      <!-- 2 — Hier, le record -->
+      <div class="clip" id="s-hier" data-start="3.37" data-duration="4.95" data-track-index="1">
+        <div class="scene" style="top: 150px">
+          <div class="kicker" id="k-hier" style="display: flex; justify-content: center">Hier · mon record</div>
+          <div class="tableau" id="tableau" style="margin-top: 24px; width: 560px">
+            <img src="assets/resultats-hier.png" alt="Tableau de bord Shopify du 28 sept. : 619,50 € de ventes brutes, 2 commandes" />
+            <div class="cadre-lumiere" id="cadre-619" style="left: 4px; top: 96px; width: 532px; height: 96px"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 — 619 € de CA, ~450 € dans la poche -->
+      <div class="clip" id="s-compte" data-start="8.30" data-duration="2.40" data-track-index="1">
+        <div class="scene" style="top: 240px">
+          <div class="verre">
+            <div class="compte-ligne">
+              <span class="compte-label">Chiffre d'affaires</span>
+              <span class="compte-valeur">619 €</span>
+            </div>
+            <div class="compte-ligne" id="l-benef">
+              <span class="compte-label">Bénéf dans ma poche</span>
+              <span class="compte-valeur accent" id="benef">≈ 0 €</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 — Aujourd'hui, zéro vente -->
+      <div class="clip" id="s-zero" data-start="10.72" data-duration="4.72" data-track-index="1">
+        <div class="scene" style="top: 190px">
+          <div class="kicker" id="k-zero">Aujourd'hui</div>
+          <div class="zero" id="zero" style="margin-top: 40px">
+            <span class="zero-chiffre" style="font-size: 240px">0</span>
+            <span class="display" style="font-size: 100px">vente</span>
+          </div>
+          <div class="shop-ligne" id="z1"><div class="shop-nom">Shop 1</div><div class="shop-etat" style="color: #ff3b30">0 vente</div></div>
+          <div class="shop-ligne" id="z2"><div class="shop-nom">Shop 2</div><div class="shop-etat" style="color: #ff3b30">0 vente</div></div>
+        </div>
+      </div>
+
+      <!-- 5 — Pas trop peur : juste 14 visites -->
+      <div class="clip" id="s-peur" data-start="15.44" data-duration="4.80" data-track-index="1">
+        <div class="scene" style="top: 240px">
+          <div class="phrase" id="p1" style="font-size: 90px">mais j'ai pas trop <span class="accent">peur.</span></div>
+          <div class="kicker" id="p2" style="margin-top: 40px; margin-bottom: 40px">Juste</div>
+          <div class="display display--xl" id="p3" style="line-height: 1.05"><span id="visites">0</span> <span style="font-size: 110px">visites</span></div>
+        </div>
+      </div>
+
+      <!-- 6 — Les campagnes ont peu dépensé -->
+      <div class="clip" id="s-depense" data-start="20.27" data-duration="4.50" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="verre">
+            <div class="kicker">Dépense des campagnes</div>
+            <div class="barres-pub">
+              <div class="barre-pub" id="bp1" style="height: 85%"></div>
+              <div class="barre-pub" id="bp2" style="height: 100%"></div>
+              <div class="barre-pub" id="bp3" style="height: 90%"></div>
+              <div class="barre-pub barre-pub--auj" id="bp4" style="height: 22%"></div>
+            </div>
+            <div class="barres-legende"><span>avant</span><span>avant</span><span>avant</span><span style="color: #00e676">aujourd'hui</span></div>
+          </div>
+          <div class="phrase" id="normal" style="margin-top: 24px">c'est <span class="accent">normal.</span></div>
+        </div>
+      </div>
+
+      <!-- 7 — Les ajouts au panier -->
+      <div class="clip" id="s-panier" data-start="24.80" data-duration="4.95" data-track-index="1">
+        <div class="scene" style="top: 170px">
+          <div class="kicker" id="k-panier" style="display: flex; justify-content: center">Et quand même, des ajouts au panier</div>
+          <div class="tableau" id="conv" style="margin-top: 24px; width: 720px">
+            <img src="assets/visites-crop.png" alt="Ventilation du taux de conversion : visites, ajouts au panier, paiements" />
+            <div class="cadre-lumiere" id="cadre-panier" style="left: 196px; top: 128px; width: 170px; height: 104px"></div>
+          </div>
+          <div class="rangee-pilules" style="justify-content: center">
+            <div class="pilule" id="signaux"><span class="pastille-point"></span> Très très bons signaux</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 — Shops 3 et 4 -->
+      <div class="clip" id="s-shops" data-start="29.76" data-duration="4.56" data-track-index="1">
+        <div class="scene" style="top: 230px">
+          <div class="kicker">J'en profite pour bien faire</div>
+          <div class="shop-ligne" id="l3"><div class="shop-nom">Shop 3</div><div class="shop-etat" style="color: #f5a623">en construction</div></div>
+          <div class="shop-ligne" id="l4"><div class="shop-nom">Shop 4</div><div class="shop-etat" style="color: #f5a623">en construction</div></div>
+        </div>
+      </div>
+
+      <!-- 9 — Vincent Alonzi -->
+      <div class="clip" id="s-vincent" data-start="34.34" data-duration="4.36" data-track-index="1">
+        <div class="scene" style="top: 200px">
+          <div class="kicker">J'avais vu une vidéo de</div>
+          <div style="display: flex; gap: 34px; align-items: center; margin-top: 24px">
+            <div class="portrait" id="portrait">
+              <img src="assets/vincent-portrait.png" alt="Vincent Alonzi" />
+              <div class="portrait-nom">Vincent Alonzi</div>
+            </div>
+            <div class="phrase" id="citation" style="font-size: 62px">« Quand ça commence à <span class="accent">chiffrer</span>, mieux vaut se taire. »</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 — Je continue : documenter -->
+      <div class="clip" id="s-doc" data-start="38.70" data-duration="3.84" data-track-index="1">
+        <div class="scene" style="top: 250px">
+          <div class="display">
+            <span class="ligne-display"><span class="masque"><span id="d1">Je continue.</span></span></span>
+          </div>
+          <div class="kicker" id="d2" style="margin-top: 40px">Le but de ce compte</div>
+          <div class="display" style="margin-top: 6px"><span class="masque"><span id="d3" class="serif accent" style="font-size: 170px">documenter.</span></span></div>
+        </div>
+      </div>
+
+      <!-- 11 — Le 1K/day, je vous le dis -->
+      <div class="clip" id="s-1k" data-start="42.54" data-duration="2.20" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="phrase" id="k1a">dès que j'arrive au</div>
+          <div class="display display--xl"><span class="masque"><span id="unk" class="lueur-balayage">1K/day</span></span></div>
+          <div class="kicker" id="k1b" style="margin-top: 44px">je vous le dis</div>
+        </div>
+      </div>
+
+      <!-- 12 — Like, abonne-toi -->
+      <div class="clip" id="s-fin" data-start="44.74" data-duration="2.18" data-track-index="1">
+        <div class="scene" style="top: 380px; text-align: center">
+          <div class="phrase" id="suivre" style="font-size: 80px">Tu veux suivre ?</div>
+          <div class="rangee-pilules" style="justify-content: center; margin-top: 40px">
+            <div class="pilule" id="like" style="font-size: 48px; padding: 24px 48px">Like</div>
+            <div class="pilule pilule--pleine" id="abonne" style="font-size: 48px; padding: 24px 48px">Abonne-toi</div>
+          </div>
+        </div>
+      </div>
+
+      <audio id="son-hook" src="assets/sfx/clic.wav" data-start="1.02" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-hier" src="assets/sfx/souffle.wav" data-start="3.4" data-duration="0.55" data-volume="0.3"></audio>
+      <audio id="son-619" src="assets/sfx/notification.wav" data-start="6.68" data-duration="0.42" data-volume="0.4"></audio>
+      <audio id="son-benef" src="assets/sfx/impact.wav" data-start="8.44" data-duration="0.35" data-volume="0.35"></audio>
+      <audio id="son-zero" src="assets/sfx/impact.wav" data-start="11.47" data-duration="0.35" data-volume="0.45"></audio>
+      <audio id="son-z1" src="assets/sfx/clic.wav" data-start="12.85" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-z2" src="assets/sfx/clic.wav" data-start="14.37" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-visites" src="assets/sfx/clic.wav" data-start="18.4" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-auj" src="assets/sfx/clic.wav" data-start="22.17" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-panier" src="assets/sfx/notification.wav" data-start="27.6" data-duration="0.42" data-volume="0.4"></audio>
+      <audio id="son-vincent" src="assets/sfx/souffle.wav" data-start="35.1" data-duration="0.55" data-volume="0.3"></audio>
+      <audio id="son-doc" src="assets/sfx/clic.wav" data-start="41.5" data-duration="0.12" data-volume="0.4"></audio>
+      <audio id="son-1k" src="assets/sfx/impact.wav" data-start="43.39" data-duration="0.35" data-volume="0.4"></audio>
+      <audio id="son-fin" src="assets/sfx/basse.wav" data-start="46.01" data-duration="0.90" data-volume="0.4"></audio>
+
+      <!-- Sous-titres mot par mot, calés sur la vidéo coupée -->
+      <div
+        class="clip"
+        id="sous-titres"
+        data-composition-id="subtitles"
+        data-composition-src="compositions/subtitles.html"
+        data-start="0"
+        data-duration="46.92"
+        data-track-index="5"
+      ></div>
     </div>
+
     <script>
       const tl = gsap.timeline({ paused: true });
-      tl.fromTo(
-        "#attente .carte",
-        { xPercent: 18, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
-        0.2,
-      );
+      const doux = "expo.out";
+
+      /* ---------- Le rush : deux cadrages qui alternent, et une lente dérive ---------- */
+      const prises = [0, 3.37, 6.13, 10.7, 12.37, 14.57, 15.44, 20.27, 24.74, 29.74, 34.34, 37.04, 38.7, 41.17, 42.54, 44.74, 46.92];
+      prises.slice(0, -1).forEach((debut, i) => {
+        const base = i % 2 ? 1.1 : 1.0;
+        tl.fromTo(
+          "#rush",
+          { scale: base },
+          { scale: base + 0.03, duration: prises[i + 1] - debut, ease: "none", immediateRender: false },
+          debut,
+        );
+      });
+
+      function monte(sel, t, duree = 0.55) {
+        tl.fromTo(sel, { yPercent: 110 }, { yPercent: 0, duration: duree, ease: doux }, t);
+      }
+      function pose(sel, t, dx = 0) {
+        tl.fromTo(
+          sel,
+          { opacity: 0, y: 26, x: dx, filter: "blur(12px)" },
+          { opacity: 1, y: 0, x: 0, filter: "blur(0px)", duration: 0.5, ease: doux },
+          t,
+        );
+      }
+      function part(sel, t) {
+        tl.to(sel, { opacity: 0, y: -40, filter: "blur(14px)", duration: 0.26, ease: "power2.in" }, t);
+      }
+      function compte(sel, de, a, t, duree, format) {
+        const o = { v: de };
+        tl.fromTo(
+          o,
+          { v: de },
+          {
+            v: a,
+            duration: duree,
+            ease: "power3.out",
+            onUpdate() {
+              document.querySelector(sel).textContent = format(o.v);
+            },
+          },
+          t,
+        );
+      }
+
+      /* 1 — Personne n'en parle */
+      monte("#h1", 0.35);
+      monte("#h2", 1.0, 0.65);
+      pose("#h3", 2.0);
+      part("#s-hook .scene", 3.11);
+
+      /* 2 — Le record d'hier */
+      pose("#k-hier", 3.45);
+      tl.fromTo("#tableau", { opacity: 0, y: 80, scale: 0.9, rotation: -3 }, { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.7, ease: doux }, 3.9);
+      tl.fromTo("#cadre-619", { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.35, ease: doux }, 6.68);
+      part("#s-hier .scene", 8.04);
+
+      /* 3 — 619 € de CA, ~450 € dans la poche */
+      pose("#s-compte .verre", 8.3, 50);
+      compte("#benef", 0, 450, 8.6, 0.6, (v) => "≈ " + Math.round(v) + " €");
+      tl.fromTo("#benef", { scale: 1 }, { scale: 1.12, duration: 0.15, yoyo: true, repeat: 1 }, 9.2);
+      part("#s-compte .scene", 10.44);
+
+      /* 4 — Zéro vente */
+      pose("#k-zero", 10.84);
+      tl.fromTo("#zero", { opacity: 0, scale: 1.6, filter: "blur(20px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "power4.in" }, 11.15);
+      tl.to("#zero", { keyframes: [{ x: -18 }, { x: 16 }, { x: -10 }, { x: 6 }, { x: 0 }], duration: 0.35 }, 11.5);
+      pose("#z1", 12.6, 50);
+      pose("#z2", 14.1, 50);
+      part("#s-zero .scene", 15.18);
+
+      /* 5 — Pas peur, 14 visites */
+      pose("#p1", 15.6);
+      pose("#p2", 18.0);
+      pose("#p3", 18.2);
+      compte("#visites", 0, 14, 18.4, 0.5, (v) => String(Math.round(v)));
+      part("#s-peur .scene", 19.98);
+
+      /* 6 — La dépense des campagnes */
+      pose("#s-depense .verre", 20.35, 50);
+      ["#bp1", "#bp2", "#bp3"].forEach((sel, i) => {
+        tl.fromTo(sel, { scaleY: 0 }, { scaleY: 1, duration: 0.5, ease: doux }, 20.6 + i * 0.12);
+      });
+      tl.fromTo("#bp4", { scaleY: 0 }, { scaleY: 1, duration: 0.5, ease: doux }, 22.17);
+      pose("#normal", 23.04);
+      part("#s-depense .scene", 24.48);
+
+      /* 7 — Les ajouts au panier */
+      pose("#k-panier", 24.9);
+      tl.fromTo("#conv", { opacity: 0, y: 80, scale: 0.9, rotation: 2 }, { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.7, ease: doux }, 25.2);
+      tl.fromTo("#cadre-panier", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.35, ease: doux }, 27.6);
+      tl.fromTo("#signaux", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 28.9);
+      part("#s-panier .scene", 29.5);
+
+      /* 8 — Shops 3 et 4 */
+      pose("#l3", 33.0, 50);
+      pose("#l4", 33.7, 50);
+      part("#s-shops .scene", 34.06);
+
+      /* 9 — Vincent Alonzi */
+      tl.fromTo("#portrait", { opacity: 0, x: -80, rotation: -4, scale: 0.92 }, { opacity: 1, x: 0, rotation: 0, scale: 1, duration: 0.7, ease: doux }, 35.0);
+      pose("#citation", 36.9, 40);
+      part("#s-vincent .scene", 38.44);
+
+      /* 10 — Je continue, documenter */
+      monte("#d1", 39.4);
+      pose("#d2", 40.6);
+      monte("#d3", 41.4, 0.6);
+      part("#s-doc .scene", 42.28);
+
+      /* 11 — 1K/day */
+      pose("#k1a", 42.6);
+      monte("#unk", 43.3, 0.55);
+      tl.fromTo("#unk", { backgroundPosition: "100% 0" }, { backgroundPosition: "0% 0", duration: 0.9, ease: "power2.inOut" }, 43.6);
+      pose("#k1b", 43.9);
+      part("#s-1k .scene", 44.48);
+
+      /* 12 — Like, abonne-toi */
+      pose("#suivre", 45.0);
+      tl.fromTo("#like", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 46.0);
+      tl.fromTo("#abonne", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 46.2);
+
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);
