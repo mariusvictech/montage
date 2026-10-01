@@ -1,0 +1,425 @@
+/* Objets propres à video-10 : messages de nuit, appel manqué, page masquée
+   par le chatbot, courbe des conversions, nouvelles règles. */
+
+/* ---------- Message de cliente ---------- */
+.bulle {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  padding: 30px 36px;
+  border-radius: 38px;
+  background: var(--verre);
+  backdrop-filter: blur(28px) saturate(140%);
+  border: 1.5px solid var(--liseré);
+  box-shadow: var(--ombre);
+}
+
+.avatar {
+  flex: none;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25d366, #0f8f4a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  font-weight: 900;
+  color: #04140a;
+}
+
+.bulle-titre {
+  font-size: 40px;
+  font-weight: 800;
+}
+
+.bulle-texte {
+  margin-top: 6px;
+  font-size: 32px;
+  font-weight: 500;
+  color: rgba(244, 244, 245, 0.8);
+}
+
+.frappe span {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--texte);
+  opacity: 0.3;
+}
+
+.heure-nuit {
+  margin-top: 40px;
+  font-size: 230px;
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+  color: var(--texte);
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.lune {
+  display: inline-block;
+  width: 110px;
+  height: 110px;
+  margin-left: 20px;
+  border-radius: 50%;
+  box-shadow: inset -26px -10px 0 0 #f5d77a;
+  vertical-align: middle;
+  filter: drop-shadow(0 0 30px rgba(245, 215, 122, 0.5));
+}
+
+/* ---------- ChatGPT plutôt qu'un appel ---------- */
+.choix {
+  display: flex;
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.option {
+  flex: 1;
+  padding: 34px 30px;
+  border-radius: 34px;
+  background: var(--verre);
+  backdrop-filter: blur(24px);
+  border: 1.5px solid var(--liseré);
+  box-shadow: var(--ombre);
+  text-align: center;
+}
+
+.option-icone {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gris);
+}
+
+.option-nom {
+  margin-top: 10px;
+  font-size: 58px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.option--choisie {
+  border-color: rgba(255, 59, 48, 0.7);
+}
+
+.option--ratee {
+  border-color: rgba(0, 230, 118, 0.7);
+}
+
+/* ---------- Appel sans réponse ---------- */
+.appel {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.combine {
+  position: relative;
+  flex: none;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: var(--vert);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.combine svg {
+  width: 64px;
+  height: 64px;
+}
+
+.onde {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 4px solid var(--vert);
+  opacity: 0;
+}
+
+/* ---------- La page cachée par le chatbot ---------- */
+.ecran {
+  position: relative;
+  width: 560px;
+  height: 640px;
+  margin: 0 auto;
+  border-radius: 48px;
+  background: #f4f4f5;
+  border: 10px solid #1c1c1e;
+  overflow: hidden;
+  box-shadow: var(--ombre);
+}
+
+.ecran-barre {
+  height: 70px;
+  background: #e4e4e7;
+}
+
+.ecran-image {
+  margin: 26px;
+  height: 250px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #d4d4d8, #a1a1aa);
+}
+
+.ecran-ligne {
+  margin: 16px 26px;
+  height: 22px;
+  border-radius: 11px;
+  background: #d4d4d8;
+}
+
+.ecran-bouton {
+  margin: 26px;
+  height: 70px;
+  border-radius: 18px;
+  background: #18181b;
+}
+
+.chatbot {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  width: 90px;
+  height: 90px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #7c5cff, #4f46e5);
+  box-shadow: 0 20px 50px rgba(79, 70, 229, 0.5);
+  transform-origin: 100% 100%;
+  overflow: hidden;
+}
+
+.chatbot-titre {
+  padding: 26px 30px;
+  font-size: 34px;
+  font-weight: 800;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.chatbot-bulle {
+  margin: 14px 30px;
+  height: 46px;
+  border-radius: 23px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.croix {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 180px;
+  height: 180px;
+  margin: -90px 0 0 -90px;
+  opacity: 0;
+}
+
+.croix::before,
+.croix::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 22px;
+  height: 100%;
+  margin-left: -11px;
+  border-radius: 11px;
+  background: var(--rouge);
+  box-shadow: 0 0 30px rgba(255, 59, 48, 0.6);
+}
+
+.croix::before {
+  transform: rotate(45deg);
+}
+
+.croix::after {
+  transform: rotate(-45deg);
+}
+
+.legende {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+/* ---------- La courbe des conversions ---------- */
+.courbe {
+  display: block;
+  margin-top: 26px;
+  overflow: visible;
+}
+
+/* ---------- Les nouvelles règles ---------- */
+.regle {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 30px 36px;
+  margin-top: 22px;
+  border-radius: 34px;
+  background: var(--verre);
+  backdrop-filter: blur(24px);
+  border: 1.5px solid var(--liseré);
+  box-shadow: var(--ombre);
+}
+
+.coche {
+  flex: none;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coche svg {
+  width: 40px;
+  height: 40px;
+}
+
+.regle-texte {
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- video-11 : le bouton WhatsApp ---------- */
+.bouton-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  padding: 30px 48px;
+  border-radius: 999px;
+  background: #25d366;
+  color: #04140a;
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  box-shadow: 0 20px 60px rgba(37, 211, 102, 0.45), 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.bouton-wa svg {
+  width: 64px;
+  height: 64px;
+}
+
+.halo {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 5px solid #25d366;
+  opacity: 0;
+}
+
+/* ---------- video-11 : la conversation, en travelling ---------- */
+.fenetre {
+  position: relative;
+  width: 1000px;
+  height: 400px;
+  border-radius: 40px;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  box-shadow: var(--ombre);
+}
+
+.fenetre img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1500px;
+}
+
+.cadre-lumiere {
+  position: absolute;
+  border: 5px solid var(--vert);
+  border-radius: 26px;
+  box-shadow: 0 0 40px rgba(0, 230, 118, 0.55);
+  opacity: 0;
+}
+
+/* ---------- video-11 : les shops ---------- */
+.shop-ligne {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 38px;
+  margin-top: 20px;
+  border-radius: 34px;
+  background: var(--verre);
+  backdrop-filter: blur(24px);
+  border: 1.5px solid var(--liseré);
+  box-shadow: var(--ombre);
+}
+
+.shop-nom {
+  font-size: 54px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.shop-etat {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--gris);
+}
+
+/* ---------- video-12 : le tableau de bord du jour ---------- */
+.tableau {
+  position: relative;
+  width: 640px;
+  margin: 0 auto;
+  border-radius: 44px;
+  overflow: hidden;
+  border: 10px solid #1c1c1e;
+  box-shadow: var(--ombre), 0 0 80px rgba(0, 230, 118, 0.18);
+}
+
+.tableau img {
+  display: block;
+  width: 100%;
+}
+
+/* ---------- video-12 : le compte du jour ---------- */
+.compte-ligne {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 18px 0;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.compte-ligne:last-child {
+  border-bottom: none;
+}
+
+.compte-label {
+  font-size: 38px;
+  font-weight: 800;
+  color: rgba(244, 244, 245, 0.85);
+}
+
+.compte-valeur {
+  font-size: 80px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.coeur {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+}
