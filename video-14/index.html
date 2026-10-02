@@ -5,33 +5,323 @@
     <meta name="viewport" content="width=1080, height=1920" />
     <script src="./vendor/gsap.min.js"></script>
     <link rel="stylesheet" href="./identity.css" />
+    <link rel="stylesheet" href="./premium.css" />
+    <link rel="stylesheet" href="./scenes.css" />
   </head>
   <body>
-    <!-- Projet vide, en attente du rush (voir assets/README.md). -->
+    <!--
+      Montage « les galères », dans le style de video-10.
+      Le rush est coupé sur ses creux (14 coupes, 52,36 s → 45,17 s) par la
+      coupe trim/concat ; sous-titres faits sur la vidéo coupée, les derniers
+      mots recalés à la main (le rush s'arrête sur « abonne-toi »).
+      Captures : le tableau des 619,50 € (repris de video-12), les deux
+      campagnes Google Ads du jour, le message « compte en veille ».
+    -->
     <div
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="4"
+      data-duration="45.16"
       data-width="1080"
       data-height="1920"
     >
-      <div class="clip" id="attente" data-start="0" data-duration="4" data-track-index="0">
-        <div class="carte carte--sommet">
-          <div class="etiquette">video-14</div>
-          <div class="titre">En attente<br />du rush</div>
-          <div class="sous-titre">video-14</div>
+      <video
+        id="rush"
+        class="clip"
+        src="assets/rush-coupe.mp4"
+        muted
+        data-start="0"
+        data-duration="45.16"
+      ></video>
+      <audio id="voix" src="assets/rush-coupe.mp4" data-start="0" data-duration="45.16" data-volume="1"></audio>
+
+      <div class="clip" id="voile" data-start="0" data-duration="45.16" data-track-index="0">
+        <div class="voile-haut"></div>
+      </div>
+
+      <!-- 1 — Que des galères -->
+      <div class="clip" id="s-hook" data-start="0" data-duration="5.60" data-track-index="1">
+        <div class="scene" style="top: 230px">
+          <div class="phrase" id="h0">En vrai, c'est fou.</div>
+          <div class="kicker" id="h1" style="margin-top: 30px">Là, j'ai carrément le seum</div>
+          <div class="display" style="margin-top: 20px">
+            <span class="ligne-display"><span class="masque"><span id="h2">Que des</span></span></span>
+            <span class="ligne-display"><span class="masque"><span id="h3" class="serif alerte" style="font-size: 190px">galères.</span></span></span>
+          </div>
         </div>
       </div>
+
+      <!-- 2 — Il y a deux jours : le record -->
+      <div class="clip" id="s-record" data-start="5.60" data-duration="6.50" data-track-index="1">
+        <div class="scene" style="top: 150px">
+          <div class="kicker" id="k-record" style="display: flex; justify-content: center">Il y a deux jours · mon record</div>
+          <div class="tableau" id="tableau" style="margin-top: 24px; width: 520px">
+            <img src="assets/resultats-619.png" alt="Tableau de bord Shopify du 28 sept. : 619,50 € de ventes brutes, 2 commandes" />
+            <div class="cadre-lumiere" id="cadre-619" style="left: 4px; top: 88px; width: 494px; height: 90px"></div>
+          </div>
+          <div class="rangee-pilules" style="justify-content: center">
+            <div class="pilule pilule--pleine" id="p-450" style="font-size: 40px; padding: 18px 36px">≈ 450 € dans ma poche</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 — Hier, zéro vente : ça passe -->
+      <div class="clip" id="s-hier" data-start="12.13" data-duration="2.42" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="kicker">Hier</div>
+          <div class="zero" style="margin-top: 70px">
+            <span class="zero-chiffre" style="font-size: 240px">0</span>
+            <span class="display" style="font-size: 100px">vente</span>
+          </div>
+          <div class="phrase" id="passe" style="margin-top: 10px">ok, ça passe. c'est normal.</div>
+        </div>
+      </div>
+
+      <!-- 4 — Aujourd'hui : plus d'argent sur le compte -->
+      <div class="clip" id="s-compte" data-start="14.57" data-duration="4.43" data-track-index="1">
+        <div class="scene" style="top: 230px">
+          <div class="kicker" id="k-reveil">Aujourd'hui, je me réveille</div>
+          <div class="verre" id="v-compte" style="margin-top: 28px">
+            <div class="kicker" style="color: rgba(244,244,245,0.8)">Compte relié aux pubs</div>
+            <div class="zero-chiffre" id="solde" style="font-size: 170px; line-height: 1.05; margin-top: 16px">0,00 €</div>
+            <div class="phrase" id="plus" style="font-size: 56px; margin-top: 20px">plus d'argent dedans</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 — Le message : compte en veille -->
+      <div class="clip" id="s-erreur" data-start="19.00" data-duration="3.55" data-track-index="1">
+        <div class="scene" style="top: 230px; left: 30px; right: 30px">
+          <div class="kicker" id="k-erreur">Et je reçois ce message</div>
+          <div class="fenetre" id="erreur" style="margin-top: 28px; width: 1020px; height: auto; border-color: rgba(255,59,48,0.8); box-shadow: 0 0 60px rgba(255,59,48,0.35), 0 30px 80px rgba(0,0,0,0.5)">
+            <img src="assets/erreur-crop.png" alt="Google Ads : votre compte est en veille, vous devez effectuer un paiement" style="position: static; width: 1020px" />
+          </div>
+          <div class="display" style="margin-top: 26px; font-size: 110px"><span class="masque"><span id="veille">Compte <span class="serif alerte" style="font-size: 130px">en veille.</span></span></span></div>
+          <div class="rangee-pilules">
+            <div class="pilule" id="p-remis"><span class="pastille-point"></span> Argent remis sur le compte</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 — Les deux campagnes à zéro -->
+      <div class="clip" id="s-campagnes" data-start="22.58" data-duration="4.92" data-track-index="1">
+        <div class="scene" style="top: 160px">
+          <div class="kicker" id="k-camp">Mes deux campagnes</div>
+          <div style="position: relative; margin-top: 20px" id="c1">
+            <div class="kicker" style="color: rgba(244,244,245,0.85)">Shop 1</div>
+            <div class="tableau" style="width: 860px; margin: 10px 0 0; border-width: 6px">
+              <img src="assets/shop1-crop.png" alt="Google Ads, shop 1 : 49 clics, 2,02 k impressions, 7,62 € dépensés, courbe à zéro l'après-midi" />
+              <div class="cadre-lumiere" id="plat1" style="left: 395px; top: 150px; width: 440px; height: 120px; border-color: #ff3b30; box-shadow: 0 0 40px rgba(255,59,48,0.55)"></div>
+            </div>
+          </div>
+          <div style="position: relative; margin-top: 20px" id="c2">
+            <div class="kicker" style="color: rgba(244,244,245,0.85)">Shop 2</div>
+            <div class="tableau" style="width: 860px; margin: 10px 0 0; border-width: 6px">
+              <img src="assets/shop2-crop.png" alt="Google Ads, shop 2 : 1 clic, 210 impressions, 0,14 € dépensés" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 — Deux journées à vide -->
+      <div class="clip" id="s-vide" data-start="27.50" data-duration="2.43" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="display">
+            <span class="ligne-display"><span class="masque"><span id="v1">2 journées</span></span></span>
+            <span class="ligne-display"><span class="masque"><span id="v2" class="serif alerte" style="font-size: 180px">à vide.</span></span></span>
+          </div>
+          <div class="phrase" id="v3" style="margin-top: 24px">j'espère que demain, les clics reviennent</div>
+        </div>
+      </div>
+
+      <!-- 8 — Le scale bloqué -->
+      <div class="clip" id="s-scale" data-start="29.93" data-duration="7.34" data-track-index="1">
+        <div class="scene" style="top: 230px">
+          <div class="verre">
+            <div class="kicker">Aujourd'hui, je devais scaler</div>
+            <div class="titre-verre" style="margin-top: 12px">Le shop 2</div>
+            <div style="display: flex; align-items: baseline; gap: 26px; margin-top: 26px">
+              <span class="compte-valeur" id="b30" style="font-size: 110px">30 €</span>
+              <span class="compte-valeur" style="font-size: 70px; color: var(--gris)">→</span>
+              <span class="compte-valeur accent" id="b40" style="font-size: 110px; position: relative">40 €<span id="barre40" style="position: absolute; left: -8px; right: -8px; top: 50%; height: 12px; margin-top: -6px; border-radius: 6px; background: #ff3b30; transform-origin: 0 50%"></span></span>
+            </div>
+            <div class="kicker" style="margin-top: 10px; color: rgba(244,244,245,0.8)">de budget par jour</div>
+          </div>
+          <div class="rangee-pilules">
+            <div class="pilule" id="p-bloque" style="border-color: rgba(255,59,48,0.7); color: #ff3b30">Je peux pas le faire</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 — Ça fait partie du processus -->
+      <div class="clip" id="s-process" data-start="37.27" data-duration="2.43" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="kicker" id="pr0">Beaucoup de galères, mais</div>
+          <div class="display" style="margin-top: 16px">
+            <span class="ligne-display"><span class="masque"><span id="pr1">ça fait partie du</span></span></span>
+            <span class="ligne-display"><span class="masque"><span id="pr2" class="serif accent" style="font-size: 170px">processus.</span></span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 — Les visites reviendront -->
+      <div class="clip" id="s-visites" data-start="39.70" data-duration="3.00" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="phrase" id="vi0">j'espère que quand</div>
+          <div class="display" style="font-size: 120px; margin-top: 10px">
+            <span class="ligne-display"><span class="masque"><span id="vi1">les visites reviendront</span></span></span>
+          </div>
+          <div class="rangee-pilules">
+            <div class="pilule pilule--pleine" id="vi2" style="font-size: 44px; padding: 20px 40px">→ des commandes</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11 — Like, abonne-toi -->
+      <div class="clip" id="s-fin" data-start="42.70" data-duration="2.46" data-track-index="1">
+        <div class="scene" style="top: 380px; text-align: center">
+          <div class="phrase" id="suivre" style="font-size: 80px">Tu veux suivre ?</div>
+          <div class="rangee-pilules" style="justify-content: center; margin-top: 40px">
+            <div class="pilule" id="like" style="font-size: 48px; padding: 24px 48px">Like</div>
+            <div class="pilule pilule--pleine" id="abonne" style="font-size: 48px; padding: 24px 48px">Abonne-toi</div>
+          </div>
+        </div>
+      </div>
+
+      <audio id="son-galeres" src="assets/sfx/impact.wav" data-start="4.38" data-duration="0.35" data-volume="0.4"></audio>
+      <audio id="son-record" src="assets/sfx/notification.wav" data-start="7.72" data-duration="0.42" data-volume="0.4"></audio>
+      <audio id="son-450" src="assets/sfx/clic.wav" data-start="10.12" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-hier" src="assets/sfx/impact.wav" data-start="12.34" data-duration="0.35" data-volume="0.3"></audio>
+      <audio id="son-solde" src="assets/sfx/impact.wav" data-start="18.19" data-duration="0.35" data-volume="0.35"></audio>
+      <audio id="son-erreur" src="assets/sfx/notification.wav" data-start="20.25" data-duration="0.42" data-volume="0.45"></audio>
+      <audio id="son-remis" src="assets/sfx/clic.wav" data-start="21.31" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-zero" src="assets/sfx/impact.wav" data-start="24.78" data-duration="0.35" data-volume="0.3"></audio>
+      <audio id="son-vide" src="assets/sfx/souffle.wav" data-start="28.3" data-duration="0.55" data-volume="0.3"></audio>
+      <audio id="son-40" src="assets/sfx/clic.wav" data-start="34.96" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-bloque" src="assets/sfx/impact.wav" data-start="36.09" data-duration="0.35" data-volume="0.4"></audio>
+      <audio id="son-process" src="assets/sfx/clic.wav" data-start="38.92" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-fin" src="assets/sfx/basse.wav" data-start="44.2" data-duration="0.90" data-volume="0.4"></audio>
+
+      <!-- Sous-titres mot par mot, calés sur la vidéo coupée -->
+      <div
+        class="clip"
+        id="sous-titres"
+        data-composition-id="subtitles"
+        data-composition-src="compositions/subtitles.html"
+        data-start="0"
+        data-duration="45.16"
+        data-track-index="5"
+      ></div>
     </div>
+
     <script>
       const tl = gsap.timeline({ paused: true });
-      tl.fromTo(
-        "#attente .carte",
-        { xPercent: 18, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
-        0.2,
-      );
+      const doux = "expo.out";
+
+      /* ---------- Le rush : deux cadrages qui alternent, et une lente dérive ---------- */
+      const prises = [0, 4.7, 9.3, 12.13, 14.57, 18.03, 20.87, 25.43, 27.0, 29.93, 33.77, 35.97, 37.27, 38.2, 39.7, 45.16];
+      prises.slice(0, -1).forEach((debut, i) => {
+        const base = i % 2 ? 1.1 : 1.0;
+        tl.fromTo(
+          "#rush",
+          { scale: base },
+          { scale: base + 0.03, duration: prises[i + 1] - debut, ease: "none", immediateRender: false },
+          debut,
+        );
+      });
+
+      function monte(sel, t, duree = 0.55) {
+        tl.fromTo(sel, { yPercent: 110 }, { yPercent: 0, duration: duree, ease: doux }, t);
+      }
+      function pose(sel, t, dx = 0) {
+        tl.fromTo(
+          sel,
+          { opacity: 0, y: 26, x: dx, filter: "blur(12px)" },
+          { opacity: 1, y: 0, x: 0, filter: "blur(0px)", duration: 0.5, ease: doux },
+          t,
+        );
+      }
+      function part(sel, t) {
+        tl.to(sel, { opacity: 0, y: -40, filter: "blur(14px)", duration: 0.26, ease: "power2.in" }, t);
+      }
+      function secoue(sel, t) {
+        tl.to(sel, { keyframes: [{ x: -18 }, { x: 16 }, { x: -10 }, { x: 6 }, { x: 0 }], duration: 0.35 }, t);
+      }
+
+      /* 1 — Que des galères */
+      pose("#h0", 0.12);
+      pose("#h1", 2.52);
+      monte("#h2", 4.0);
+      monte("#h3", 4.3, 0.6);
+      part("#s-hook .scene", 5.34);
+
+      /* 2 — Le record */
+      pose("#k-record", 5.65);
+      tl.fromTo("#tableau", { opacity: 0, y: 80, scale: 0.9, rotation: -3 }, { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.7, ease: doux }, 6.6);
+      tl.fromTo("#cadre-619", { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.35, ease: doux }, 7.72);
+      tl.fromTo("#p-450", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 10.1);
+      part("#s-record .scene", 11.86);
+
+      /* 3 — Hier */
+      tl.fromTo("#s-hier .zero", { opacity: 0, scale: 1.5, filter: "blur(18px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "power4.in" }, 12.2);
+      pose("#passe", 13.28);
+      part("#s-hier .scene", 14.3);
+
+      /* 4 — Plus d'argent sur le compte */
+      pose("#k-reveil", 14.6);
+      pose("#v-compte", 16.3, 50);
+      tl.fromTo("#solde", { opacity: 0.25 }, { opacity: 0.25, duration: 0.01 }, 14.57);
+      tl.to("#solde", { opacity: 1, duration: 0.2 }, 18.1);
+      secoue("#solde", 18.19);
+      pose("#plus", 18.2);
+      part("#s-compte .scene", 18.76);
+
+      /* 5 — Compte en veille */
+      pose("#k-erreur", 19.1);
+      tl.fromTo("#erreur", { opacity: 0, y: -80, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.6)" }, 20.1);
+      secoue("#erreur", 20.65);
+      monte("#veille", 20.5, 0.6);
+      pose("#p-remis", 21.31, 40);
+      part("#s-erreur .scene", 22.3);
+
+      /* 6 — Les deux campagnes à zéro */
+      pose("#k-camp", 22.65);
+      pose("#c1", 23.3, 60);
+      pose("#c2", 23.6, 60);
+      tl.fromTo("#plat1", { opacity: 0, scale: 1.05 }, { opacity: 1, scale: 1, duration: 0.35, ease: doux }, 24.78);
+      part("#s-campagnes .scene", 27.24);
+
+      /* 7 — À vide */
+      monte("#v1", 27.82);
+      monte("#v2", 28.4, 0.6);
+      pose("#v3", 28.76);
+      part("#s-vide .scene", 29.67);
+
+      /* 8 — Le scale bloqué */
+      pose("#s-scale .verre", 30.0, 50);
+      tl.fromTo("#b30", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: doux }, 34.57);
+      tl.fromTo("#b40", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: doux }, 34.96);
+      tl.fromTo("#barre40", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power3.out" }, 36.09);
+      tl.fromTo("#p-bloque", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 36.1);
+      part("#s-scale .scene", 37.0);
+
+      /* 9 — Le processus */
+      pose("#pr0", 37.3);
+      monte("#pr1", 38.37);
+      monte("#pr2", 38.85, 0.6);
+      part("#s-process .scene", 39.44);
+
+      /* 10 — Les visites reviendront */
+      pose("#vi0", 39.75);
+      monte("#vi1", 40.39);
+      tl.fromTo("#vi2", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 41.9);
+      part("#s-visites .scene", 42.44);
+
+      /* 11 — Like, abonne-toi */
+      pose("#suivre", 42.9);
+      tl.fromTo("#like", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 44.2);
+      tl.fromTo("#abonne", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 44.6);
+
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);
