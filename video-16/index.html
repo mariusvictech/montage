@@ -5,33 +5,346 @@
     <meta name="viewport" content="width=1080, height=1920" />
     <script src="./vendor/gsap.min.js"></script>
     <link rel="stylesheet" href="./identity.css" />
+    <link rel="stylesheet" href="./premium.css" />
+    <link rel="stylesheet" href="./scenes.css" />
   </head>
   <body>
-    <!-- Projet vide, en attente du rush (voir assets/README.md). -->
+    <!--
+      Montage « enfin une nouvelle vente », dans le style de video-10.
+      Le rush est coupé sur ses creux (18 coupes, 66,85 s → 60,70 s) par la
+      coupe trim/concat ; sous-titres faits sur la vidéo coupée.
+      Captures : la notification de la commande #1007 (recadrée seule, sans
+      le fond d'écran), le tableau des 619,50 € repris de video-12.
+    -->
     <div
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="4"
+      data-duration="60.70"
       data-width="1080"
       data-height="1920"
     >
-      <div class="clip" id="attente" data-start="0" data-duration="4" data-track-index="0">
-        <div class="carte carte--sommet">
-          <div class="etiquette">video-16</div>
-          <div class="titre">En attente<br />du rush</div>
-          <div class="sous-titre">video-16</div>
+      <video
+        id="rush"
+        class="clip"
+        src="assets/rush-coupe.mp4"
+        muted
+        data-start="0"
+        data-duration="60.70"
+      ></video>
+      <audio id="voix" src="assets/rush-coupe.mp4" data-start="0" data-duration="60.70" data-volume="1"></audio>
+
+      <div class="clip" id="voile" data-start="0" data-duration="60.70" data-track-index="0">
+        <div class="voile-haut"></div>
+      </div>
+
+      <!-- 1 — Enfin une nouvelle vente -->
+      <div class="clip" id="s-hook" data-start="0" data-duration="4.17" data-track-index="1">
+        <div class="scene" style="top: 230px">
+          <div class="display">
+            <span class="ligne-display"><span class="masque"><span id="h1">Enfin une</span></span></span>
+            <span class="ligne-display"><span class="masque"><span id="h2" class="serif accent" style="font-size: 170px">nouvelle vente.</span></span></span>
+          </div>
+          <div class="phrase" id="h3" style="margin-top: 30px">il faut jamais abandonner</div>
         </div>
       </div>
+
+      <!-- 2 — Jour 15 -->
+      <div class="clip" id="s-jour" data-start="4.17" data-duration="3.73" data-track-index="1">
+        <div class="scene" style="top: 250px">
+          <div class="kicker">On est au</div>
+          <div class="display display--xl" style="line-height: 1.05; margin-top: 40px">Jour <span class="accent" id="jour">0</span></div>
+          <div class="phrase" id="j2" style="margin-top: 20px">pour le 1K/day du Q4</div>
+        </div>
+      </div>
+
+      <!-- 3 — La vente du shop 1 -->
+      <div class="clip" id="s-vente" data-start="7.90" data-duration="9.77" data-track-index="1">
+        <div class="scene" style="top: 170px; height: 680px">
+          <div class="kicker" id="k-vente" style="position: absolute; top: 0; left: 0">Shop 1 · aujourd'hui</div>
+          <div class="date" id="date" style="position: absolute; top: 56px; left: 0">Dimanche 4 oct. · 19:29</div>
+          <div class="notif" id="notif" style="position: absolute; top: 120px; left: 0; margin-top: 0">
+            <img src="assets/vente-notif.png" alt="Notification Shopify : commande #1007, 299,90 €" />
+            <div class="reflet" id="reflet"></div>
+          </div>
+          <div class="montant" id="montant" style="position: absolute; top: 330px; left: 0; margin-top: 0">
+            <span id="montant-valeur">0,00 €</span>
+            <span class="etincelle"></span><span class="etincelle"></span><span class="etincelle"></span>
+            <span class="etincelle"></span><span class="etincelle"></span><span class="etincelle"></span>
+            <span class="etincelle"></span><span class="etincelle"></span><span class="etincelle"></span>
+            <span class="etincelle"></span><span class="etincelle"></span><span class="etincelle"></span>
+          </div>
+          <div class="rangee-pilules" style="position: absolute; top: 560px; left: 0; right: 0; margin-top: 0; white-space: nowrap">
+            <div class="pilule pilule--pleine" id="p-poche">≈ 50 € dans ma poche</div>
+            <div class="pilule" id="p-rattrape">ça rattrape un peu</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 — Le site refait -->
+      <div class="clip" id="s-site" data-start="17.67" data-duration="5.30" data-track-index="1">
+        <div class="scene" style="top: 230px">
+          <div class="kicker">En plus, j'ai tout refait</div>
+          <div class="regle" id="r1">
+            <div class="coche" id="ck1"><svg viewBox="0 0 24 24"><path id="v1" d="M4 12.5l5 5L20 6.5" fill="none" stroke="#00e676" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="26" stroke-dashoffset="26"/></svg></div>
+            <div class="regle-texte">Le site</div>
+          </div>
+          <div class="regle" id="r2">
+            <div class="coche" id="ck2"><svg viewBox="0 0 24 24"><path id="v2" d="M4 12.5l5 5L20 6.5" fill="none" stroke="#00e676" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="26" stroke-dashoffset="26"/></svg></div>
+            <div class="regle-texte">Toute l'identité visuelle</div>
+          </div>
+          <div class="phrase" id="content" style="margin-top: 26px">content de moi. on va voir.</div>
+        </div>
+      </div>
+
+      <!-- 5 — Le shop 2 : bien parti, puis cassé -->
+      <div class="clip" id="s-shop2" data-start="23.00" data-duration="9.93" data-track-index="1">
+        <div class="scene" style="top: 150px">
+          <div class="kicker" id="k-shop2" style="display: flex; justify-content: center">Shop 2 · il était super bien parti</div>
+          <div class="tableau" id="tableau" style="margin-top: 24px; width: 480px">
+            <img src="assets/resultats-619.png" alt="Tableau de bord Shopify du 28 sept. : 619,50 € de ventes brutes, 2 commandes" />
+            <div class="cadre-lumiere" id="cadre-619" style="left: 4px; top: 80px; width: 456px; height: 84px"></div>
+          </div>
+          <div class="rangee-pilules" style="justify-content: center; flex-wrap: wrap">
+            <div class="pilule" id="p-argent" style="border-color: rgba(255,59,48,0.7)">Plus d'argent sur le compte pub</div>
+            <div class="pilule" id="p-veille" style="border-color: rgba(255,59,48,0.7); color: #ff3b30">Campagne en veille</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 — Seulement 5 visites -->
+      <div class="clip" id="s-visites" data-start="32.93" data-duration="6.60" data-track-index="1">
+        <div class="scene" style="top: 240px">
+          <div class="kicker" id="k-relance">Ça n'arrive pas à relancer</div>
+          <div class="zero" style="margin-top: 40px">
+            <span class="zero-chiffre" id="cinq" style="font-size: 240px">0</span>
+            <span class="display" style="font-size: 100px">visites</span>
+          </div>
+          <div class="phrase" id="chiant" style="margin-top: 10px">trop chiant. donc on attend.</div>
+        </div>
+      </div>
+
+      <!-- 7 — Shops 3 et 4 -->
+      <div class="clip" id="s-shops" data-start="39.53" data-duration="8.90" data-track-index="1">
+        <div class="scene" style="top: 230px">
+          <div class="kicker">On attend encore aussi</div>
+          <div class="shop-ligne" id="l3"><div class="shop-nom">Shop 3</div><div class="shop-etat" id="e3" style="color: #f5a623">…</div></div>
+          <div class="shop-ligne" id="l4"><div class="shop-nom">Shop 4</div><div class="shop-etat" id="e4" style="color: #f5a623">…</div></div>
+        </div>
+      </div>
+
+      <!-- 8 — 1K/day, le Q4 on est dedans -->
+      <div class="clip" id="s-1k" data-start="48.43" data-duration="5.54" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="phrase" id="k1a">si j'arrive au</div>
+          <div class="display display--xl"><span class="masque"><span id="unk" class="lueur-balayage">1K/day</span></span></div>
+          <div class="rangee-pilules" style="margin-top: 40px">
+            <div class="pilule" id="k1b"><span class="pastille-point"></span> Le Q4 : on est dedans</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 — Ça commence vraiment mi-octobre -->
+      <div class="clip" id="s-octobre" data-start="53.97" data-duration="4.70" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="phrase" id="o0">mais ça commence vraiment</div>
+          <div class="display" style="margin-top: 16px">
+            <span class="ligne-display"><span class="masque"><span id="o1">après la</span></span></span>
+            <span class="ligne-display"><span class="masque"><span id="o2" class="serif accent" style="font-size: 170px">mi-octobre.</span></span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 — Like, abonne-toi -->
+      <div class="clip" id="s-fin" data-start="58.67" data-duration="2.03" data-track-index="1">
+        <div class="scene" style="top: 380px; text-align: center">
+          <div class="phrase" id="suivre" style="font-size: 80px">Tu veux suivre ?</div>
+          <div class="rangee-pilules" style="justify-content: center; margin-top: 40px">
+            <div class="pilule" id="like" style="font-size: 48px; padding: 24px 48px">Like</div>
+            <div class="pilule pilule--pleine" id="abonne" style="font-size: 48px; padding: 24px 48px">Abonne-toi</div>
+          </div>
+        </div>
+      </div>
+
+      <audio id="son-hook" src="assets/sfx/impact.wav" data-start="1.49" data-duration="0.35" data-volume="0.4"></audio>
+      <audio id="son-jour" src="assets/sfx/clic.wav" data-start="4.69" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-vente" src="assets/sfx/notification.wav" data-start="8.9" data-duration="0.42" data-volume="0.45"></audio>
+      <audio id="son-montant" src="assets/sfx/impact.wav" data-start="12.6" data-duration="0.35" data-volume="0.35"></audio>
+      <audio id="son-poche" src="assets/sfx/clic.wav" data-start="14.78" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-r1" src="assets/sfx/clic.wav" data-start="19.06" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-r2" src="assets/sfx/clic.wav" data-start="19.85" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-619" src="assets/sfx/souffle.wav" data-start="24.1" data-duration="0.55" data-volume="0.3"></audio>
+      <audio id="son-veille" src="assets/sfx/impact.wav" data-start="31.19" data-duration="0.35" data-volume="0.35"></audio>
+      <audio id="son-cinq" src="assets/sfx/impact.wav" data-start="33.8" data-duration="0.35" data-volume="0.35"></audio>
+      <audio id="son-s3" src="assets/sfx/clic.wav" data-start="42.3" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-s4" src="assets/sfx/clic.wav" data-start="46.89" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-1k" src="assets/sfx/impact.wav" data-start="50.57" data-duration="0.35" data-volume="0.4"></audio>
+      <audio id="son-fin" src="assets/sfx/basse.wav" data-start="59.62" data-duration="0.90" data-volume="0.4"></audio>
+
+      <!-- Sous-titres mot par mot, calés sur la vidéo coupée -->
+      <div
+        class="clip"
+        id="sous-titres"
+        data-composition-id="subtitles"
+        data-composition-src="compositions/subtitles.html"
+        data-start="0"
+        data-duration="60.70"
+        data-track-index="5"
+      ></div>
     </div>
+
     <script>
       const tl = gsap.timeline({ paused: true });
+      const doux = "expo.out";
+
+      /* ---------- Le rush : deux cadrages qui alternent, et une lente dérive ---------- */
+      const prises = [0, 4.17, 7.9, 11.56, 17.67, 19.67, 21.8, 22.93, 26.03, 32.93, 34.63, 37.0, 39.53, 41.73, 44.43, 48.43, 53.0, 53.97, 56.57, 58.67, 60.7];
+      prises.slice(0, -1).forEach((debut, i) => {
+        const base = i % 2 ? 1.1 : 1.0;
+        tl.fromTo(
+          "#rush",
+          { scale: base },
+          { scale: base + 0.03, duration: prises[i + 1] - debut, ease: "none", immediateRender: false },
+          debut,
+        );
+      });
+
+      function monte(sel, t, duree = 0.55) {
+        tl.fromTo(sel, { yPercent: 110 }, { yPercent: 0, duration: duree, ease: doux }, t);
+      }
+      function pose(sel, t, dx = 0) {
+        tl.fromTo(
+          sel,
+          { opacity: 0, y: 26, x: dx, filter: "blur(12px)" },
+          { opacity: 1, y: 0, x: 0, filter: "blur(0px)", duration: 0.5, ease: doux },
+          t,
+        );
+      }
+      function part(sel, t) {
+        tl.to(sel, { opacity: 0, y: -40, filter: "blur(14px)", duration: 0.26, ease: "power2.in" }, t);
+      }
+      function compte(sel, de, a, t, duree, format) {
+        const o = { v: de };
+        tl.fromTo(
+          o,
+          { v: de },
+          {
+            v: a,
+            duration: duree,
+            ease: "power3.out",
+            onUpdate() {
+              document.querySelector(sel).textContent = format(o.v);
+            },
+          },
+          t,
+        );
+      }
+      function etat(sel, texte, t) {
+        tl.call(() => { document.querySelector(sel).textContent = texte; }, null, t);
+      }
+
+      /* 1 — Enfin une nouvelle vente */
+      monte("#h1", 0.2);
+      monte("#h2", 0.7, 0.7);
+      pose("#h3", 2.5);
+      part("#s-hook .scene", 3.91);
+
+      /* 2 — Jour 15 */
+      pose("#s-jour .kicker", 4.2);
+      pose("#s-jour .display", 4.3);
+      compte("#jour", 0, 15, 4.6, 0.5, (v) => String(Math.round(v)));
+      pose("#j2", 5.4);
+      part("#s-jour .scene", 7.64);
+
+      /* 3 — La vente du shop 1 */
+      pose("#k-vente", 8.0);
+      pose("#date", 8.4);
+      tl.fromTo("#notif", { y: -160, opacity: 0, scale: 0.94 }, { y: 0, opacity: 1, scale: 1, duration: 0.7, ease: "back.out(1.4)" }, 8.85);
+      tl.fromTo("#reflet", { xPercent: -120 }, { xPercent: 320, duration: 0.9, ease: "power2.inOut" }, 9.4);
+      pose("#montant", 11.6);
+      const montant = { v: 0 };
       tl.fromTo(
-        "#attente .carte",
-        { xPercent: 18, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
-        0.2,
+        montant,
+        { v: 0 },
+        {
+          v: 299.9,
+          duration: 0.6,
+          ease: "power3.out",
+          onUpdate() {
+            document.getElementById("montant-valeur").textContent = montant.v.toFixed(2).replace(".", ",") + " €";
+          },
+        },
+        12.0,
       );
+      document.querySelectorAll("#montant .etincelle").forEach((e, i) => {
+        const angle = (i / 12) * Math.PI * 2;
+        const r = 260 + (i % 3) * 70;
+        tl.fromTo(
+          e,
+          { x: 0, y: 0, opacity: 1, scale: 1 },
+          { x: Math.cos(angle) * r, y: Math.sin(angle) * r * 0.5, opacity: 0, scale: 0.3, duration: 0.8, ease: "expo.out" },
+          12.6,
+        );
+      });
+      tl.fromTo("#p-poche", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 14.7);
+      pose("#p-rattrape", 16.7, 30);
+      part("#s-vente .scene", 17.41);
+
+      /* 4 — Le site refait */
+      pose("#r1", 18.8, 50);
+      tl.fromTo("#ck1", { borderColor: "rgba(255,255,255,0.25)" }, { borderColor: "#00e676", duration: 0.2 }, 19.06);
+      tl.fromTo("#v1", { strokeDashoffset: 26 }, { strokeDashoffset: 0, duration: 0.3 }, 19.06);
+      pose("#r2", 19.6, 50);
+      tl.fromTo("#ck2", { borderColor: "rgba(255,255,255,0.25)" }, { borderColor: "#00e676", duration: 0.2 }, 20.28);
+      tl.fromTo("#v2", { strokeDashoffset: 26 }, { strokeDashoffset: 0, duration: 0.3 }, 20.28);
+      pose("#content", 21.2);
+      part("#s-site .scene", 22.71);
+
+      /* 5 — Shop 2 */
+      pose("#k-shop2", 23.96);
+      tl.fromTo("#tableau", { opacity: 0, y: 80, scale: 0.9, rotation: -3 }, { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.6, ease: doux }, 24.3);
+      tl.fromTo("#cadre-619", { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.35, ease: doux }, 25.16);
+      pose("#p-argent", 27.04, 30);
+      tl.to("#tableau", { opacity: 0.45, scale: 0.97, duration: 0.4 }, 29.59);
+      pose("#p-veille", 30.85, 30);
+      part("#s-shop2 .scene", 32.67);
+
+      /* 6 — 5 visites */
+      pose("#k-relance", 32.95);
+      tl.fromTo("#s-visites .zero", { opacity: 0, scale: 1.5, filter: "blur(18px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "power4.in" }, 33.45);
+      compte("#cinq", 0, 5, 33.8, 0.3, (v) => String(Math.round(v)));
+      pose("#chiant", 34.7);
+      part("#s-visites .scene", 39.27);
+
+      /* 7 — Shops 3 et 4 */
+      etat("#e3", "…", 39.53);
+      etat("#e4", "…", 39.53);
+      pose("#l3", 39.6, 50);
+      etat("#e3", "dans 4–5 jours", 42.3);
+      tl.fromTo("#l3", { scale: 1.04 }, { scale: 1, duration: 0.3 }, 42.3);
+      pose("#l4", 44.5, 50);
+      etat("#e4", "dans 2 semaines", 46.89);
+      tl.fromTo("#l4", { scale: 1.04 }, { scale: 1, duration: 0.3 }, 46.89);
+      part("#s-shops .scene", 48.17);
+
+      /* 8 — 1K/day, le Q4 */
+      pose("#k1a", 50.0);
+      monte("#unk", 50.45, 0.55);
+      tl.fromTo("#unk", { backgroundPosition: "100% 0" }, { backgroundPosition: "0% 0", duration: 0.9, ease: "power2.inOut" }, 50.8);
+      tl.fromTo("#k1b", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 52.19);
+      part("#s-1k .scene", 53.71);
+
+      /* 9 — Mi-octobre */
+      pose("#o0", 54.2);
+      monte("#o1", 55.9);
+      monte("#o2", 56.3, 0.6);
+      part("#s-octobre .scene", 58.41);
+
+      /* 10 — Like, abonne-toi */
+      pose("#suivre", 58.8);
+      tl.fromTo("#like", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 59.62);
+      tl.fromTo("#abonne", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 59.93);
+
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);
