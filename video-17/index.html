@@ -5,33 +5,346 @@
     <meta name="viewport" content="width=1080, height=1920" />
     <script src="./vendor/gsap.min.js"></script>
     <link rel="stylesheet" href="./identity.css" />
+    <link rel="stylesheet" href="./premium.css" />
+    <link rel="stylesheet" href="./scenes.css" />
   </head>
   <body>
-    <!-- Projet vide, en attente du rush (voir assets/README.md). -->
+    <!--
+      Montage « pourquoi Google Ads quand tu débutes », full motion design,
+      dans le style de video-10. Le rush est coupé sur ses creux (13 coupes,
+      52,80 s → 48,83 s) par la coupe trim/concat ; sous-titres faits sur la
+      vidéo coupée. Aucune capture.
+    -->
     <div
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="4"
+      data-duration="48.83"
       data-width="1080"
       data-height="1920"
     >
-      <div class="clip" id="attente" data-start="0" data-duration="4" data-track-index="0">
-        <div class="carte carte--sommet">
-          <div class="etiquette">video-17</div>
-          <div class="titre">En attente<br />du rush</div>
-          <div class="sous-titre">video-17</div>
+      <video
+        id="rush"
+        class="clip"
+        src="assets/rush-coupe.mp4"
+        muted
+        data-start="0"
+        data-duration="48.83"
+      ></video>
+      <audio id="voix" src="assets/rush-coupe.mp4" data-start="0" data-duration="48.83" data-volume="1"></audio>
+
+      <div class="clip" id="voile" data-start="0" data-duration="48.83" data-track-index="0">
+        <div class="voile-haut"></div>
+      </div>
+
+      <!-- 1 — Débutant ? Google Ads -->
+      <div class="clip" id="s-hook" data-start="0" data-duration="5.29" data-track-index="1">
+        <div class="scene" style="top: 230px">
+          <div class="kicker" id="h0">Débutant en e-commerce ?</div>
+          <div class="phrase" id="h1" style="margin-top: 26px">le meilleur endroit, c'est</div>
+          <div class="display display--xl" style="line-height: 1.05; margin-top: 6px">
+            <span class="masque"><span id="h2">Google</span></span>
+            <span class="masque"><span id="h3" class="serif accent">Ads.</span></span>
+          </div>
         </div>
       </div>
+
+      <!-- 2 — Raison n°1 : pas de créas -->
+      <div class="clip" id="s-creas" data-start="5.29" data-duration="8.64" data-track-index="1">
+        <div class="scene" style="top: 200px">
+          <div class="kicker" id="k-creas">Raison n°1</div>
+          <div class="display" style="margin-top: 14px; font-size: 130px">
+            <span class="masque"><span id="c1">Pas de</span></span>
+            <span class="masque"><span id="c2" class="serif accent" style="font-size: 160px">créas.</span></span>
+          </div>
+          <div class="phrase" id="c3" style="font-size: 56px; margin-top: 6px">pas besoin d'être fort en marketing</div>
+          <div class="kicker" id="c4" style="margin-top: 36px">Il te faut juste</div>
+          <div class="regle" id="r1" style="padding: 22px 32px">
+            <div class="coche" id="ck1"><svg viewBox="0 0 24 24"><path id="v1" d="M4 12.5l5 5L20 6.5" fill="none" stroke="#00e676" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="26" stroke-dashoffset="26"/></svg></div>
+            <div class="regle-texte">Une très bonne boutique</div>
+          </div>
+          <div class="regle" id="r2" style="padding: 22px 32px; margin-top: 14px">
+            <div class="coche" id="ck2"><svg viewBox="0 0 24 24"><path id="v2" d="M4 12.5l5 5L20 6.5" fill="none" stroke="#00e676" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="26" stroke-dashoffset="26"/></svg></div>
+            <div class="regle-texte">Un bon produit <span class="accent">recherché</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 — La seule barrière : le GMC -->
+      <div class="clip" id="s-gmc" data-start="13.93" data-duration="6.87" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="kicker" id="g0">La seule barrière à l'entrée</div>
+          <div style="display: flex; align-items: center; gap: 40px; margin-top: 24px">
+            <svg id="bouclier" viewBox="0 0 24 24" style="width: 220px; height: 220px; flex: none; overflow: visible">
+              <path d="M12 2l8 3v6c0 5-3.4 9.3-8 11-4.6-1.7-8-6-8-11V5l8-3z" fill="rgba(16,16,18,0.7)" stroke="#00e676" stroke-width="1.2" stroke-linejoin="round" />
+              <path id="b-ok" d="M8 12.2l2.8 2.8L16.2 9.6" fill="none" stroke="#00e676" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              <path id="b-non" d="M9 9l6 6M15 9l-6 6" fill="none" stroke="#ff3b30" stroke-width="1.8" stroke-linecap="round" opacity="0" />
+            </svg>
+            <div>
+              <div class="display display--xl" style="line-height: 1"><span class="masque"><span id="g1" class="lueur-balayage">GMC</span></span></div>
+              <div class="phrase" id="g2" style="font-size: 54px">le garde du corps</div>
+            </div>
+          </div>
+          <div class="phrase" id="g3" style="margin-top: 24px; font-size: 60px">qui t'autorise — <span class="alerte">ou pas</span> — à venir sur <span class="accent">Google Shopping</span></div>
+        </div>
+      </div>
+
+      <!-- 4 — Être accompagné -->
+      <div class="clip" id="s-accomp" data-start="20.80" data-duration="2.20" data-track-index="1">
+        <div class="scene" style="top: 280px">
+          <div class="kicker">C'est pour ça qu'il faut</div>
+          <div class="display" style="margin-top: 14px">
+            <span class="ligne-display"><span class="masque"><span id="a1">être</span></span></span>
+            <span class="ligne-display"><span class="masque"><span id="a2" class="serif accent" style="font-size: 170px">accompagné.</span></span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 — L'accompagnement de Gaspard -->
+      <div class="clip" id="s-gaspard" data-start="23.00" data-duration="7.00" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="verre" id="v-gaspard">
+            <div class="kicker">Par exemple, l'accompagnement de</div>
+            <div class="titre-verre" style="margin-top: 12px">Gaspard</div>
+          </div>
+          <div class="regle" id="g-r1" style="padding: 22px 32px">
+            <div class="coche" id="gk1"><svg viewBox="0 0 24 24"><path id="gv1" d="M4 12.5l5 5L20 6.5" fill="none" stroke="#00e676" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="26" stroke-dashoffset="26"/></svg></div>
+            <div class="regle-texte">Un mec qui travaille à Google</div>
+          </div>
+          <div class="regle" id="g-r2" style="padding: 22px 32px; margin-top: 14px">
+            <div class="coche" id="gk2"><svg viewBox="0 0 24 24"><path id="gv2" d="M4 12.5l5 5L20 6.5" fill="none" stroke="#00e676" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="26" stroke-dashoffset="26"/></svg></div>
+            <div class="regle-texte">Une trame à respecter</div>
+          </div>
+          <div class="rangee-pilules">
+            <div class="pilule pilule--pleine" id="g-ban" style="font-size: 40px; padding: 18px 36px">Te faire ban : impossible</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 — Tout seul : 100 % ban -->
+      <div class="clip" id="s-seul" data-start="30.00" data-duration="4.45" data-track-index="1">
+        <div class="scene" style="top: 250px">
+          <div class="kicker" id="t0" style="color: #ff3b30">Tout seul, sans les stratégies ?</div>
+          <div class="zero-chiffre" id="cent" style="font-size: 260px; line-height: 1.05; margin-top: 30px">0 %</div>
+          <div class="phrase" id="t1" style="margin-top: 36px">de te faire ban. c'est obligé.</div>
+        </div>
+      </div>
+
+      <!-- 7 — Charbonner les shops : 2 brandés, pas assez -->
+      <div class="clip" id="s-charbon" data-start="34.45" data-duration="3.75" data-track-index="1">
+        <div class="scene" style="top: 250px">
+          <div class="kicker">Après, tu charbonnes tes shops</div>
+          <div class="rangee" style="position: relative; top: 0; left: 0; width: 920px; margin-top: 30px">
+            <div class="pastille" id="m1">S1</div>
+            <div class="pastille" id="m2">S2</div>
+          </div>
+          <div class="phrase" id="merde" style="margin-top: 24px">moi, que 2 brandés : <span class="alerte">c'est de la merde.</span></div>
+        </div>
+      </div>
+
+      <!-- 8 — Le mieux : 5-6 shops -->
+      <div class="clip" id="s-six" data-start="38.20" data-duration="3.88" data-track-index="1">
+        <div class="scene" style="top: 250px">
+          <div class="kicker">Le mieux</div>
+          <div class="rangee" style="position: relative; top: 0; left: 0; width: 920px; margin-top: 30px">
+            <div class="pastille" id="n1">S1</div>
+            <div class="pastille" id="n2">S2</div>
+            <div class="pastille" id="n3">S3</div>
+            <div class="pastille" id="n4">S4</div>
+            <div class="pastille" id="n5">S5</div>
+            <div class="pastille" id="n6">S6</div>
+          </div>
+          <div class="phrase" id="six" style="margin-top: 24px">5-6 shops, jusqu'au <span class="accent">1K/day</span></div>
+        </div>
+      </div>
+
+      <!-- 9 — Bientôt 4 en ligne, 1K/day -->
+      <div class="clip" id="s-quatre" data-start="42.08" data-duration="4.52" data-track-index="1">
+        <div class="scene" style="top: 250px">
+          <div class="kicker">Bientôt en ligne, pour le Q4</div>
+          <div class="rangee" style="position: relative; top: 0; left: 0; width: 920px; margin-top: 30px">
+            <div class="pastille" id="q1">S1</div>
+            <div class="pastille" id="q2">S2</div>
+            <div class="pastille" id="q3">S3</div>
+            <div class="pastille" id="q4">S4</div>
+          </div>
+          <div class="display display--xl" style="margin-top: 20px"><span class="masque"><span id="unk" class="lueur-balayage">1K/day</span></span></div>
+        </div>
+      </div>
+
+      <!-- 10 — Like, abonne-toi -->
+      <div class="clip" id="s-fin" data-start="46.60" data-duration="2.23" data-track-index="1">
+        <div class="scene" style="top: 380px; text-align: center">
+          <div class="phrase" id="suivre" style="font-size: 80px">Tu veux savoir ?</div>
+          <div class="rangee-pilules" style="justify-content: center; margin-top: 40px">
+            <div class="pilule" id="like" style="font-size: 48px; padding: 24px 48px">Like</div>
+            <div class="pilule pilule--pleine" id="abonne" style="font-size: 48px; padding: 24px 48px">Abonne-toi</div>
+          </div>
+        </div>
+      </div>
+
+      <audio id="son-ads" src="assets/sfx/impact.wav" data-start="4.08" data-duration="0.35" data-volume="0.4"></audio>
+      <audio id="son-creas" src="assets/sfx/clic.wav" data-start="6.05" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-r1" src="assets/sfx/clic.wav" data-start="10.28" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-r2" src="assets/sfx/clic.wav" data-start="12.7" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-gmc" src="assets/sfx/impact.wav" data-start="16.72" data-duration="0.35" data-volume="0.4"></audio>
+      <audio id="son-ounon" src="assets/sfx/clic.wav" data-start="19.28" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-accomp" src="assets/sfx/souffle.wav" data-start="22.3" data-duration="0.55" data-volume="0.3"></audio>
+      <audio id="son-g1" src="assets/sfx/clic.wav" data-start="26.15" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-g2" src="assets/sfx/clic.wav" data-start="27.0" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-ban" src="assets/sfx/notification.wav" data-start="28.11" data-duration="0.42" data-volume="0.4"></audio>
+      <audio id="son-cent" src="assets/sfx/impact.wav" data-start="32.9" data-duration="0.35" data-volume="0.4"></audio>
+      <audio id="son-merde" src="assets/sfx/impact.wav" data-start="37.97" data-duration="0.35" data-volume="0.3"></audio>
+      <audio id="son-six" src="assets/sfx/clic.wav" data-start="39.06" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-1k" src="assets/sfx/impact.wav" data-start="45.63" data-duration="0.35" data-volume="0.4"></audio>
+      <audio id="son-fin" src="assets/sfx/basse.wav" data-start="46.91" data-duration="0.90" data-volume="0.4"></audio>
+
+      <!-- Sous-titres mot par mot, calés sur la vidéo coupée -->
+      <div
+        class="clip"
+        id="sous-titres"
+        data-composition-id="subtitles"
+        data-composition-src="compositions/subtitles.html"
+        data-start="0"
+        data-duration="48.83"
+        data-track-index="5"
+      ></div>
     </div>
+
     <script>
       const tl = gsap.timeline({ paused: true });
+      const doux = "expo.out";
+
+      /* ---------- Le rush : deux cadrages qui alternent, et une lente dérive ---------- */
+      const prises = [0, 4.4, 5.37, 9.9, 14.17, 18.37, 20.97, 25.0, 30.07, 32.87, 34.6, 38.37, 42.2, 44.07, 47.9, 48.83];
+      prises.slice(0, -1).forEach((debut, i) => {
+        const base = i % 2 ? 1.1 : 1.0;
+        tl.fromTo(
+          "#rush",
+          { scale: base },
+          { scale: base + 0.03, duration: prises[i + 1] - debut, ease: "none", immediateRender: false },
+          debut,
+        );
+      });
+
+      function monte(sel, t, duree = 0.55) {
+        tl.fromTo(sel, { yPercent: 110 }, { yPercent: 0, duration: duree, ease: doux }, t);
+      }
+      function pose(sel, t, dx = 0) {
+        tl.fromTo(
+          sel,
+          { opacity: 0, y: 26, x: dx, filter: "blur(12px)" },
+          { opacity: 1, y: 0, x: 0, filter: "blur(0px)", duration: 0.5, ease: doux },
+          t,
+        );
+      }
+      function part(sel, t) {
+        tl.to(sel, { opacity: 0, y: -40, filter: "blur(14px)", duration: 0.26, ease: "power2.in" }, t);
+      }
+      function coche(rang, ck, v, t) {
+        pose(rang, t - 0.3, 50);
+        tl.fromTo(ck, { borderColor: "rgba(255,255,255,0.25)" }, { borderColor: "#00e676", duration: 0.2 }, t);
+        tl.fromTo(v, { strokeDashoffset: 26 }, { strokeDashoffset: 0, duration: 0.3, ease: "power2.out" }, t);
+      }
+      function allume(liste, t0, pas, couleur = "#00e676") {
+        liste.forEach((sel, i) => {
+          const t = t0 + i * pas;
+          tl.fromTo(
+            sel,
+            { borderColor: "rgba(255,255,255,0.18)", color: "#8a8a8f", scale: 1 },
+            { borderColor: couleur, color: couleur, scale: 1.06, duration: 0.18 },
+            t,
+          );
+          tl.to(sel, { scale: 1, duration: 0.18 }, t + 0.18);
+        });
+      }
+
+      /* 1 — Google Ads */
+      pose("#h0", 0.5);
+      pose("#h1", 1.9);
+      monte("#h2", 3.6);
+      monte("#h3", 4.0, 0.6);
+      part("#s-hook .scene", 5.03);
+
+      /* 2 — Raison n°1 */
+      pose("#k-creas", 5.3);
+      monte("#c1", 5.75);
+      monte("#c2", 6.0, 0.6);
+      pose("#c3", 7.9);
+      pose("#c4", 9.3);
+      coche("#r1", "#ck1", "#v1", 10.28);
+      coche("#r2", "#ck2", "#v2", 12.7);
+      part("#s-creas .scene", 13.67);
+
+      /* 3 — Le GMC */
+      pose("#g0", 14.2);
+      tl.fromTo("#bouclier", { opacity: 0, scale: 0.6, rotation: -20 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.6, ease: "back.out(1.8)" }, 16.3);
+      monte("#g1", 16.6, 0.6);
+      tl.fromTo("#g1", { backgroundPosition: "100% 0" }, { backgroundPosition: "0% 0", duration: 1.0, ease: "power2.inOut" }, 17.0);
+      pose("#g2", 17.45);
+      pose("#g3", 18.5);
+      tl.to("#b-ok", { opacity: 0, duration: 0.15 }, 19.2);
+      tl.fromTo("#b-non", { opacity: 0 }, { opacity: 1, duration: 0.15 }, 19.2);
+      tl.to("#bouclier", { keyframes: [{ x: -12 }, { x: 10 }, { x: -6 }, { x: 0 }], duration: 0.3 }, 19.28);
+      tl.to("#b-non", { opacity: 0, duration: 0.15 }, 20.1);
+      tl.to("#b-ok", { opacity: 1, duration: 0.15 }, 20.1);
+      part("#s-gmc .scene", 20.54);
+
+      /* 4 — Accompagné */
+      monte("#a1", 21.9);
+      monte("#a2", 22.2, 0.6);
+      part("#s-accomp .scene", 22.74);
+
+      /* 5 — Gaspard */
+      pose("#v-gaspard", 23.1, 50);
+      coche("#g-r1", "#gk1", "#gv1", 26.15);
+      coche("#g-r2", "#gk2", "#gv2", 27.0);
+      tl.fromTo("#g-ban", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 28.11);
+      part("#s-gaspard .scene", 29.74);
+
+      /* 6 — 100 % ban */
+      pose("#t0", 30.2);
+      pose("#cent", 32.6);
+      const cent = { v: 0 };
       tl.fromTo(
-        "#attente .carte",
-        { xPercent: 18, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
-        0.2,
+        cent,
+        { v: 0 },
+        {
+          v: 100,
+          duration: 0.5,
+          ease: "power3.out",
+          onUpdate() {
+            document.getElementById("cent").textContent = Math.round(cent.v) + " %";
+          },
+        },
+        32.9,
       );
+      tl.to("#cent", { keyframes: [{ x: -16 }, { x: 14 }, { x: -8 }, { x: 0 }], duration: 0.3 }, 33.45);
+      pose("#t1", 33.45);
+      part("#s-seul .scene", 34.19);
+
+      /* 7 — 2 brandés */
+      allume(["#m1", "#m2"], 36.88, 0.15);
+      pose("#merde", 37.27);
+      part("#s-charbon .scene", 37.94);
+
+      /* 8 — 5-6 shops */
+      allume(["#n1", "#n2", "#n3", "#n4", "#n5", "#n6"], 39.0, 0.1);
+      pose("#six", 39.86);
+      part("#s-six .scene", 41.82);
+
+      /* 9 — Bientôt 4, 1K/day */
+      allume(["#q1", "#q2", "#q3", "#q4"], 42.96, 0.12);
+      monte("#unk", 45.5, 0.5);
+      tl.fromTo("#unk", { backgroundPosition: "100% 0" }, { backgroundPosition: "0% 0", duration: 0.8, ease: "power2.inOut" }, 45.7);
+      part("#s-quatre .scene", 46.34);
+
+      /* 10 — Like, abonne-toi */
+      pose("#suivre", 46.6);
+      tl.fromTo("#like", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 46.91);
+      tl.fromTo("#abonne", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 47.12);
+      tl.fromTo("#abonne", { boxShadow: "0 0 0 0 rgba(0,230,118,0.7)" }, { boxShadow: "0 0 0 30px rgba(0,230,118,0)", duration: 0.8, ease: "power2.out" }, 47.5);
+
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);
