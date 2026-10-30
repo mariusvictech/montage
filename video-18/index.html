@@ -15,7 +15,7 @@
       coupe trim/concat ; sous-titres faits sur la vidéo coupée.
       Il dit « ce mois-ci » : ce sont les résultats de la semaine, on écrit
       « 7 derniers jours » (à l'écran et dans les sous-titres).
-      Captures : la photo de Gaspard, deux tableaux Shopify « 7 derniers jours »
+      Captures : la photo de Gaspard, deux tableaux Shopify « 7 derniers jours » (deux boutiques, total 1 679,00 €)
       recadrés sous le bandeau, sans barre de navigation.
     -->
     <div
@@ -152,8 +152,8 @@
               <div class="montant" id="m2">0,00 €</div>
             </div>
           </div>
-          <div class="rangee-pilules" style="justify-content: center">
-            <div class="pilule" id="p-ca">C'est du CA</div>
+          <div class="rangee-pilules" style="flex-direction: column; align-items: center; gap: 14px; margin-top: 22px; white-space: nowrap">
+            <div class="pilule pilule--pleine" id="p-ca" style="font-size: 40px">Total <span id="total">0,00 €</span> de CA</div>
             <div class="pilule" id="p-poche" style="border-color: rgba(255,59,48,0.7)">Pas dans ma poche</div>
           </div>
         </div>
@@ -343,6 +343,12 @@
       euros("#m1", 799.8, 36.0);
       euros("#m2", 879.2, 36.0);
       surgit("#p-ca", 36.65);
+      {
+        const o = { v: 0 };
+        tl.fromTo(o, { v: 0 }, { v: 1679, duration: 0.7, ease: "power3.out", onUpdate() {
+          document.getElementById("total").textContent = o.v.toFixed(2).replace(".", ",").replace(/^(\d)(\d{3})/, "$1 $2") + " €";
+        } }, 36.75);
+      }
       surgit("#p-poche", 37.3);
       part("#s-resultats .scene", 38.14);
 
