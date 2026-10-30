@@ -491,3 +491,26 @@
   letter-spacing: -0.01em;
   text-transform: uppercase;
 }
+
+/* ---------- video-18 : les deux tableaux de la semaine ---------- */
+.duo {
+  display: flex;
+  gap: 40px;
+  margin-top: 26px;
+}
+
+.duo-col {
+  width: 440px;
+}
+
+.duo .tableau {
+  width: 440px;
+  border-width: 8px;
+  border-radius: 34px;
+}
+
+.duo .montant {
+  margin-top: 18px;
+  font-size: 86px;
+  text-align: center;
+}
