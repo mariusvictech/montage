@@ -1,11 +1,9 @@
 [
-  { "i": 52, "texte": "campagnes" },
-  { "i": 85, "texte": "ChatGPT," },
-  { "i": 86, "texte": "Claude," },
-  { "i": 114, "texte": "Donc" },
-  { "i": 158, "texte": "ces" },
-  { "i": 159, "texte": "7 derniers jours" },
-  { "i": 183, "texte": "1K/day," },
-  { "i": 213, "texte": "1K/day," },
-  { "i": 230, "texte": "DM" }
+  {"i": 52, "texte": "campagnes"},
+  {"i": 85, "texte": "ChatGPT,"},
+  {"i": 86, "texte": "Claude,"},
+  {"i": 114, "texte": "Donc"},
+  {"i": 183, "texte": "1K/day,"},
+  {"i": 213, "texte": "1K/day,"},
+  {"i": 230, "texte": "DM"}
 ]
