@@ -49,6 +49,12 @@ Si `hyperframes` n'est pas dans le PATH : `bash scripts/setup.sh` puis
    les timings du rush recalés dérivent et empilent des mots sur les coupes.
    Une phrase dite deux fois (prise ratée) : ne garder que la dernière, avec
    `RETIRER="début-fin" bash scripts/monter.sh video-N` (secondes du rush).
+   **À partir de video-19** : il veut plus d'illustration animée, moins de
+   texte. Ne pas se contenter d'écrire en gros ce qu'il dit : dessiner en
+   motion design ce dont il parle (objets, icônes, schémas, petites scènes
+   animées en SVG/CSS — un téléphone qui reçoit des commandes, un graphique
+   qui monte, une boutique qui se construit, des flèches, des personnages
+   simples…), le texte ne servant que d'appoint.
 5. **Captures d'écran** : il les dépose dans `video-N/assets/` avec le rush
    (png, jpg, heic). Un HEIC d'iPhone est en tuiles, ffmpeg n'en lit qu'une :
    le convertir avec `pip install pillow-heif` puis PIL. Ne garder que la
