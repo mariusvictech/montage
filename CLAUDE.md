@@ -55,6 +55,8 @@ Si `hyperframes` n'est pas dans le PATH : `bash scripts/setup.sh` puis
    animées en SVG/CSS — un téléphone qui reçoit des commandes, un graphique
    qui monte, une boutique qui se construit, des flèches, des personnages
    simples…), le texte ne servant que d'appoint.
+   Référence validée par l'utilisateur : `video-19/index.html` (+ la
+   section « video-19 » de `scenes.css`).
 5. **Captures d'écran** : il les dépose dans `video-N/assets/` avec le rush
    (png, jpg, heic). Un HEIC d'iPhone est en tuiles, ffmpeg n'en lit qu'une :
    le convertir avec `pip install pillow-heif` puis PIL. Ne garder que la
