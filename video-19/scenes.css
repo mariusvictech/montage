@@ -514,3 +514,408 @@
   font-size: 66px;
   text-align: center;
 }
+
+/* ---------- video-19 : illustrations animées ---------- */
+.titre-court {
+  font-size: 84px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.55);
+}
+
+.titre-court .serif {
+  font-size: 96px;
+}
+
+.scene-illu {
+  position: relative;
+  height: 470px;
+  margin-top: 34px;
+}
+
+/* Navigateur : la boutique */
+.navigateur {
+  position: absolute;
+  left: 60px;
+  right: 60px;
+  top: 0;
+  height: 440px;
+  border-radius: 34px;
+  overflow: hidden;
+}
+
+.nav-barre {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 64px;
+  padding: 0 26px;
+  border-bottom: 1.5px solid var(--liseré);
+}
+
+.nav-barre i {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.nav-adresse {
+  flex: 1;
+  height: 30px;
+  margin-left: 20px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.grille-produits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  padding: 28px;
+}
+
+.tuile {
+  height: 300px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.tuile-image {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 18px;
+  height: 170px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.tuile-ligne {
+  position: absolute;
+  left: 18px;
+  height: 18px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.tuile-prix {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--vert);
+  color: #04140a;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+/* Objets à vendre */
+.objets {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.objet {
+  position: relative;
+  width: 200px;
+  height: 240px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.objet svg {
+  width: 130px;
+  height: 130px;
+}
+
+.tag-vendu {
+  position: absolute;
+  left: 50%;
+  bottom: -26px;
+  margin-left: -78px;
+  width: 156px;
+  padding: 10px 0;
+  border-radius: 14px;
+  background: var(--vert);
+  color: #04140a;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-align: center;
+  transform-origin: 50% 0;
+  box-shadow: 0 10px 30px rgba(0, 230, 118, 0.4);
+}
+
+/* Persona */
+.persona {
+  position: absolute;
+  padding: 34px 40px;
+  border-radius: 40px;
+}
+
+.persona-tete {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.persona-avatar {
+  flex: none;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2b2b31, #3f3f46);
+  border: 4px solid var(--vert);
+  overflow: hidden;
+  position: relative;
+}
+
+.persona-avatar svg {
+  position: absolute;
+  inset: 0;
+}
+
+.persona-nom {
+  font-size: 46px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.persona-sous {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--vert);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.trait {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 26px;
+}
+
+.trait-nom {
+  width: 200px;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.trait-barre {
+  flex: 1;
+  height: 22px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.trait-barre span {
+  display: block;
+  height: 100%;
+  border-radius: 11px;
+  background: linear-gradient(90deg, #00b35c, var(--vert));
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+
+.trait-coche {
+  width: 44px;
+  height: 44px;
+}
+
+.onde-arc {
+  position: absolute;
+  border: 6px solid var(--vert);
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  transform: rotate(45deg);
+  opacity: 0;
+}
+
+/* Parcours d'achat */
+.parcours-ligne {
+  position: absolute;
+  left: 110px;
+  right: 110px;
+  top: 170px;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.parcours-ligne span {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--vert);
+  box-shadow: 0 0 20px var(--vert);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+
+.etape {
+  position: absolute;
+  top: 80px;
+  width: 180px;
+  margin-left: -90px;
+  text-align: center;
+}
+
+.etape-rond {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: none;
+}
+
+.etape-rond svg {
+  width: 90px;
+  height: 90px;
+}
+
+.etape-nom {
+  margin-top: 18px;
+  font-size: 32px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.marcheur {
+  position: absolute;
+  left: 110px;
+  top: 0;
+  width: 76px;
+  height: 76px;
+  margin-left: -38px;
+  border-radius: 50%;
+  background: #f4f4f5;
+  border: 5px solid var(--vert);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.pensee {
+  position: absolute;
+  top: 330px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+/* Graphique */
+.graphe {
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  top: 0;
+  height: 460px;
+  padding: 30px;
+}
+
+/* Calendrier des calls */
+.calendrier {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+}
+
+.jour {
+  height: 130px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid var(--liseré);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+
+.jour b {
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--gris);
+}
+
+.jour svg {
+  width: 52px;
+  height: 52px;
+  opacity: 0;
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 30px;
+  border-radius: 999px;
+  background: #ff3b30;
+  color: #fff;
+  font-size: 40px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  box-shadow: 0 0 40px rgba(255, 59, 48, 0.55);
+}
+
+.live i {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* DM */
+.messagerie {
+  position: absolute;
+  left: 120px;
+  right: 120px;
+  top: 0;
+  padding: 30px;
+  border-radius: 40px;
+}
+
+.msg {
+  height: 70px;
+  border-radius: 35px;
+  margin-top: 18px;
+}
+
+.msg--recu {
+  width: 70%;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.msg--envoye {
+  width: 56%;
+  margin-left: auto;
+  background: var(--vert);
+}
+
+/* Jauge 1K/day */
+.cadran {
+  position: relative;
+  width: 640px;
+  height: 340px;
+  margin: 0 auto;
+}
+
+.cadran svg {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+}

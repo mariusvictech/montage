@@ -5,33 +5,381 @@
     <meta name="viewport" content="width=1080, height=1920" />
     <script src="./vendor/gsap.min.js"></script>
     <link rel="stylesheet" href="./identity.css" />
+    <link rel="stylesheet" href="./premium.css" />
+    <link rel="stylesheet" href="./scenes.css" />
   </head>
   <body>
-    <!-- Projet vide, en attente du rush (voir assets/README.md). -->
+    <!--
+      Montage « ce qui a tout changé : le marketing et le persona ».
+      À partir d'ici : illustrer en motion design ce qu'il dit (boutique,
+      objets qui se vendent, mégaphone, fiche persona, parcours d'achat,
+      courbe, calendrier des calls, DM, jauge du 1K/day), le texte en appoint.
+      Pas de capture : seule la photo de Gaspard, reprise de video-18.
+    -->
     <div
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="4"
+      data-duration="30.37"
       data-width="1080"
       data-height="1920"
     >
-      <div class="clip" id="attente" data-start="0" data-duration="4" data-track-index="0">
-        <div class="carte carte--sommet">
-          <div class="etiquette">video-19</div>
-          <div class="titre">En attente<br />du rush</div>
-          <div class="sous-titre">nouvelle vidéo</div>
+      <video id="rush" class="clip" src="assets/rush-coupe.mp4" muted data-start="0" data-duration="30.37"></video>
+      <audio id="voix" src="assets/rush-coupe.mp4" data-start="0" data-duration="30.37" data-volume="1"></audio>
+
+      <div class="clip" id="voile" data-start="0" data-duration="30.37" data-track-index="0">
+        <div class="voile-haut"></div>
+      </div>
+
+      <!-- 1 — Ce qui a tout changé sur mes sites -->
+      <div class="clip" id="s-site" data-start="0" data-duration="1.72" data-track-index="1">
+        <div class="scene" style="top: 170px">
+          <div class="kicker" id="a0">Ce qui a tout changé</div>
+          <div class="scene-illu" style="height: 450px">
+            <div class="navigateur verre" id="nav" style="padding: 0">
+              <div class="nav-barre"><i></i><i></i><i></i><div class="nav-adresse"></div></div>
+              <div class="grille-produits">
+                <div class="tuile" id="tu1"><div class="tuile-image"></div><div class="tuile-ligne" style="top: 206px; width: 150px"></div><div class="tuile-prix">€</div></div>
+                <div class="tuile" id="tu2"><div class="tuile-image"></div><div class="tuile-ligne" style="top: 206px; width: 120px"></div><div class="tuile-prix">€</div></div>
+                <div class="tuile" id="tu3"><div class="tuile-image"></div><div class="tuile-ligne" style="top: 206px; width: 160px"></div><div class="tuile-prix">€</div></div>
+              </div>
+              <div class="lueur-site" id="balaye" style="position: absolute; top: 0; bottom: 0; width: 40%; background: linear-gradient(100deg, rgba(0,230,118,0), rgba(0,230,118,0.35), rgba(0,230,118,0)); transform: translateX(-120%) skewX(-12deg)"></div>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- 2 — Tout peut se vendre -->
+      <div class="clip" id="s-vendre" data-start="1.72" data-duration="2.33" data-track-index="1">
+        <div class="scene" style="top: 190px">
+          <div class="titre-court"><span class="masque"><span id="v0">Tout peut</span></span> <span class="masque"><span id="v1" class="serif accent">se vendre.</span></span></div>
+          <div class="objets" style="margin-top: 60px">
+            <div class="objet verre" id="ob1">
+              <svg viewBox="0 0 100 100"><path d="M30 20 L45 12 Q50 20 55 12 L70 20 L82 36 L70 42 L70 86 L30 86 L30 42 L18 36 Z" fill="none" stroke="#f4f4f5" stroke-width="4" stroke-linejoin="round"/></svg>
+              <div class="tag-vendu" id="et1">VENDU</div>
+            </div>
+            <div class="objet verre" id="ob2">
+              <svg viewBox="0 0 100 100"><path d="M35 15 L65 15 L76 46 L24 46 Z M50 46 L50 82 M34 86 L66 86" fill="none" stroke="#f4f4f5" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/></svg>
+              <div class="tag-vendu" id="et2">VENDU</div>
+            </div>
+            <div class="objet verre" id="ob3">
+              <svg viewBox="0 0 100 100"><path d="M32 60 L68 60 L63 88 L37 88 Z M50 60 C50 40 36 35 30 24 C46 25 53 40 50 60 M50 60 C50 42 62 32 73 30 C69 45 58 51 50 60" fill="none" stroke="#f4f4f5" stroke-width="4" stroke-linejoin="round"/></svg>
+              <div class="tag-vendu" id="et3">VENDU</div>
+            </div>
+            <div class="objet verre" id="ob4">
+              <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="22" fill="none" stroke="#f4f4f5" stroke-width="4"/><path d="M40 29 L42 10 L58 10 L60 29 M40 71 L42 90 L58 90 L60 71 M50 50 L50 38 M50 50 L59 55" fill="none" stroke="#f4f4f5" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/></svg>
+              <div class="tag-vendu" id="et4">VENDU</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 — Le marketing : parler aux personas -->
+      <div class="clip" id="s-marketing" data-start="4.05" data-duration="2.55" data-track-index="1">
+        <div class="scene" style="top: 190px">
+          <div class="kicker" id="m0">Le marketing</div>
+          <div class="scene-illu">
+            <svg id="megaphone" viewBox="0 0 100 100" style="position: absolute; left: 0; top: 110px; width: 250px; height: 250px">
+              <path d="M18 40 L18 60 L34 60 L72 82 L72 18 L34 40 Z M34 60 L40 80 L50 80 L46 63" fill="rgba(0,230,118,0.18)" stroke="#00e676" stroke-width="4" stroke-linejoin="round"/>
+            </svg>
+            <div class="onde-arc" id="w1" style="left: 190px; top: 175px; width: 120px; height: 120px"></div>
+            <div class="onde-arc" id="w2" style="left: 160px; top: 145px; width: 180px; height: 180px"></div>
+            <div class="onde-arc" id="w3" style="left: 130px; top: 115px; width: 240px; height: 240px"></div>
+            <div class="persona verre" id="pc" style="right: 0; top: 90px; width: 440px">
+              <div class="persona-tete">
+                <div class="persona-avatar"><svg viewBox="0 0 100 100"><circle cx="50" cy="40" r="18" fill="#a1a1aa"/><path d="M16 100 C16 70 84 70 84 100 Z" fill="#a1a1aa"/></svg></div>
+                <div><div class="persona-sous">Persona</div><div class="persona-nom">Ton client</div></div>
+              </div>
+              <div class="trait-barre" style="margin-top: 30px"><span id="pc-b"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 — Le connaître par cœur -->
+      <div class="clip" id="s-coeur" data-start="6.60" data-duration="2.60" data-track-index="1">
+        <div class="scene" style="top: 180px">
+          <div class="persona verre" id="fiche" style="position: relative; padding: 40px 46px">
+            <div class="persona-tete">
+              <div class="persona-avatar"><svg viewBox="0 0 100 100"><circle cx="50" cy="40" r="18" fill="#a1a1aa"/><path d="M16 100 C16 70 84 70 84 100 Z" fill="#a1a1aa"/></svg></div>
+              <div><div class="persona-sous">Tu le connais</div><div class="persona-nom">par cœur</div></div>
+              <svg id="coeur" viewBox="0 0 100 100" style="width: 110px; height: 110px; margin-left: auto"><path d="M50 85 C20 62 10 45 22 30 C32 18 46 22 50 34 C54 22 68 18 78 30 C90 45 80 62 50 85 Z" fill="#00e676"/></svg>
+            </div>
+            <div class="trait" id="tr1"><div class="trait-nom">Ses envies</div><div class="trait-barre"><span id="b1"></span></div><svg class="trait-coche" viewBox="0 0 24 24"><path id="c1" d="M4 12.5l5 5L20 6.5" fill="none" stroke="#00e676" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="26" stroke-dashoffset="26"/></svg></div>
+            <div class="trait" id="tr2"><div class="trait-nom">Ses peurs</div><div class="trait-barre"><span id="b2"></span></div><svg class="trait-coche" viewBox="0 0 24 24"><path id="c2" d="M4 12.5l5 5L20 6.5" fill="none" stroke="#00e676" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="26" stroke-dashoffset="26"/></svg></div>
+            <div class="trait" id="tr3"><div class="trait-nom">Ses mots</div><div class="trait-barre"><span id="b3"></span></div><svg class="trait-coche" viewBox="0 0 24 24"><path id="c3" d="M4 12.5l5 5L20 6.5" fill="none" stroke="#00e676" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="26" stroke-dashoffset="26"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 — Le parcours : boutique, compris, achat -->
+      <div class="clip" id="s-parcours" data-start="9.20" data-duration="5.70" data-track-index="1">
+        <div class="scene" style="top: 180px">
+          <div class="kicker" id="p0">Le client arrive sur ta boutique</div>
+          <div class="scene-illu" style="height: 480px">
+            <div class="parcours-ligne"><span id="ligne"></span></div>
+            <div class="etape" id="e1" style="left: 110px">
+              <div class="etape-rond verre" id="r1"><svg viewBox="0 0 100 100"><path d="M15 40 L20 18 L80 18 L85 40 Z M20 40 L20 82 L80 82 L80 40 M42 82 L42 60 L58 60 L58 82" fill="none" stroke="#f4f4f5" stroke-width="5" stroke-linejoin="round"/></svg></div>
+              <div class="etape-nom">Boutique</div>
+            </div>
+            <div class="etape" id="e2" style="left: 460px">
+              <div class="etape-rond verre" id="r2"><svg viewBox="0 0 100 100"><path d="M16 22 H84 V66 H46 L28 82 L31 66 H16 Z" fill="none" stroke="#f4f4f5" stroke-width="5" stroke-linejoin="round"/><circle cx="36" cy="44" r="5" fill="#f4f4f5"/><circle cx="50" cy="44" r="5" fill="#f4f4f5"/><circle cx="64" cy="44" r="5" fill="#f4f4f5"/></svg></div>
+              <div class="etape-nom">Compris</div>
+            </div>
+            <div class="etape" id="e3" style="left: 810px">
+              <div class="etape-rond verre" id="r3"><svg viewBox="0 0 100 100"><path d="M10 20 H24 L34 64 H76 L86 32 H28" fill="none" stroke="#f4f4f5" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="39" cy="79" r="6" fill="#f4f4f5"/><circle cx="72" cy="79" r="6" fill="#f4f4f5"/></svg></div>
+              <div class="etape-nom">Achat</div>
+            </div>
+            <div class="marcheur" id="marcheur" style="top: 132px"></div>
+            <div class="pensee"><div class="pilule" id="p1">il se sent compris</div></div>
+            <div class="pensee"><div class="pilule pilule--pleine" id="p2">jusqu'à l'achat ✓</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 — Depuis, ça vend beaucoup mieux -->
+      <div class="clip" id="s-courbe" data-start="14.90" data-duration="3.18" data-track-index="1">
+        <div class="scene" style="top: 180px">
+          <div class="titre-court"><span class="masque"><span id="g0">Ça vend</span></span> <span class="masque"><span id="g1" class="serif accent">beaucoup mieux.</span></span></div>
+          <div class="scene-illu" style="margin-top: 64px">
+            <div class="graphe verre" id="graphe">
+              <svg viewBox="0 0 840 400" style="width: 100%; height: 100%">
+                <path d="M40 100 H800 M40 200 H800 M40 300 H800" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+                <path d="M420 30 V370" stroke="rgba(255,255,255,0.35)" stroke-width="3" stroke-dasharray="10 10"/>
+                <text x="436" y="60" fill="#e4e4e7" font-size="28" font-weight="800" font-family="Inter">DEPUIS ÇA</text>
+                <path id="aire" d="M40 360 L180 335 L300 345 L420 300 L540 230 L660 150 L800 50 L800 370 L40 370 Z" fill="rgba(0,230,118,0.16)" opacity="0"/>
+                <path id="courbe" d="M40 360 L180 335 L300 345 L420 300 L540 230 L660 150 L800 50" fill="none" stroke="#00e676" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1100" stroke-dashoffset="1100"/>
+                <circle id="point" cx="800" cy="50" r="16" fill="#00e676" opacity="0"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 — Je fais la propagande -->
+      <div class="clip" id="s-propagande" data-start="18.08" data-duration="2.22" data-track-index="1">
+        <div class="scene" style="top: 200px; text-align: center">
+          <svg id="mega2" viewBox="0 0 100 100" style="width: 300px; height: 300px">
+            <path d="M18 40 L18 60 L34 60 L72 82 L72 18 L34 40 Z M34 60 L40 80 L50 80 L46 63" fill="rgba(0,230,118,0.18)" stroke="#00e676" stroke-width="4" stroke-linejoin="round"/>
+            <path id="rayons" d="M80 30 L92 22 M82 50 L96 50 M80 70 L92 78" stroke="#00e676" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+          <div class="titre-court" style="margin-top: 20px"><span class="masque"><span id="pr0">Je le répète,</span></span></div>
+          <div class="phrase" id="pr1" style="margin-top: 14px">propagande assumée</div>
+        </div>
+      </div>
+
+      <!-- 8 — Gaspard Grosjean : les calls tous les jours, les lives -->
+      <div class="clip" id="s-gaspard" data-start="20.30" data-duration="5.10" data-track-index="1">
+        <div class="scene" style="top: 180px">
+          <div class="kicker" id="q0">Appris grâce à l'accompagnement de</div>
+          <div style="display: flex; gap: 30px; align-items: flex-start; margin-top: 26px">
+            <div class="portrait" id="portrait" style="width: 320px; height: 400px">
+              <img src="assets/gaspard.jpg" alt="Gaspard Grosjean" style="object-position: 50% 8%" />
+              <div class="portrait-nom">Gaspard Grosjean</div>
+            </div>
+            <div style="flex: 1">
+              <div class="pilule" id="q1" style="font-size: 30px">Des calls tous les jours</div>
+              <div class="calendrier" id="cal" style="margin-top: 20px">
+                <div class="jour"><b>L</b><svg viewBox="0 0 100 100"><path d="M30 18 C30 52 48 70 82 70 L82 57 L67 52 L60 59 C50 55 44 49 40 39 L47 33 L42 18 Z" fill="#00e676"/></svg></div>
+                <div class="jour"><b>M</b><svg viewBox="0 0 100 100"><path d="M30 18 C30 52 48 70 82 70 L82 57 L67 52 L60 59 C50 55 44 49 40 39 L47 33 L42 18 Z" fill="#00e676"/></svg></div>
+                <div class="jour"><b>M</b><svg viewBox="0 0 100 100"><path d="M30 18 C30 52 48 70 82 70 L82 57 L67 52 L60 59 C50 55 44 49 40 39 L47 33 L42 18 Z" fill="#00e676"/></svg></div>
+                <div class="jour"><b>J</b><svg viewBox="0 0 100 100"><path d="M30 18 C30 52 48 70 82 70 L82 57 L67 52 L60 59 C50 55 44 49 40 39 L47 33 L42 18 Z" fill="#00e676"/></svg></div>
+                <div class="jour"><b>V</b><svg viewBox="0 0 100 100"><path d="M30 18 C30 52 48 70 82 70 L82 57 L67 52 L60 59 C50 55 44 49 40 39 L47 33 L42 18 Z" fill="#00e676"/></svg></div>
+                <div class="jour"><b>S</b><svg viewBox="0 0 100 100"><path d="M30 18 C30 52 48 70 82 70 L82 57 L67 52 L60 59 C50 55 44 49 40 39 L47 33 L42 18 Z" fill="#00e676"/></svg></div>
+                <div class="jour"><b>D</b><svg viewBox="0 0 100 100"><path d="M30 18 C30 52 48 70 82 70 L82 57 L67 52 L60 59 C50 55 44 49 40 39 L47 33 L42 18 Z" fill="#00e676"/></svg></div>
+              </div>
+              <div class="live" id="live" style="margin-top: 34px"><i id="live-point"></i>LIVE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 — Des questions : en DM -->
+      <div class="clip" id="s-dm" data-start="25.40" data-duration="2.15" data-track-index="1">
+        <div class="scene" style="top: 180px">
+          <div class="titre-court" style="text-align: center"><span class="masque"><span id="d0">Des questions ?</span></span></div>
+          <div class="scene-illu">
+            <div class="messagerie verre" id="messagerie">
+              <div style="display: flex; align-items: center; gap: 20px">
+                <div class="avatar" style="width: 74px; height: 74px; font-size: 34px">?</div>
+                <div class="bulle-titre">DM</div>
+              </div>
+              <div class="msg msg--recu" id="mg1"></div>
+              <div class="msg msg--recu" id="mg2" style="width: 50%"></div>
+              <div class="msg msg--envoye" id="mg3"></div>
+              <div class="frappe" id="frappe" style="margin-top: 24px"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 — Le 1K/day du Q4, like et abonne-toi -->
+      <div class="clip" id="s-1k" data-start="27.55" data-duration="2.82" data-track-index="1">
+        <div class="scene" style="top: 200px">
+          <div class="cadran" id="jauge">
+            <svg viewBox="0 0 640 340">
+              <path d="M40 320 A280 280 0 0 1 600 320" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="34" stroke-linecap="round"/>
+              <path id="arc" d="M40 320 A280 280 0 0 1 600 320" fill="none" stroke="#00e676" stroke-width="34" stroke-linecap="round" stroke-dasharray="880" stroke-dashoffset="880"/>
+              <g id="aiguille"><path d="M320 320 L320 195" stroke="#f4f4f5" stroke-width="10" stroke-linecap="round"/></g>
+              <circle cx="320" cy="320" r="22" fill="#f4f4f5"/>
+            </svg>
+            <div class="display" style="position: absolute; left: 0; right: 0; top: 150px; text-align: center; font-size: 96px"><span id="unk" class="lueur-balayage">1K/day</span></div>
+            <div class="pilule" id="q4" style="position: absolute; right: -20px; top: -10px">Q4</div>
+          </div>
+          <div class="rangee-pilules" style="justify-content: center; margin-top: 50px">
+            <div class="pilule" id="like" style="font-size: 44px; padding: 22px 40px">
+              <svg viewBox="0 0 100 100" style="width: 46px; height: 46px"><path d="M50 85 C20 62 10 45 22 30 C32 18 46 22 50 34 C54 22 68 18 78 30 C90 45 80 62 50 85 Z" fill="#ff3b30"/></svg> Like
+            </div>
+            <div class="pilule pilule--pleine" id="abonne" style="font-size: 44px; padding: 22px 40px">Abonne-toi</div>
+          </div>
+        </div>
+      </div>
+
+      <audio id="son-site" src="assets/sfx/souffle.wav" data-start="0.5" data-duration="0.55" data-volume="0.3"></audio>
+      <audio id="son-v1" src="assets/sfx/clic.wav" data-start="2.85" data-duration="0.12" data-volume="0.3"></audio>
+      <audio id="son-v2" src="assets/sfx/clic.wav" data-start="3.07" data-duration="0.12" data-volume="0.3"></audio>
+      <audio id="son-v3" src="assets/sfx/clic.wav" data-start="3.29" data-duration="0.12" data-volume="0.3"></audio>
+      <audio id="son-v4" src="assets/sfx/clic.wav" data-start="3.51" data-duration="0.12" data-volume="0.3"></audio>
+      <audio id="son-coeur" src="assets/sfx/impact.wav" data-start="8.87" data-duration="0.35" data-volume="0.3"></audio>
+      <audio id="son-achat" src="assets/sfx/notification.wav" data-start="14.1" data-duration="0.42" data-volume="0.4"></audio>
+      <audio id="son-courbe" src="assets/sfx/souffle.wav" data-start="15.3" data-duration="0.55" data-volume="0.3"></audio>
+      <audio id="son-mega" src="assets/sfx/impact.wav" data-start="18.8" data-duration="0.35" data-volume="0.35"></audio>
+      <audio id="son-live" src="assets/sfx/clic.wav" data-start="24.11" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-dm" src="assets/sfx/notification.wav" data-start="27.0" data-duration="0.42" data-volume="0.35"></audio>
+      <audio id="son-fin" src="assets/sfx/basse.wav" data-start="29.5" data-duration="0.85" data-volume="0.4"></audio>
+
+      <div
+        class="clip"
+        id="sous-titres"
+        data-composition-id="subtitles"
+        data-composition-src="compositions/subtitles.html"
+        data-start="0"
+        data-duration="30.37"
+        data-track-index="5"
+      ></div>
     </div>
+
     <script>
       const tl = gsap.timeline({ paused: true });
-      tl.fromTo(
-        "#attente .carte",
-        { xPercent: 18, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
-        0.2,
-      );
+      const doux = "expo.out";
+
+      /* ---------- Le rush : deux cadrages qui alternent, et une lente dérive ---------- */
+      const prises = [0, 1.72, 4.05, 6.6, 9.2, 14.9, 18.08, 20.3, 25.4, 27.55, 30.37];
+      prises.slice(0, -1).forEach((debut, i) => {
+        const base = i % 2 ? 1.1 : 1.0;
+        tl.fromTo("#rush", { scale: base }, { scale: base + 0.03, duration: prises[i + 1] - debut, ease: "none", immediateRender: false }, debut);
+      });
+
+      function monte(sel, t, duree = 0.5) {
+        tl.fromTo(sel, { yPercent: 110 }, { yPercent: 0, duration: duree, ease: doux }, t);
+      }
+      function pose(sel, t, dx = 0) {
+        tl.fromTo(sel, { opacity: 0, y: 26, x: dx, filter: "blur(12px)" }, { opacity: 1, y: 0, x: 0, filter: "blur(0px)", duration: 0.45, ease: doux }, t);
+      }
+      function part(sel, t) {
+        tl.to(sel, { opacity: 0, y: -40, filter: "blur(14px)", duration: 0.24, ease: "power2.in" }, t);
+      }
+      function surgit(sel, t) {
+        tl.fromTo(sel, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.42, ease: "back.out(2)" }, t);
+      }
+
+      /* 1 — La boutique */
+      pose("#a0", 0.05);
+      tl.fromTo("#nav", { opacity: 0, y: 60, rotationX: 25, scale: 0.92 }, { opacity: 1, y: 0, rotationX: 0, scale: 1, duration: 0.55, ease: doux }, 0.15);
+      ["#tu1", "#tu2", "#tu3"].forEach((s, i) => tl.fromTo(s, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: doux }, 0.45 + i * 0.1));
+      tl.fromTo("#balaye", { xPercent: -120 }, { xPercent: 320, duration: 0.8, ease: "power2.inOut" }, 0.8);
+      tl.fromTo("#s-site .tuile-image", { background: "rgba(255,255,255,0.12)" }, { background: "linear-gradient(135deg, rgba(0,230,118,0.55), rgba(0,230,118,0.15))", duration: 0.4, stagger: 0.08 }, 1.0);
+      part("#s-site .scene", 1.48);
+
+      /* 2 — Tout peut se vendre */
+      monte("#v0", 1.8);
+      monte("#v1", 2.05, 0.55);
+      ["#ob1", "#ob2", "#ob3", "#ob4"].forEach((s, i) => tl.fromTo(s, { opacity: 0, y: -120, rotation: i % 2 ? 8 : -8 }, { opacity: 1, y: 0, rotation: 0, duration: 0.55, ease: "bounce.out" }, 2.1 + i * 0.1));
+      ["#et1", "#et2", "#et3", "#et4"].forEach((s, i) => tl.fromTo(s, { opacity: 0, scale: 1.8, rotation: -25 }, { opacity: 1, scale: 1, rotation: -6, duration: 0.3, ease: "back.out(2.5)" }, 2.85 + i * 0.22));
+      part("#s-vendre .scene", 3.81);
+
+      /* 3 — Le marketing parle au persona */
+      pose("#m0", 4.1);
+      tl.fromTo("#megaphone", { opacity: 0, x: -80, rotation: -15 }, { opacity: 1, x: 0, rotation: 0, duration: 0.5, ease: doux }, 4.2);
+      [0, 0.5, 1.0, 1.5].forEach((d) => {
+        ["#w1", "#w2", "#w3"].forEach((w, i) => tl.fromTo(w, { opacity: 0, scale: 0.7 }, { opacity: 0.9, scale: 1.05, duration: 0.25, yoyo: true, repeat: 1, ease: "power1.out" }, 4.6 + d + i * 0.08));
+      });
+      tl.fromTo("#pc", { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: 0.5, ease: doux }, 5.3);
+      tl.fromTo("#pc-b", { scaleX: 0.3 }, { scaleX: 0.7, duration: 0.6, ease: "power2.out" }, 5.8);
+      part("#s-marketing .scene", 6.36);
+
+      /* 4 — La fiche persona se remplit */
+      tl.fromTo("#fiche", { opacity: 0, y: 60, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: doux }, 6.65);
+      [["#b1", "#c1", 7.2], ["#b2", "#c2", 7.65], ["#b3", "#c3", 8.1]].forEach(([b, c, t]) => {
+        tl.fromTo(b, { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power2.out" }, t);
+        tl.fromTo(c, { strokeDashoffset: 26 }, { strokeDashoffset: 0, duration: 0.25 }, t + 0.4);
+      });
+      tl.fromTo("#coeur", { scale: 0, rotation: -20 }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(3)" }, 8.75);
+      tl.to("#coeur", { scale: 1.18, duration: 0.14, yoyo: true, repeat: 1 }, 9.0);
+      part("#s-coeur .scene", 8.96);
+
+      /* 5 — Le parcours jusqu'à l'achat */
+      pose("#p0", 9.25);
+      ["#e1", "#e2", "#e3"].forEach((s, i) => tl.fromTo(s, { opacity: 0, y: 40, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: doux }, 9.4 + i * 0.12));
+      tl.fromTo("#marcheur", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 10.1);
+      tl.to("#r1", { borderColor: "#00e676", boxShadow: "0 0 50px rgba(0,230,118,0.5)", duration: 0.3 }, 10.3);
+      tl.fromTo("#ligne", { scaleX: 0 }, { scaleX: 0.5, duration: 1.2, ease: "power1.inOut" }, 10.9);
+      tl.fromTo("#marcheur", { x: 0 }, { x: 350, duration: 1.2, ease: "power1.inOut", immediateRender: false }, 10.9);
+      tl.to("#r2", { borderColor: "#00e676", boxShadow: "0 0 50px rgba(0,230,118,0.5)", duration: 0.3 }, 12.1);
+      surgit("#p1", 11.7);
+      tl.to("#p1", { opacity: 0, duration: 0.2 }, 13.6);
+      tl.to("#ligne", { scaleX: 1, duration: 1.2, ease: "power1.inOut" }, 13.0);
+      tl.to("#marcheur", { x: 700, duration: 1.2, ease: "power1.inOut" }, 13.0);
+      tl.to("#r3", { borderColor: "#00e676", backgroundColor: "rgba(0,230,118,0.25)", boxShadow: "0 0 60px rgba(0,230,118,0.6)", duration: 0.3 }, 14.15);
+      surgit("#p2", 14.1);
+      part("#s-parcours .scene", 14.66);
+
+      /* 6 — La courbe monte */
+      monte("#g0", 15.0);
+      monte("#g1", 15.25, 0.55);
+      tl.fromTo("#graphe", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.45, ease: doux }, 15.1);
+      tl.fromTo("#courbe", { strokeDashoffset: 1100 }, { strokeDashoffset: 0, duration: 1.4, ease: "power2.inOut" }, 15.4);
+      tl.fromTo("#aire", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 16.2);
+      tl.fromTo("#point", { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)" }, 16.8);
+      tl.to("#point", { scale: 1.5, duration: 0.3, yoyo: true, repeat: 3, transformOrigin: "50% 50%" }, 17.1);
+      part("#s-courbe .scene", 17.84);
+
+      /* 7 — Le mégaphone */
+      tl.fromTo("#mega2", { opacity: 0, scale: 0.5, rotation: -20 }, { opacity: 1, scale: 1, rotation: -8, duration: 0.45, ease: "back.out(2)" }, 18.15);
+      tl.to("#mega2", { rotation: 4, duration: 0.08, yoyo: true, repeat: 7, ease: "none" }, 18.8);
+      tl.fromTo("#rayons", { opacity: 0, x: -10 }, { opacity: 1, x: 6, duration: 0.15, yoyo: true, repeat: 5 }, 18.8);
+      monte("#pr0", 18.3);
+      pose("#pr1", 18.9);
+      part("#s-propagande .scene", 20.06);
+
+      /* 8 — Gaspard, les calls, les lives */
+      pose("#q0", 20.4);
+      tl.fromTo("#portrait", { opacity: 0, x: -80, rotation: -4, scale: 0.92 }, { opacity: 1, x: 0, rotation: 0, scale: 1, duration: 0.6, ease: doux }, 20.9);
+      pose("#q1", 22.1, 40);
+      tl.fromTo("#cal .jour", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.05, ease: doux }, 22.2);
+      tl.fromTo("#cal .jour svg", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.25, stagger: 0.13, ease: "back.out(3)" }, 22.8);
+      tl.to("#cal .jour", { borderColor: "rgba(0,230,118,0.7)", duration: 0.2, stagger: 0.13 }, 22.8);
+      surgit("#live", 24.05);
+      tl.to("#live-point", { opacity: 0.2, duration: 0.25, yoyo: true, repeat: 3 }, 24.4);
+      part("#s-gaspard .scene", 25.16);
+
+      /* 9 — Les DM */
+      monte("#d0", 25.45);
+      tl.fromTo("#messagerie", { opacity: 0, y: 60, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: doux }, 25.6);
+      ["#mg1", "#mg2", "#mg3"].forEach((s, i) => tl.fromTo(s, { opacity: 0, scale: 0.6, transformOrigin: i === 2 ? "100% 50%" : "0% 50%" }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 26.0 + i * 0.35));
+      tl.fromTo("#frappe span", { opacity: 0.25 }, { opacity: 1, duration: 0.2, stagger: 0.12, yoyo: true, repeat: 1 }, 26.9);
+      part("#s-dm .scene", 27.31);
+
+      /* 10 — La jauge du 1K/day */
+      tl.fromTo("#jauge", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: doux }, 27.6);
+      tl.fromTo("#arc", { strokeDashoffset: 880 }, { strokeDashoffset: 120, duration: 1.4, ease: "power2.inOut" }, 27.8);
+      tl.fromTo("#aiguille", { rotation: -90, svgOrigin: "320 320" }, { rotation: 62, svgOrigin: "320 320", duration: 1.4, ease: "power2.inOut" }, 27.8);
+      tl.fromTo("#unk", { backgroundPosition: "100% 0" }, { backgroundPosition: "0% 0", duration: 0.9, ease: "power2.inOut" }, 28.6);
+      surgit("#q4", 29.3);
+      surgit("#like", 29.7);
+      tl.to("#like svg", { scale: 1.4, duration: 0.15, yoyo: true, repeat: 1, transformOrigin: "50% 50%" }, 29.9);
+      surgit("#abonne", 29.95);
+
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);
