@@ -13,7 +13,7 @@
       Montage « avis sur l'accompagnement de Gaspard Grosjean », style video-10.
       Le rush est coupé sur ses creux (8 coupes, 54,29 s → 52,33 s) par la
       coupe trim/concat ; sous-titres faits sur la vidéo coupée.
-            Captures : la photo de Gaspard, deux tableaux Shopify d'octobre (1–31 oct.), deux boutiques, total 3 088,40 €
+            Captures : la photo de Gaspard, deux tableaux Shopify « 30 derniers jours » (8 nov.), deux boutiques, total des ventes brutes 6 106,00 €
       recadrés sous le bandeau, sans barre de navigation.
     -->
     <div
@@ -133,19 +133,19 @@
       <!-- 7 — Mes résultats : les 7 derniers jours -->
       <div class="clip" id="s-resultats" data-start="34.00" data-duration="4.40" data-track-index="1">
         <div class="scene" style="top: 170px">
-          <div class="kicker" id="k-res">Mes résultats · <span style="color: var(--texte)">ce mois-ci</span></div>
+          <div class="kicker" id="k-res">Mes résultats · <span style="color: var(--texte)">30 derniers jours</span></div>
           <div class="duo">
             <div class="duo-col">
               <div class="tableau" id="t1">
-                <img src="assets/mois-1.png" alt="Shopify, 1–31 oct. 2026 : 1 348,90 € de ventes totales" />
-                <div class="cadre-lumiere" id="c1" style="left: 148px; top: 344px; width: 120px; height: 42px; border-width: 4px; border-radius: 21px"></div>
+                <img src="assets/30j-1.png" alt="Shopify, 30 derniers jours : 4 106,60 € de ventes brutes, 17 commandes" />
+                <div class="cadre-lumiere" id="c1" style="left: 11px; top: 0px; width: 202px; height: 50px; border-width: 4px; border-radius: 18px"></div>
               </div>
               <div class="montant" id="m1">0,00 €</div>
             </div>
             <div class="duo-col">
               <div class="tableau" id="t2">
-                <img src="assets/mois-2.png" alt="Shopify, 1–31 oct. 2026 : 1 739,50 € de ventes totales" />
-                <div class="cadre-lumiere" id="c2" style="left: 148px; top: 344px; width: 120px; height: 42px; border-width: 4px; border-radius: 21px"></div>
+                <img src="assets/30j-2.png" alt="Shopify, 30 derniers jours : 1 999,40 € de ventes brutes, 6 commandes" />
+                <div class="cadre-lumiere" id="c2" style="left: 11px; top: 0px; width: 202px; height: 50px; border-width: 4px; border-radius: 18px"></div>
               </div>
               <div class="montant" id="m2">0,00 €</div>
             </div>
@@ -338,12 +338,12 @@
       tl.fromTo("#t2", { opacity: 0, y: 80, scale: 0.9, rotation: 3 }, { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.6, ease: doux }, 34.55);
       tl.fromTo(["#c1", "#c2"], { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.35, ease: doux }, 35.4);
       pose(["#m1", "#m2"], 35.9);
-      euros("#m1", 1348.9, 36.0);
-      euros("#m2", 1739.5, 36.0);
+      euros("#m1", 4106.6, 36.0);
+      euros("#m2", 1999.4, 36.0);
       surgit("#p-ca", 36.65);
       {
         const o = { v: 0 };
-        tl.fromTo(o, { v: 0 }, { v: 3088.4, duration: 0.7, ease: "power3.out", onUpdate() {
+        tl.fromTo(o, { v: 0 }, { v: 6106, duration: 0.7, ease: "power3.out", onUpdate() {
           document.getElementById("total").textContent = o.v.toFixed(2).replace(".", ",").replace(/^(\d)(\d{3})/, "$1 $2") + " €";
         } }, 36.75);
       }
