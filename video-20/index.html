@@ -5,33 +5,283 @@
     <meta name="viewport" content="width=1080, height=1920" />
     <script src="./vendor/gsap.min.js"></script>
     <link rel="stylesheet" href="./identity.css" />
+    <link rel="stylesheet" href="./premium.css" />
+    <link rel="stylesheet" href="./scenes.css" />
   </head>
   <body>
-    <!-- Projet vide, en attente du rush (voir assets/README.md). -->
-    <div
-      id="root"
-      data-composition-id="main"
-      data-start="0"
-      data-duration="4"
-      data-width="1080"
-      data-height="1920"
-    >
-      <div class="clip" id="attente" data-start="0" data-duration="4" data-track-index="0">
-        <div class="carte carte--sommet">
-          <div class="etiquette">video-20</div>
-          <div class="titre">En attente<br />du rush</div>
-          <div class="sous-titre">premier 1K day</div>
+    <!--
+      Montage « mon premier 1K/day », style illustré de video-19.
+      Captures : deux tableaux Shopify « Hier » (deux boutiques), recadrés sous
+      le bandeau, sans barre de navigation : 769,40 € + 229,90 € de ventes
+      brutes = 999,30 €. Photo de Gaspard reprise de video-19.
+    -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="19.45" data-width="1080" data-height="1920">
+      <video id="rush" class="clip" src="assets/rush-coupe.mp4" muted data-start="0" data-duration="19.45"></video>
+      <audio id="voix" src="assets/rush-coupe.mp4" data-start="0" data-duration="19.45" data-volume="1"></audio>
+
+      <div class="clip" id="voile" data-start="0" data-duration="19.45" data-track-index="0">
+        <div class="voile-haut"></div>
+      </div>
+
+      <!-- 1 — Le palier de l'e-commerce : l'escalier -->
+      <div class="clip" id="s-palier" data-start="0" data-duration="2.00" data-track-index="1">
+        <div class="scene" style="top: 180px">
+          <div class="kicker" id="a0">Nouveau palier</div>
+          <svg viewBox="0 0 820 440" style="width: 100%; height: 470px; margin-top: 20px; overflow: visible">
+            <path id="marches" d="M40 410 H200 V330 H360 V250 H520 V170 H680 V90 H790" fill="none" stroke="#f4f4f5" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="1500" stroke-dashoffset="1500"/>
+            <g id="drapeau" opacity="0">
+              <path d="M735 90 V-10" stroke="#f4f4f5" stroke-width="6" stroke-linecap="round"/>
+              <path d="M735 -10 L815 10 L735 32 Z" fill="#00e676"/>
+              <text x="752" y="18" font-family="Inter" font-weight="900" font-size="24" fill="#04140a">1K</text>
+            </g>
+            <g id="perso">
+              <circle cx="0" cy="-58" r="20" fill="#00e676"/>
+              <path d="M-18 0 L0 -36 L18 0" fill="none" stroke="#00e676" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+          </svg>
         </div>
       </div>
+
+      <!-- 2 — Mon premier 1K/day : explosion -->
+      <div class="clip" id="s-1k" data-start="2.00" data-duration="2.45" data-track-index="1">
+        <div class="scene" style="top: 230px; text-align: center">
+          <div class="kicker" id="b0" style="justify-content: center">Mon premier</div>
+          <div style="position: relative; margin-top: 30px">
+            <div class="display display--xl"><span class="masque"><span id="unk" class="lueur-balayage">1K/day</span></span></div>
+            <div id="confettis"></div>
+          </div>
+          <div class="phrase" id="b1" style="margin-top: 26px">franchement, un truc de fou.</div>
+        </div>
+      </div>
+
+      <!-- 3 — Il faut qu'il soit constant : des barres égales -->
+      <div class="clip" id="s-constant" data-start="4.45" data-duration="1.45" data-track-index="1">
+        <div class="scene" style="top: 200px">
+          <div class="kicker" id="c0">Maintenant : être constant</div>
+          <svg viewBox="0 0 820 380" style="width: 100%; height: 400px; margin-top: 30px">
+            <path d="M20 80 H800" stroke="#00e676" stroke-width="3" stroke-dasharray="14 12" opacity="0.7"/>
+            <text x="20" y="60" font-family="Inter" font-weight="900" font-size="30" fill="#00e676">1K</text>
+            <rect class="barre-c" x="40" y="80" width="90" height="290" rx="16" fill="#00e676"/>
+            <rect class="barre-c" x="170" y="80" width="90" height="290" rx="16" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="3" stroke-dasharray="10 8"/>
+            <rect class="barre-c" x="300" y="80" width="90" height="290" rx="16" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="3" stroke-dasharray="10 8"/>
+            <rect class="barre-c" x="430" y="80" width="90" height="290" rx="16" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="3" stroke-dasharray="10 8"/>
+            <rect class="barre-c" x="560" y="80" width="90" height="290" rx="16" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="3" stroke-dasharray="10 8"/>
+            <rect class="barre-c" x="690" y="80" width="90" height="290" rx="16" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="3" stroke-dasharray="10 8"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 4 — Les captures : hier, deux boutiques -->
+      <div class="clip" id="s-resultats" data-start="5.90" data-duration="3.70" data-track-index="1">
+        <div class="scene" style="top: 170px">
+          <div class="kicker" id="k-res">Hier · <span style="color: var(--texte)">mes 2 boutiques</span></div>
+          <div class="duo">
+            <div class="duo-col">
+              <div class="tableau" id="t1">
+                <img src="assets/hier-1.png" alt="Shopify, hier : 769,40 € de ventes brutes, 2 commandes" />
+                <div class="cadre-lumiere" id="c1" style="left: 12px; top: 1px; width: 111px; height: 49px; border-width: 4px; border-radius: 18px"></div>
+              </div>
+              <div class="montant" id="m1">0,00 €</div>
+            </div>
+            <div class="duo-col">
+              <div class="tableau" id="t2">
+                <img src="assets/hier-2.png" alt="Shopify, hier : 229,90 € de ventes brutes, 1 commande" />
+                <div class="cadre-lumiere" id="c2" style="left: 12px; top: 1px; width: 111px; height: 49px; border-width: 4px; border-radius: 18px"></div>
+              </div>
+              <div class="montant" id="m2">0,00 €</div>
+            </div>
+          </div>
+          <div class="rangee-pilules" style="flex-direction: column; align-items: center; gap: 14px; margin-top: 22px; white-space: nowrap">
+            <div class="pilule pilule--pleine" id="p-total" style="font-size: 40px">Total <span id="total">0,00 €</span></div>
+            <div class="pilule" id="p-q4">Enfin, pendant le Q4</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 — Grâce à Gaspard et ses coachs -->
+      <div class="clip" id="s-gaspard" data-start="9.60" data-duration="2.75" data-track-index="1">
+        <div class="scene" style="top: 190px">
+          <div class="kicker" id="g0">C'est grâce à</div>
+          <div style="display: flex; gap: 34px; align-items: center; margin-top: 26px">
+            <div class="portrait" id="portrait" style="width: 340px; height: 420px">
+              <img src="assets/gaspard.jpg" alt="Gaspard Grosjean" style="object-position: 50% 8%" />
+              <div class="portrait-nom">Gaspard Grosjean</div>
+            </div>
+            <div style="flex: 1">
+              <div class="pilule" id="g1" style="font-size: 30px">son accompagnement</div>
+              <div style="display: flex; gap: 18px; margin-top: 30px" id="coachs">
+                <div class="coach"><svg viewBox="0 0 100 100"><circle cx="50" cy="40" r="18" fill="#a1a1aa"/><path d="M16 100 C16 70 84 70 84 100 Z" fill="#a1a1aa"/></svg></div>
+                <div class="coach"><svg viewBox="0 0 100 100"><circle cx="50" cy="40" r="18" fill="#a1a1aa"/><path d="M16 100 C16 70 84 70 84 100 Z" fill="#a1a1aa"/></svg></div>
+                <div class="coach"><svg viewBox="0 0 100 100"><circle cx="50" cy="40" r="18" fill="#a1a1aa"/><path d="M16 100 C16 70 84 70 84 100 Z" fill="#a1a1aa"/></svg></div>
+              </div>
+              <div class="pilule pilule--pleine" id="g2" style="font-size: 30px; margin-top: 30px">tous ses coachs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 — Demain ? Voire plus. Le Black Friday arrive -->
+      <div class="clip" id="s-demain" data-start="12.35" data-duration="5.60" data-track-index="1">
+        <div class="scene" style="top: 190px">
+          <div class="kicker" id="d0">Maintenant : être régulier</div>
+          <div style="display: flex; gap: 30px; margin-top: 30px">
+            <div class="jour-carte verre" id="j1">
+              <b>Hier</b>
+              <svg viewBox="0 0 24 24" style="width: 70px; height: 70px"><path id="vj1" d="M4 12.5l5 5L20 6.5" fill="none" stroke="#00e676" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="26" stroke-dashoffset="26"/></svg>
+              <div class="valeur accent">999,30 €</div>
+            </div>
+            <div class="jour-carte verre" id="j2">
+              <b>Demain</b>
+              <div class="valeur" id="interro" style="font-size: 120px; line-height: 1">?</div>
+              <div class="valeur" id="plus" style="font-size: 38px; color: var(--vert); white-space: nowrap">1K, voire plus ↑</div>
+            </div>
+          </div>
+          <div style="margin-top: 50px; text-align: center">
+            <div class="black-friday" id="bf">BLACK FRIDAY</div>
+            <div class="phrase" id="d1" style="margin-top: 16px; font-size: 56px">arrive bientôt</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 — Like, abonne-toi -->
+      <div class="clip" id="s-fin" data-start="17.95" data-duration="1.50" data-track-index="1">
+        <div class="scene" style="top: 380px; text-align: center">
+          <div class="phrase" id="suivre" style="font-size: 76px">Tu veux suivre ?</div>
+          <div class="rangee-pilules" style="justify-content: center; margin-top: 40px">
+            <div class="pilule" id="like" style="font-size: 44px; padding: 22px 40px">
+              <svg viewBox="0 0 100 100" style="width: 46px; height: 46px"><path d="M50 85 C20 62 10 45 22 30 C32 18 46 22 50 34 C54 22 68 18 78 30 C90 45 80 62 50 85 Z" fill="#ff3b30"/></svg> Like
+            </div>
+            <div class="pilule pilule--pleine" id="abonne" style="font-size: 44px; padding: 22px 40px">Abonne-toi</div>
+          </div>
+        </div>
+      </div>
+
+      <audio id="son-palier" src="assets/sfx/souffle.wav" data-start="0.4" data-duration="0.55" data-volume="0.3"></audio>
+      <audio id="son-1k" src="assets/sfx/impact.wav" data-start="2.72" data-duration="0.35" data-volume="0.45"></audio>
+      <audio id="son-res" src="assets/sfx/notification.wav" data-start="6.3" data-duration="0.42" data-volume="0.4"></audio>
+      <audio id="son-total" src="assets/sfx/impact.wav" data-start="8.6" data-duration="0.35" data-volume="0.35"></audio>
+      <audio id="son-coachs" src="assets/sfx/clic.wav" data-start="11.8" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-hier" src="assets/sfx/clic.wav" data-start="13.3" data-duration="0.12" data-volume="0.35"></audio>
+      <audio id="son-bf" src="assets/sfx/impact.wav" data-start="16.98" data-duration="0.35" data-volume="0.35"></audio>
+      <audio id="son-fin" src="assets/sfx/basse.wav" data-start="18.6" data-duration="0.85" data-volume="0.4"></audio>
+
+      <div class="clip" id="sous-titres" data-composition-id="subtitles" data-composition-src="compositions/subtitles.html" data-start="0" data-duration="19.45" data-track-index="5"></div>
     </div>
+
     <script>
       const tl = gsap.timeline({ paused: true });
-      tl.fromTo(
-        "#attente .carte",
-        { xPercent: 18, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
-        0.2,
-      );
+      const doux = "expo.out";
+
+      /* Confettis : positions calculées, pas de hasard */
+      const couleurs = ["#00e676", "#f4f4f5", "#ffd60a", "#00e676", "#7c5cff"];
+      const boite = document.getElementById("confettis");
+      for (let i = 0; i < 28; i++) {
+        const c = document.createElement("span");
+        c.className = "confetti";
+        c.style.background = couleurs[i % couleurs.length];
+        boite.appendChild(c);
+      }
+
+      const prises = [0, 2.0, 4.45, 5.9, 9.6, 12.35, 17.95, 19.45];
+      prises.slice(0, -1).forEach((debut, i) => {
+        const base = i % 2 ? 1.1 : 1.0;
+        tl.fromTo("#rush", { scale: base }, { scale: base + 0.03, duration: prises[i + 1] - debut, ease: "none", immediateRender: false }, debut);
+      });
+
+      function monte(sel, t, duree = 0.5) {
+        tl.fromTo(sel, { yPercent: 110 }, { yPercent: 0, duration: duree, ease: doux }, t);
+      }
+      function pose(sel, t, dx = 0) {
+        tl.fromTo(sel, { opacity: 0, y: 26, x: dx, filter: "blur(12px)" }, { opacity: 1, y: 0, x: 0, filter: "blur(0px)", duration: 0.45, ease: doux }, t);
+      }
+      function part(sel, t) {
+        tl.to(sel, { opacity: 0, y: -40, filter: "blur(14px)", duration: 0.24, ease: "power2.in" }, t);
+      }
+      function surgit(sel, t) {
+        tl.fromTo(sel, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.42, ease: "back.out(2)" }, t);
+      }
+      function euros(sel, a, t, duree = 0.8) {
+        const o = { v: 0 };
+        tl.fromTo(o, { v: 0 }, {
+          v: a, duration: duree, ease: "power3.out",
+          onUpdate() { document.querySelector(sel).textContent = o.v.toFixed(2).replace(".", ",").replace(/^(\d)(\d{3})/, "$1 $2") + " €"; },
+        }, t);
+      }
+
+      /* 1 — L'escalier */
+      pose("#a0", 0.05);
+      tl.fromTo("#marches", { strokeDashoffset: 1500 }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" }, 0.1);
+      const pas = [[120, 410], [280, 330], [440, 250], [600, 170], [730, 90]];
+      tl.set("#perso", { x: pas[0][0], y: pas[0][1] }, 0);
+      tl.fromTo("#perso", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.3);
+      pas.slice(1).forEach(([x, y], i) => {
+        const t = 0.55 + i * 0.28;
+        tl.to("#perso", { x, duration: 0.26, ease: "none" }, t);
+        tl.to("#perso", { y: y - 50, duration: 0.13, ease: "power2.out" }, t);
+        tl.to("#perso", { y, duration: 0.13, ease: "power2.in" }, t + 0.13);
+      });
+      tl.fromTo("#drapeau", { opacity: 0, scale: 0, transformOrigin: "735px 90px" }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.5)" }, 1.25);
+      part("#s-palier .scene", 1.76);
+
+      /* 2 — 1K/day et confettis */
+      pose("#b0", 2.05);
+      monte("#unk", 2.6, 0.5);
+      tl.fromTo("#unk", { backgroundPosition: "100% 0" }, { backgroundPosition: "0% 0", duration: 0.9, ease: "power2.inOut" }, 2.9);
+      document.querySelectorAll("#confettis .confetti").forEach((c, i) => {
+        const angle = (i / 28) * Math.PI * 2;
+        const r = 300 + (i % 4) * 70;
+        tl.fromTo(c, { x: 0, y: 0, opacity: 1, rotation: 0, scale: 1 },
+          { x: Math.cos(angle) * r, y: Math.sin(angle) * r * 0.7 + 120, rotation: 360 + i * 40, opacity: 0, scale: 0.6, duration: 1.3, ease: "expo.out" }, 2.75);
+      });
+      pose("#b1", 3.6);
+      part("#s-1k .scene", 4.21);
+
+      /* 3 — Constance */
+      pose("#c0", 4.5);
+      tl.fromTo("#s-constant .barre-c", { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.35, stagger: 0.1, ease: doux }, 4.6);
+      part("#s-constant .scene", 5.66);
+
+      /* 4 — Les captures d'hier */
+      pose("#k-res", 5.95);
+      tl.fromTo("#t1", { opacity: 0, y: 80, scale: 0.9, rotation: -3 }, { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.6, ease: doux }, 6.1);
+      tl.fromTo("#t2", { opacity: 0, y: 80, scale: 0.9, rotation: 3 }, { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.6, ease: doux }, 6.25);
+      tl.fromTo(["#c1", "#c2"], { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.35, ease: doux }, 6.9);
+      pose(["#m1", "#m2"], 7.2);
+      euros("#m1", 769.4, 7.3);
+      euros("#m2", 229.9, 7.3);
+      surgit("#p-total", 8.2);
+      euros("#total", 999.3, 8.25, 0.55);
+      surgit("#p-q4", 8.6);
+      part("#s-resultats .scene", 9.36);
+
+      /* 5 — Gaspard et ses coachs */
+      pose("#g0", 9.65);
+      tl.fromTo("#portrait", { opacity: 0, x: -80, rotation: -4, scale: 0.92 }, { opacity: 1, x: 0, rotation: 0, scale: 1, duration: 0.6, ease: doux }, 9.9);
+      pose("#g1", 10.8, 40);
+      tl.fromTo("#coachs .coach", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.35, stagger: 0.12, ease: "back.out(2.5)" }, 11.4);
+      surgit("#g2", 11.8);
+      part("#s-gaspard .scene", 12.11);
+
+      /* 6 — Demain, voire plus, le Black Friday */
+      pose("#d0", 12.4);
+      tl.fromTo("#j1", { opacity: 0, x: -80 }, { opacity: 1, x: 0, duration: 0.5, ease: doux }, 12.9);
+      tl.fromTo("#vj1", { strokeDashoffset: 26 }, { strokeDashoffset: 0, duration: 0.3 }, 13.3);
+      tl.fromTo("#j2", { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.5, ease: doux }, 14.4);
+      tl.fromTo("#interro", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2.5)" }, 14.5);
+      tl.to("#interro", { scale: 1.15, duration: 0.25, yoyo: true, repeat: 3, ease: "power1.inOut" }, 14.9);
+      tl.fromTo("#plus", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, ease: doux }, 15.6);
+      tl.to("#j2", { borderColor: "#00e676", boxShadow: "0 0 50px rgba(0,230,118,0.45)", duration: 0.3 }, 16.1);
+      tl.fromTo("#bf", { opacity: 0, rotation: -14, scale: 0.6 }, { opacity: 1, rotation: -4, scale: 1, duration: 0.45, ease: "back.out(2)" }, 16.95);
+      tl.to("#bf", { rotation: 2, duration: 0.25, yoyo: true, repeat: 1, ease: "sine.inOut" }, 17.4);
+      pose("#d1", 17.3);
+      part("#s-demain .scene", 17.71);
+
+      /* 7 — Like, abonne-toi */
+      pose("#suivre", 18.0);
+      surgit("#like", 18.6);
+      tl.to("#like svg", { scale: 1.4, duration: 0.15, yoyo: true, repeat: 1, transformOrigin: "50% 50%" }, 18.8);
+      surgit("#abonne", 18.85);
+
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);
