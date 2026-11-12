@@ -5,33 +5,251 @@
     <meta name="viewport" content="width=1080, height=1920" />
     <script src="./vendor/gsap.min.js"></script>
     <link rel="stylesheet" href="./identity.css" />
+    <link rel="stylesheet" href="./premium.css" />
+    <link rel="stylesheet" href="./scenes.css" />
+    <style>
+      .etiquette-prix { display: inline-flex; align-items: center; gap: 22px; padding: 30px 60px 30px 80px; border-radius: 24px 999px 999px 24px; background: rgba(16,16,18,0.7); border: 3px solid rgba(255,255,255,0.7); position: relative; box-shadow: var(--ombre); }
+      .etiquette-prix::before { content: ""; position: absolute; left: 30px; top: 50%; width: 22px; height: 22px; margin-top: -11px; border-radius: 50%; background: rgba(255,255,255,0.8); }
+      .raison { display: flex; align-items: center; gap: 26px; }
+      .raison-num { flex: none; width: 96px; height: 96px; border-radius: 50%; border: 3px solid var(--vert); display: flex; align-items: center; justify-content: center; font-size: 52px; font-weight: 900; color: var(--vert); }
+      .raison-titre { font-size: 60px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; }
+      .regle-prix { position: relative; height: 34px; border-radius: 17px; background: rgba(255,255,255,0.1); }
+      .zone { position: absolute; top: 0; bottom: 0; border-radius: 17px; transform-origin: 0 50%; }
+      .graduation { position: absolute; top: 50px; transform: translateX(-50%); font-size: 30px; font-weight: 800; color: #d4d4d8; white-space: nowrap; }
+    </style>
   </head>
   <body>
-    <!-- Projet vide, en attente du rush (voir assets/README.md). -->
-    <div
-      id="root"
-      data-composition-id="main"
-      data-start="0"
-      data-duration="4"
-      data-width="1080"
-      data-height="1920"
-    >
-      <div class="clip" id="attente" data-start="0" data-duration="4" data-track-index="0">
-        <div class="carte carte--sommet">
-          <div class="etiquette">video-22</div>
-          <div class="titre">En attente<br />du rush</div>
-          <div class="sous-titre">nouvelle vidéo</div>
+    <!--
+      Montage « le high ticket, pas pour les débutants », style calme de
+      video-21 : fondus lents, pas de rebonds, quelques clics très bas, et le
+      motion design surtout sur les chiffres (plus de 1 000 €, 200 à 500 €).
+      Pas de capture.
+    -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="41.83" data-width="1080" data-height="1920">
+      <video id="rush" class="clip" src="assets/rush-coupe.mp4" muted data-start="0" data-duration="41.83"></video>
+      <audio id="voix" src="assets/rush-coupe.mp4" data-start="0" data-duration="41.83" data-volume="1"></audio>
+
+      <div class="clip" id="voile" data-start="0" data-duration="41.83" data-track-index="0">
+        <div class="voile-haut"></div>
+      </div>
+
+      <!-- 1-2 — Le high ticket : plus de 1 000 € -->
+      <div class="clip" id="s1" data-start="0" data-duration="7.30" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="kicker" id="a0">Le high ticket sur Google Ads</div>
+          <div class="phrase" id="a1" style="margin-top: 20px; font-size: 60px">souvent survendu</div>
+          <div style="margin-top: 50px">
+            <div class="etiquette-prix" id="a2">
+              <span class="chiffre-calme" style="font-size: 120px">+ <span id="a2v">0</span> €</span>
+            </div>
+          </div>
+          <div class="rangee-pilules" style="margin-top: 40px">
+            <div class="pilule" id="a3" style="border-color: rgba(255,107,94,0.7)">pas conseillé aux débutants</div>
+          </div>
         </div>
       </div>
+
+      <!-- 3 — Raison 1 : la trésorerie -->
+      <div class="clip" id="s2" data-start="7.30" data-duration="7.20" data-track-index="1">
+        <div class="scene" style="top: 200px">
+          <div class="kicker" id="b0">Pourquoi ?</div>
+          <div class="raison" id="b1" style="margin-top: 30px"><div class="raison-num">1</div><div class="raison-titre">La trésorerie</div></div>
+          <div class="barre-h" id="b2" style="margin-top: 50px"><div class="barre-h-nom" style="width: 260px">Pub à payer</div><div class="barre-h-piste"><span id="b2b" style="background: #ff6b5e"></span></div></div>
+          <div class="barre-h" id="b3"><div class="barre-h-nom" style="width: 260px">Ta tréso</div><div class="barre-h-piste"><span id="b3b" style="background: #d4d4d8"></span></div></div>
+          <div class="phrase" id="b4" style="margin-top: 34px; font-size: 56px">si elle ne suit pas, c'est bof</div>
+        </div>
+      </div>
+
+      <!-- 4 — Raison 2 : le fournisseur -->
+      <div class="clip" id="s3" data-start="14.50" data-duration="4.00" data-track-index="1">
+        <div class="scene" style="top: 200px">
+          <div class="raison" id="c0"><div class="raison-num">2</div><div class="raison-titre">Le fournisseur</div></div>
+          <svg viewBox="0 0 920 300" style="width: 100%; height: 320px; margin-top: 40px">
+            <g id="c1">
+              <circle cx="140" cy="140" r="90" fill="rgba(255,255,255,0.08)" stroke="#f4f4f5" stroke-width="5"/>
+              <circle cx="140" cy="118" r="26" fill="#f4f4f5"/><path d="M92 196 C92 156 188 156 188 196" fill="#f4f4f5"/>
+              <text x="140" y="275" text-anchor="middle" font-family="Inter" font-weight="900" font-size="34" fill="#f4f4f5">TOI</text>
+            </g>
+            <g id="c2">
+              <circle cx="780" cy="140" r="90" fill="rgba(255,255,255,0.08)" stroke="#f4f4f5" stroke-width="5"/>
+              <path d="M735 115 H825 V180 H735 Z M735 115 L780 92 L825 115" fill="none" stroke="#f4f4f5" stroke-width="6" stroke-linejoin="round"/>
+              <text x="780" y="275" text-anchor="middle" font-family="Inter" font-weight="900" font-size="34" fill="#f4f4f5">FOURNISSEUR</text>
+            </g>
+            <path id="c3" d="M240 140 H680" stroke="rgba(255,255,255,0.5)" stroke-width="6" stroke-dasharray="18 16" stroke-linecap="round"/>
+            <text id="c4" x="460" y="122" text-anchor="middle" font-family="Inter" font-weight="900" font-size="72" fill="#ff6b5e">?</text>
+          </svg>
+          <div class="phrase" id="c5" style="font-size: 56px; text-align: center">pas encore de relation</div>
+        </div>
+      </div>
+
+      <!-- 5 — Raison 3 : le site, il va tout regarder -->
+      <div class="clip" id="s4" data-start="18.50" data-duration="8.00" data-track-index="1">
+        <div class="scene" style="top: 190px">
+          <div class="raison" id="d0"><div class="raison-num">3</div><div class="raison-titre">Le site</div></div>
+          <div class="scene-illu" style="height: 460px; margin-top: 30px">
+            <div class="navigateur verre" id="d1" style="padding: 0">
+              <div class="nav-barre"><i></i><i></i><i></i><div class="nav-adresse"></div></div>
+              <div class="grille-produits">
+                <div class="tuile"><div class="tuile-image"></div><div class="tuile-ligne" style="top: 206px; width: 150px"></div><div class="tuile-prix">1 000 €+</div></div>
+                <div class="tuile"><div class="tuile-image"></div><div class="tuile-ligne" style="top: 206px; width: 120px"></div><div class="tuile-prix">1 000 €+</div></div>
+                <div class="tuile"><div class="tuile-image"></div><div class="tuile-ligne" style="top: 206px; width: 160px"></div><div class="tuile-prix">1 000 €+</div></div>
+              </div>
+            </div>
+            <svg id="d2" viewBox="0 0 100 100" style="position: absolute; left: 100px; top: 120px; width: 170px; height: 170px"><circle cx="42" cy="42" r="26" fill="rgba(255,255,255,0.12)" stroke="#f4f4f5" stroke-width="7"/><path d="M62 62 L86 86" stroke="#f4f4f5" stroke-width="10" stroke-linecap="round"/></svg>
+          </div>
+          <div class="rangee-pilules" style="margin-top: 0; white-space: nowrap">
+            <div class="pilule" id="d3">hyper professionnel</div>
+            <div class="pilule pilule--pleine" id="d4">il va tout regarder</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 — De bonnes marges, mais un site qui donne confiance -->
+      <div class="clip" id="s5" data-start="26.50" data-duration="6.50" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="kicker" id="e0">Le high ticket</div>
+          <div class="bulle" id="e1" style="margin-top: 30px">
+            <svg viewBox="0 0 100 100" style="width: 92px; height: 92px; flex: none"><path d="M15 80 L40 55 L55 68 L85 30" fill="none" stroke="#00e676" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 30 H85 V47" fill="none" stroke="#00e676" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><div class="bulle-titre">De très bonnes marges</div><div class="bulle-texte">c'est sûr</div></div>
+          </div>
+          <div class="bulle" id="e2" style="margin-top: 24px">
+            <svg viewBox="0 0 100 100" style="width: 92px; height: 92px; flex: none"><path d="M50 8 L86 22 V50 C86 72 70 86 50 94 C30 86 14 72 14 50 V22 Z" fill="rgba(0,230,118,0.15)" stroke="#00e676" stroke-width="6" stroke-linejoin="round"/><path id="e3" d="M32 52 L45 65 L70 38" fill="none" stroke="#00e676" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="60" stroke-dashoffset="60"/></svg>
+            <div><div class="bulle-titre">Mais un site quali</div><div class="bulle-texte">qui donne confiance</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 — Le middle ticket : 200 à 500 € -->
+      <div class="clip" id="s6" data-start="33.00" data-duration="5.90" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="kicker" id="f0">Débutant : moi, je suis allé sur</div>
+          <div class="display" style="margin-top: 20px; font-size: 110px"><span class="masque"><span id="f1">Middle</span></span> <span class="masque"><span id="f2" class="serif accent" style="font-size: 130px">ticket</span></span></div>
+          <div class="regle-prix" id="f3" style="margin-top: 70px">
+            <div class="zone" id="f4" style="left: 18%; width: 27%; background: var(--vert); box-shadow: 0 0 30px rgba(0,230,118,0.5)"></div>
+            <div class="zone" id="f5" style="left: 82%; width: 18%; background: rgba(255,107,94,0.55)"></div>
+            <div class="graduation" style="left: 0%; transform: none">0 €</div>
+            <div class="graduation accent" id="f6" style="left: 18%"><span id="f6v">0</span> €</div>
+            <div class="graduation accent" id="f7" style="left: 45%"><span id="f7v">0</span> €</div>
+            <div class="graduation" id="f8" style="left: 82%">1 000 €+</div>
+          </div>
+          <div class="rangee-pilules" style="margin-top: 110px">
+            <div class="pilule pilule--pleine" id="f9">entre 200 et 500 €</div>
+            <div class="pilule" id="f10">et du bon taf</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 — Black Friday, like, abonne-toi -->
+      <div class="clip" id="s7" data-start="38.90" data-duration="2.93" data-track-index="1">
+        <div class="scene" style="top: 300px; text-align: center">
+          <div class="phrase" id="g0" style="font-size: 64px">Mes chiffres du</div>
+          <div style="margin-top: 26px"><div class="black-friday" id="g1">BLACK FRIDAY</div></div>
+          <div class="rangee-pilules" style="justify-content: center; margin-top: 50px">
+            <div class="pilule" id="like" style="font-size: 44px; padding: 22px 40px">Like</div>
+            <div class="pilule pilule--pleine" id="abonne" style="font-size: 44px; padding: 22px 40px">Abonne-toi</div>
+          </div>
+        </div>
+      </div>
+
+      <audio id="son-1000" src="assets/sfx/clic.wav" data-start="4.1" data-duration="0.12" data-volume="0.15"></audio>
+      <audio id="son-r1" src="assets/sfx/clic.wav" data-start="7.9" data-duration="0.12" data-volume="0.15"></audio>
+      <audio id="son-r2" src="assets/sfx/clic.wav" data-start="14.7" data-duration="0.12" data-volume="0.15"></audio>
+      <audio id="son-r3" src="assets/sfx/clic.wav" data-start="18.7" data-duration="0.12" data-volume="0.15"></audio>
+      <audio id="son-middle" src="assets/sfx/clic.wav" data-start="36.6" data-duration="0.12" data-volume="0.15"></audio>
+
+      <div class="clip" id="sous-titres" data-composition-id="subtitles" data-composition-src="compositions/subtitles.html" data-start="0" data-duration="41.83" data-track-index="5"></div>
     </div>
+
     <script>
       const tl = gsap.timeline({ paused: true });
-      tl.fromTo(
-        "#attente .carte",
-        { xPercent: 18, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
-        0.2,
-      );
+      const doux = "power2.out";
+
+      const prises = [0, 7.3, 14.5, 18.5, 26.5, 33.0, 38.9, 41.83];
+      prises.slice(0, -1).forEach((debut, i) => {
+        const base = i % 2 ? 1.05 : 1.0;
+        tl.fromTo("#rush", { scale: base }, { scale: base + 0.02, duration: prises[i + 1] - debut, ease: "none", immediateRender: false }, debut);
+      });
+
+      function pose(sel, t, dx = 0) {
+        tl.fromTo(sel, { opacity: 0, y: 18, x: dx }, { opacity: 1, y: 0, x: 0, duration: 0.7, ease: doux }, t);
+      }
+      function part(sel, t) {
+        tl.to(sel, { opacity: 0, duration: 0.4, ease: "power1.in" }, t);
+      }
+      function monte(sel, t, duree = 0.7) {
+        tl.fromTo(sel, { yPercent: 110 }, { yPercent: 0, duration: duree, ease: doux }, t);
+      }
+      function compte(sel, de, a, t, duree) {
+        const o = { v: de };
+        tl.fromTo(o, { v: de }, { v: a, duration: duree, ease: "power2.out", onUpdate() {
+          document.querySelector(sel).textContent = Math.round(o.v).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        } }, t);
+      }
+
+      /* 1-2 — plus de 1 000 € */
+      pose("#a0", 0.2);
+      pose("#a1", 0.9);
+      pose("#a2", 3.4, 30);
+      compte("#a2v", 0, 1000, 3.8, 0.9);
+      pose("#a3", 5.8);
+      part("#s1 .scene", 6.9);
+
+      /* 3 — trésorerie */
+      pose("#b0", 7.4);
+      pose("#b1", 7.9);
+      pose(["#b2", "#b3"], 8.6);
+      tl.fromTo("#b3b", { scaleX: 0 }, { scaleX: 0.3, duration: 0.9, ease: doux }, 9.0);
+      tl.fromTo("#b2b", { scaleX: 0 }, { scaleX: 0.95, duration: 1.2, ease: doux }, 11.9);
+      pose("#b4", 13.0);
+      part("#s2 .scene", 14.1);
+
+      /* 4 — fournisseur */
+      pose("#c0", 14.6);
+      pose("#c1", 15.2, -30);
+      pose("#c2", 15.6, 30);
+      tl.fromTo("#c3", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 16.0);
+      tl.fromTo("#c4", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 16.4);
+      pose("#c5", 16.8);
+      part("#s3 .scene", 18.1);
+
+      /* 5 — le site */
+      pose("#d0", 18.6);
+      pose("#d1", 19.2);
+      pose("#d3", 21.3);
+      tl.fromTo("#d2", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 23.4);
+      tl.fromTo("#d2", { x: 0, y: 0 }, { x: 560, y: 40, duration: 2.6, ease: "sine.inOut", immediateRender: false }, 23.5);
+      pose("#d4", 25.6);
+      part("#s4 .scene", 26.1);
+
+      /* 6 — marges et confiance */
+      pose("#e0", 26.6);
+      pose("#e1", 28.4, 30);
+      pose("#e2", 30.6, 30);
+      tl.fromTo("#e3", { strokeDashoffset: 60 }, { strokeDashoffset: 0, duration: 0.6 }, 32.2);
+      part("#s5 .scene", 32.6);
+
+      /* 7 — middle ticket, 200 à 500 € */
+      pose("#f0", 33.1);
+      monte("#f1", 35.3);
+      monte("#f2", 35.6);
+      pose("#f3", 35.9);
+      tl.fromTo("#f5", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 36.0);
+      pose("#f8", 36.0);
+      tl.fromTo("#f4", { scaleX: 0 }, { scaleX: 1, duration: 1.0, ease: "power1.inOut" }, 36.6);
+      pose("#f6", 36.6);
+      compte("#f6v", 0, 200, 36.6, 0.5);
+      pose("#f7", 37.1);
+      compte("#f7v", 200, 500, 37.1, 0.6);
+      pose("#f9", 37.4);
+      pose("#f10", 38.1);
+      part("#s6 .scene", 38.5);
+
+      /* 8 — Black Friday, like, abonne */
+      pose("#g0", 39.3);
+      pose("#g1", 40.4, 30);
+      pose("#like", 41.0);
+      pose("#abonne", 41.2);
+
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);
