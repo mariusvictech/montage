@@ -1022,3 +1022,141 @@
   position: absolute;
   inset: 0;
 }
+
+/* ---------- video-21 : montage calme, chiffres visualisés ---------- */
+.chiffre-calme {
+  font-size: 170px;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.barre-h {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 26px;
+}
+
+.barre-h-nom {
+  width: 160px;
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.barre-h-piste {
+  flex: 1;
+  height: 56px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.barre-h-piste span {
+  display: block;
+  height: 100%;
+  border-radius: 18px;
+  transform-origin: 0 50%;
+}
+
+.barre-h-valeur {
+  width: 190px;
+  text-align: right;
+  font-size: 44px;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.curseur-piste {
+  position: relative;
+  height: 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.curseur-plein {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #00b35c, var(--vert));
+  transform-origin: 0 50%;
+}
+
+.curseur-bouton {
+  position: absolute;
+  top: 50%;
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  border-radius: 50%;
+  background: #f4f4f5;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.foule {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 18px 10px;
+}
+
+.foule svg {
+  width: 100%;
+  height: 110px;
+}
+
+.colonne-cmp {
+  flex: 1;
+  padding: 30px;
+  border-radius: 36px;
+  text-align: center;
+}
+
+.colonne-cmp h4 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gris);
+}
+
+.barres-v {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 26px;
+  height: 260px;
+  margin-top: 20px;
+}
+
+.barres-v div {
+  width: 90px;
+  border-radius: 16px 16px 6px 6px;
+  transform-origin: 50% 100%;
+}
+
+.legende-v {
+  display: flex;
+  justify-content: center;
+  gap: 26px;
+  margin-top: 10px;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--gris);
+}
+
+.legende-v span {
+  width: 90px;
+}
+
+.roas {
+  margin-top: 18px;
+  font-size: 54px;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
