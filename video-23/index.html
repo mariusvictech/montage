@@ -5,33 +5,277 @@
     <meta name="viewport" content="width=1080, height=1920" />
     <script src="./vendor/gsap.min.js"></script>
     <link rel="stylesheet" href="./identity.css" />
+    <link rel="stylesheet" href="./premium.css" />
+    <link rel="stylesheet" href="./scenes.css" />
+    <style>
+      .boutiques { display: flex; gap: 26px; margin-top: 30px; }
+      .boutique { flex: 1; padding: 30px 20px; border-radius: 34px; text-align: center; position: relative; }
+      .boutique svg { width: 120px; height: 120px; }
+      .boutique-nom { margin-top: 12px; font-size: 30px; font-weight: 900; text-transform: uppercase; }
+      .boutique-tag { margin-top: 10px; font-size: 26px; font-weight: 800; color: var(--gris); }
+      .coche-ronde { position: absolute; top: -18px; right: -12px; width: 64px; height: 64px; border-radius: 50%; background: var(--vert); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 24px rgba(0,230,118,0.5); }
+      .coche-ronde svg { width: 40px; height: 40px; }
+      .marque { width: 200px; height: 140px; border-radius: 28px; display: flex; align-items: center; justify-content: center; }
+      .bandeau { height: 70px; display: flex; align-items: center; justify-content: center; background: var(--vert); color: #04140a; font-size: 26px; font-weight: 900; white-space: nowrap; transform-origin: 50% 0; }
+      .carte-cadeau { width: 560px; height: 330px; margin: 0 auto; border-radius: 34px; background: linear-gradient(135deg, #00e676, #00a152); color: #04140a; padding: 36px 40px; position: relative; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.5); }
+      .carte-cadeau b { display: block; font-size: 56px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; }
+      .carte-cadeau i { position: absolute; top: 0; bottom: 0; left: 380px; width: 26px; background: rgba(4,20,10,0.25); }
+      .carte-cadeau u { position: absolute; left: 0; right: 0; top: 200px; height: 26px; background: rgba(4,20,10,0.25); text-decoration: none; }
+    </style>
   </head>
   <body>
-    <!-- Projet vide, en attente du rush (voir assets/README.md). -->
-    <div
-      id="root"
-      data-composition-id="main"
-      data-start="0"
-      data-duration="4"
-      data-width="1080"
-      data-height="1920"
-    >
-      <div class="clip" id="attente" data-start="0" data-duration="4" data-track-index="0">
-        <div class="carte carte--sommet">
-          <div class="etiquette">video-23</div>
-          <div class="titre">En attente<br />du rush</div>
-          <div class="sous-titre">nouvelle vidéo</div>
+    <!--
+      Montage « ce que je mets en place pour mon premier Black Friday », style
+      calme de video-21 : fondus lents, pas de rebonds, quelques clics très bas.
+      Illustrations : les 3 boutiques (2 evergreen + 1 à cadeaux, ×10 au Q4),
+      marge contre valeur perçue, s'inspirer des grandes marques, le cadeau qui
+      se compose, le bandeau « commandez à temps », la date limite et les
+      retours, la carte cadeau. Pas de capture, aucune date ni marque inventée.
+    -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="55.97" data-width="1080" data-height="1920">
+      <video id="rush" class="clip" src="assets/rush-coupe.mp4" muted data-start="0" data-duration="55.97"></video>
+      <audio id="voix" src="assets/rush-coupe.mp4" data-start="0" data-duration="55.97" data-volume="1"></audio>
+
+      <div class="clip" id="voile" data-start="0" data-duration="55.97" data-track-index="0">
+        <div class="voile-haut"></div>
+      </div>
+
+      <!-- 1 — Mon premier Black Friday -->
+      <div class="clip" id="s1" data-start="0" data-duration="6.60" data-track-index="1">
+        <div class="scene" style="top: 260px">
+          <div class="kicker" id="a0">Mon premier</div>
+          <div style="margin-top: 26px"><div class="black-friday" id="a1" style="font-size: 72px">BLACK FRIDAY</div></div>
+          <div class="phrase" id="a2" style="margin-top: 40px; font-size: 60px">tout ce que je mets en place</div>
         </div>
       </div>
+
+      <!-- 2 — Trois boutiques -->
+      <div class="clip" id="s2" data-start="6.60" data-duration="8.30" data-track-index="1">
+        <div class="scene" style="top: 200px">
+          <div class="kicker" id="b0">3 boutiques</div>
+          <div class="boutiques">
+            <div class="boutique verre" id="b1">
+              <svg viewBox="0 0 100 100"><path d="M15 40 L20 18 L80 18 L85 40 Z M20 40 L20 82 L80 82 L80 40 M42 82 L42 60 L58 60 L58 82" fill="none" stroke="#f4f4f5" stroke-width="5" stroke-linejoin="round"/></svg>
+              <div class="boutique-nom">Boutique 1</div><div class="boutique-tag">evergreen</div>
+              <div class="coche-ronde ck"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="#04140a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            </div>
+            <div class="boutique verre" id="b2">
+              <svg viewBox="0 0 100 100"><path d="M15 40 L20 18 L80 18 L85 40 Z M20 40 L20 82 L80 82 L80 40 M42 82 L42 60 L58 60 L58 82" fill="none" stroke="#f4f4f5" stroke-width="5" stroke-linejoin="round"/></svg>
+              <div class="boutique-nom">Boutique 2</div><div class="boutique-tag">evergreen</div>
+              <div class="coche-ronde ck"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="#04140a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            </div>
+            <div class="boutique verre" id="b3" style="border-color: rgba(0,230,118,0.6)">
+              <svg viewBox="0 0 100 100"><rect x="18" y="42" width="64" height="44" rx="6" fill="none" stroke="#00e676" stroke-width="5"/><rect x="12" y="30" width="76" height="14" rx="4" fill="none" stroke="#00e676" stroke-width="5"/><path d="M50 30 V86 M50 30 C40 14 24 18 30 28 M50 30 C60 14 76 18 70 28" fill="none" stroke="#00e676" stroke-width="5" stroke-linecap="round"/></svg>
+              <div class="boutique-nom">Boutique 3</div><div class="boutique-tag accent">produits cadeaux</div>
+              <div class="coche-ronde ck"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="#04140a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: flex-end; align-items: baseline; gap: 20px; margin-top: 30px" id="b4">
+            <div style="font-size: 34px; font-weight: 800; color: #d4d4d8">pendant le Q4</div>
+            <div class="chiffre-calme accent" style="font-size: 120px">×<span id="b4v">1</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 — Offrir : marge intacte, valeur perçue en hausse -->
+      <div class="clip" id="s3" data-start="14.90" data-duration="5.55" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="kicker" id="c0">Ce que je peux offrir</div>
+          <div class="barre-h" id="c1" style="margin-top: 50px"><div class="barre-h-nom" style="width: 280px">Ma marge</div><div class="barre-h-piste"><span id="c1b" style="background: #d4d4d8"></span></div></div>
+          <div class="barre-h" id="c2"><div class="barre-h-nom" style="width: 280px">Valeur perçue</div><div class="barre-h-piste"><span id="c2b" style="background: var(--vert)"></span></div></div>
+          <div class="rangee-pilules" style="margin-top: 40px">
+            <div class="pilule" id="c3">aucun impact sur la marge</div>
+          </div>
+          <div class="rangee-pilules" style="margin-top: 16px">
+            <div class="pilule pilule--pleine" id="c4">gros impact sur la valeur perçue</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 — S'inspirer des grosses marques -->
+      <div class="clip" id="s4" data-start="20.45" data-duration="5.95" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="kicker" id="d0">Ce que font les grosses marques</div>
+          <div style="display: flex; justify-content: space-between; margin-top: 40px; position: relative">
+            <div class="marque verre" id="d1"><svg viewBox="0 0 100 60" style="width: 110px"><circle cx="30" cy="30" r="18" fill="rgba(255,255,255,0.5)"/><rect x="54" y="20" width="36" height="20" rx="10" fill="rgba(255,255,255,0.3)"/></svg></div>
+            <div class="marque verre" id="d2"><svg viewBox="0 0 100 60" style="width: 110px"><path d="M15 50 L35 10 L55 50 Z" fill="rgba(255,255,255,0.5)"/><rect x="62" y="22" width="28" height="16" rx="8" fill="rgba(255,255,255,0.3)"/></svg></div>
+            <div class="marque verre" id="d3"><svg viewBox="0 0 100 60" style="width: 110px"><rect x="12" y="12" width="36" height="36" rx="8" fill="rgba(255,255,255,0.5)"/><rect x="56" y="22" width="34" height="16" rx="8" fill="rgba(255,255,255,0.3)"/></svg></div>
+            <svg id="d4" viewBox="0 0 100 100" style="position: absolute; left: 20px; top: 10px; width: 130px; height: 130px"><circle cx="42" cy="42" r="26" fill="rgba(255,255,255,0.1)" stroke="#00e676" stroke-width="7"/><path d="M62 62 L86 86" stroke="#00e676" stroke-width="10" stroke-linecap="round"/></svg>
+          </div>
+          <div style="text-align: center; margin-top: 50px">
+            <svg id="d5" viewBox="0 0 60 60" style="width: 70px; height: 70px"><path d="M30 6 V50 M14 36 L30 52 L46 36" fill="none" stroke="#f4f4f5" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div style="margin-top: 16px"><div class="pilule pilule--pleine" id="d6" style="font-size: 40px">on veut être une marque</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 — Composer son cadeau -->
+      <div class="clip" id="s5" data-start="26.40" data-duration="5.40" data-track-index="1">
+        <div class="scene" style="top: 210px">
+          <div class="kicker" id="e0">Boutique Q4 : composer son cadeau</div>
+          <div class="verre" style="margin-top: 20px; padding: 20px"><svg viewBox="0 0 920 470" style="width: 100%; height: 440px">
+            <g id="e1">
+              <circle cx="150" cy="200" r="90" fill="rgba(255,255,255,0.08)" stroke="#f4f4f5" stroke-width="5"/>
+              <circle cx="150" cy="180" r="28" fill="#f4f4f5"/><path d="M98 262 C98 220 202 220 202 262" fill="#f4f4f5"/>
+              <path id="sourire" d="M120 320 Q150 345 180 320" fill="none" stroke="#00e676" stroke-width="7" stroke-linecap="round" opacity="0"/>
+              <text x="150" y="395" text-anchor="middle" font-family="Inter" font-weight="900" font-size="32" fill="#f4f4f5">TON PERSONA</text>
+            </g>
+            <g id="boite">
+              <rect x="520" y="250" width="300" height="190" rx="14" fill="rgba(0,230,118,0.12)" stroke="#00e676" stroke-width="6"/>
+              <path d="M670 250 V440" stroke="#00e676" stroke-width="6"/>
+            </g>
+            <rect class="objet-c" x="560" y="40" width="70" height="70" rx="14" fill="#f4f4f5"/>
+            <circle class="objet-c" cx="670" cy="75" r="36" fill="#ffd60a"/>
+            <path class="objet-c" d="M740 110 L775 40 L810 110 Z" fill="#7c5cff"/>
+          </svg></div>
+        </div>
+      </div>
+
+      <!-- 6 — Le bandeau « commandez à temps » et les retours -->
+      <div class="clip" id="s6" data-start="31.80" data-duration="11.00" data-track-index="1">
+        <div class="scene" style="top: 190px">
+          <div class="kicker" id="f0">Dans l'en-tête du site</div>
+          <div class="navigateur verre" id="f1" style="position: relative; left: 0; right: 0; height: 330px; margin-top: 24px; padding: 0">
+            <div class="nav-barre"><i></i><i></i><i></i><div class="nav-adresse"></div></div>
+            <div class="bandeau" id="f2">Commandez à temps pour recevoir votre cadeau à Noël</div>
+            <div class="grille-produits" style="padding-top: 22px">
+              <div class="tuile" style="height: 150px"><div class="tuile-image" style="height: 110px"></div></div>
+              <div class="tuile" style="height: 150px"><div class="tuile-image" style="height: 110px"></div></div>
+              <div class="tuile" style="height: 150px"><div class="tuile-image" style="height: 110px"></div></div>
+            </div>
+          </div>
+          <div class="verre" style="margin-top: 30px; padding: 20px"><svg viewBox="0 0 920 230" style="width: 100%; height: 220px">
+            <path id="f3" d="M30 90 H890" stroke="rgba(255,255,255,0.35)" stroke-width="6" stroke-linecap="round"/>
+            <g id="f4"><path d="M560 40 V140" stroke="#ffd60a" stroke-width="6" stroke-linecap="round"/><text x="560" y="28" text-anchor="middle" font-family="Inter" font-weight="900" font-size="28" fill="#ffd60a">DATE LIMITE</text></g>
+            <g id="f5" opacity="0">
+              <text x="750" y="215" text-anchor="middle" font-family="Inter" font-weight="900" font-size="30" fill="#ff6b5e">RETOURS</text>
+              <path class="retour" d="M650 120 a26 26 0 1 0 26 -26 l-10 -12 m10 12 l-14 8" fill="none" stroke="#ff6b5e" stroke-width="6" stroke-linecap="round"/>
+              <path class="retour" d="M740 120 a26 26 0 1 0 26 -26 l-10 -12 m10 12 l-14 8" fill="none" stroke="#ff6b5e" stroke-width="6" stroke-linecap="round"/>
+              <path class="retour" d="M830 120 a26 26 0 1 0 26 -26 l-10 -12 m10 12 l-14 8" fill="none" stroke="#ff6b5e" stroke-width="6" stroke-linecap="round"/>
+            </g>
+          </svg></div>
+        </div>
+      </div>
+
+      <!-- 7 — Après la date : la carte cadeau -->
+      <div class="clip" id="s7" data-start="42.80" data-duration="9.40" data-track-index="1">
+        <div class="scene" style="top: 220px">
+          <div class="kicker" id="g0">Après la date limite</div>
+          <div style="margin-top: 40px">
+            <div class="carte-cadeau" id="g1"><i></i><u></u><b>Carte</b><b>cadeau</b></div>
+          </div>
+          <div class="rangee-pilules" style="justify-content: center; margin-top: 40px; flex-direction: column; align-items: center; gap: 14px">
+            <div class="pilule" id="g2" style="font-size: 28px; white-space: nowrap">ils peuvent quand même l'acheter</div>
+            <div class="pilule pilule--pleine" id="g3" style="font-size: 28px; white-space: nowrap">à Noël, la personne choisit sur la boutique</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 — Est-ce que ça va payer ? -->
+      <div class="clip" id="s8" data-start="52.20" data-duration="3.77" data-track-index="1">
+        <div class="scene" style="top: 320px; text-align: center">
+          <div class="phrase" id="h0" style="font-size: 64px">Mes stratégies vont-elles payer ?</div>
+          <div style="margin-top: 26px"><div class="black-friday" id="h1">BLACK FRIDAY</div></div>
+          <div class="rangee-pilules" style="justify-content: center; margin-top: 50px">
+            <div class="pilule" id="like" style="font-size: 44px; padding: 22px 40px">Like</div>
+            <div class="pilule pilule--pleine" id="abonne" style="font-size: 44px; padding: 22px 40px">Abonne-toi</div>
+          </div>
+        </div>
+      </div>
+
+      <audio id="son-3" src="assets/sfx/clic.wav" data-start="7.2" data-duration="0.12" data-volume="0.15"></audio>
+      <audio id="son-x10" src="assets/sfx/clic.wav" data-start="10.5" data-duration="0.12" data-volume="0.15"></audio>
+      <audio id="son-bandeau" src="assets/sfx/clic.wav" data-start="34.4" data-duration="0.12" data-volume="0.15"></audio>
+      <audio id="son-carte" src="assets/sfx/clic.wav" data-start="46.0" data-duration="0.12" data-volume="0.15"></audio>
+
+      <div class="clip" id="sous-titres" data-composition-id="subtitles" data-composition-src="compositions/subtitles.html" data-start="0" data-duration="55.97" data-track-index="5"></div>
     </div>
+
     <script>
       const tl = gsap.timeline({ paused: true });
-      tl.fromTo(
-        "#attente .carte",
-        { xPercent: 18, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
-        0.2,
-      );
+      const doux = "power2.out";
+
+      const prises = [0, 6.6, 14.9, 20.45, 26.4, 31.8, 42.8, 52.2, 55.97];
+      prises.slice(0, -1).forEach((debut, i) => {
+        const base = i % 2 ? 1.05 : 1.0;
+        tl.fromTo("#rush", { scale: base }, { scale: base + 0.02, duration: prises[i + 1] - debut, ease: "none", immediateRender: false }, debut);
+      });
+
+      function pose(sel, t, dx = 0) {
+        tl.fromTo(sel, { opacity: 0, y: 18, x: dx }, { opacity: 1, y: 0, x: 0, duration: 0.7, ease: doux }, t);
+      }
+      function part(sel, t) {
+        tl.to(sel, { opacity: 0, duration: 0.4, ease: "power1.in" }, t);
+      }
+
+      /* 1 */
+      pose("#a0", 0.3);
+      pose("#a1", 0.8, 30);
+      pose("#a2", 2.9);
+      part("#s1 .scene", 6.2);
+
+      /* 2 — trois boutiques, ×10 */
+      pose("#b0", 6.8);
+      pose("#b1", 7.2);
+      pose("#b2", 7.5);
+      pose("#b3", 8.9);
+      pose("#b4", 10.2);
+      const x = { v: 1 };
+      tl.fromTo(x, { v: 1 }, { v: 10, duration: 0.9, ease: "power2.out", onUpdate() { document.getElementById("b4v").textContent = Math.round(x.v); } }, 10.4);
+      tl.fromTo("#s2 .ck", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, stagger: 0.25, ease: doux }, 13.5);
+      part("#s2 .scene", 14.5);
+
+      /* 3 — marge / valeur perçue */
+      pose("#c0", 15.1);
+      pose(["#c1", "#c2"], 16.0);
+      tl.fromTo("#c1b", { scaleX: 0 }, { scaleX: 0.5, duration: 0.8, ease: doux }, 16.3);
+      tl.fromTo("#c2b", { scaleX: 0 }, { scaleX: 0.3, duration: 0.8, ease: doux }, 16.3);
+      pose("#c3", 17.5);
+      tl.to("#c2b", { scaleX: 0.95, duration: 1.2, ease: "power1.inOut" }, 18.8);
+      pose("#c4", 19.2);
+      part("#s3 .scene", 20.05);
+
+      /* 4 — grosses marques */
+      pose("#d0", 20.6);
+      pose(["#d1", "#d2", "#d3"], 21.3);
+      tl.fromTo("#d4", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 22.2);
+      tl.fromTo("#d4", { x: 0 }, { x: 680, duration: 2.0, ease: "sine.inOut", immediateRender: false }, 22.3);
+      pose("#d5", 24.6);
+      pose("#d6", 25.2);
+      part("#s4 .scene", 26.0);
+
+      /* 5 — composer son cadeau */
+      pose("#e0", 26.5);
+      pose(["#e1", "#boite"], 27.2);
+      tl.fromTo("#s5 .objet-c", { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.3, ease: doux }, 28.0);
+      tl.to("#s5 .objet-c", { y: 250, duration: 0.8, stagger: 0.35, ease: "power1.in" }, 29.0);
+      tl.to("#s5 .objet-c", { opacity: 0, duration: 0.3, stagger: 0.35 }, 29.6);
+      tl.fromTo("#sourire", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 30.3);
+      part("#s5 .scene", 31.4);
+
+      /* 6 — bandeau, date limite, retours */
+      pose("#f0", 31.9);
+      pose("#f1", 32.3);
+      tl.fromTo("#f2", { scaleY: 0, opacity: 0 }, { scaleY: 1, opacity: 1, duration: 0.7, ease: doux }, 34.3);
+      tl.fromTo("#f3", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 38.2);
+      tl.fromTo("#f4", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 38.6);
+      tl.fromTo("#f5", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 39.8);
+      tl.fromTo("#f5 .retour", { opacity: 0 }, { opacity: 1, duration: 0.4, stagger: 0.3 }, 39.9);
+      part("#s6 .scene", 42.4);
+
+      /* 7 — carte cadeau */
+      pose("#g0", 42.9);
+      tl.fromTo("#g1", { opacity: 0, y: 40, rotation: -3 }, { opacity: 1, y: 0, rotation: 0, duration: 0.9, ease: doux }, 45.8);
+      pose("#g2", 47.0);
+      pose("#g3", 49.4);
+      part("#s7 .scene", 51.8);
+
+      /* 8 */
+      pose("#h0", 52.4);
+      pose("#h1", 53.6, 30);
+      pose("#like", 54.8);
+      pose("#abonne", 55.3);
+
       window.__timelines = window.__timelines || {};
       window.__timelines["main"] = tl;
       tl.seek(0);
